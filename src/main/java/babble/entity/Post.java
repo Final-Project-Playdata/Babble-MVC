@@ -3,6 +3,7 @@ package babble.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -29,12 +30,11 @@ public class Post {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-//	@OneToOne(mappedBy="postId")
 	private Long id;
 	
-	@JoinColumn(name="memberId")
+	@JoinColumn(name="userId")
 	@ManyToOne(fetch=FetchType.LAZY)
-	private Member member;
+	private User user;
 	
 	private String fileURL;
 	
@@ -50,14 +50,14 @@ public class Post {
 	@JoinColumn(name="retweetPostId")
 	private Post retweetPost;
 	
-	@OneToMany(mappedBy="post", fetch=FetchType.LAZY)
-	private List<Tag> tags;
+	@OneToMany(mappedBy="post", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+	private List<Tag> tagList;
 	
-	@OneToMany(mappedBy="post", fetch=FetchType.LAZY)
-	private List<Comments> comments;
+	@OneToMany(mappedBy="post", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+	private List<Comment> commentList;
 	
-	@OneToMany(mappedBy="post", fetch=FetchType.LAZY)
-	private List<Likes> likes;
+	@OneToMany(mappedBy="post", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+	private List<Like> likeList;
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date regDate;

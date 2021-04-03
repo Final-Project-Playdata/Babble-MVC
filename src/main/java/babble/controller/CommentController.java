@@ -1,32 +1,51 @@
 package babble.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class CommentsController {
+import babble.service.CommentServiceImpl;
 
-	@GetMapping("comments/{id}")
-	public String getCommentsList() {
-		return null;
-	}
+@RestController
+public class CommentController {
+
 	
+	@Autowired
+	private CommentServiceImpl service;
+	
+	@GetMapping("commentList")
+	public String getCommentsList() {
+		if (service.getCommentsList(user)) {
+			return "success";
+		}
+		return "fail";
+	}
+
 	@PutMapping("comments")
 	public String updateComments() {
-		return null;
+		if (service.updateComments(user)) {
+			return "success";
+		}
+		return "fail";
 	}
-	
+
 	@PostMapping("comments")
 	public String insertComments() {
-		return null;
+		if (service.insertComments(user)) {
+			return "success";
+		}
+		return "fail";
 	}
-	
+
 	@DeleteMapping("comments/{id}")
 	public String deleteComments() {
-		return null;
+		if (service.deleteComments(user)) {
+			return "success";
+		}
+		return "fail";
 	}
-	
+
 }

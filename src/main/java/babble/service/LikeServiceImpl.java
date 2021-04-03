@@ -6,16 +6,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import babble.dao.LikesRepository;
-import babble.entity.Likes;
+import babble.dao.LikeRepository;
+import babble.entity.Like;
 
 @Service
-public class LikesServiceImpl implements LikesService {
+public class LikeServiceImpl implements LikeService {
 
 	@Autowired
-	private LikesRepository dao;
+	private LikeRepository dao;
 
-	public List<Likes> getLikesList() {
+	public List<Like> getLikesList() {
 		try {
 			return dao.findAll();
 
@@ -26,7 +26,7 @@ public class LikesServiceImpl implements LikesService {
 		}
 	}
 
-	public Likes getLikes(Long id) {
+	public Like getLikes(Long id) {
 		try {
 			return dao.findById(id).get();
 
@@ -37,7 +37,7 @@ public class LikesServiceImpl implements LikesService {
 		}
 	}
 
-	public boolean insertLikes(Likes likes) {
+	public boolean insertLikes(Like likes) {
 		try {
 			likes.setRegDate(new Date());
 			dao.save(likes);
@@ -50,7 +50,7 @@ public class LikesServiceImpl implements LikesService {
 		}
 	}
 
-	public boolean updateLikes(Likes likes) {
+	public boolean updateLikes(Like likes) {
 		try {
 			likes.setRegDate(new Date());
 			dao.save(likes);

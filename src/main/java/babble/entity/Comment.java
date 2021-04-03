@@ -22,7 +22,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name="comments")
-public class Comments {
+public class Comment {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -33,8 +33,8 @@ public class Comments {
 	private Post post;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="memberId")
-	private Member member;
+	@JoinColumn(name="userId")
+	private User user;
 	
 	private String fileURL;
 	

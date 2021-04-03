@@ -3,7 +3,6 @@ package babble.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,11 +31,11 @@ public class Follow {
 
 	@JoinColumn(name = "followingId")
 	@ManyToOne
-	private Member following;
+	private User following;
 	
 	@JoinColumn(name = "followerId")
 	@ManyToOne
-	private Member follower;
+	private User follower;
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date regDate;

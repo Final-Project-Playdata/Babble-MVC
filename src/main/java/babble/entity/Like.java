@@ -22,7 +22,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name="likes")
-public class Likes {
+public class Like {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -33,8 +33,8 @@ public class Likes {
 	private Post post;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="memberId")
-	private Member member;
+	@JoinColumn(name="userId")
+	private User user;
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date regDate;

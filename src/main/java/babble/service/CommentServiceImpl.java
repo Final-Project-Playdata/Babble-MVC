@@ -6,16 +6,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import babble.dao.CommentsRepository;
-import babble.entity.Comments;
+import babble.dao.CommentRepository;
+import babble.entity.Comment;
 
 @Service
-public class CommentsServiceImpl implements CommentsService {
+public class CommentServiceImpl implements CommentService {
 
 	@Autowired
-	private CommentsRepository dao;
+	private CommentRepository dao;
 
-	public List<Comments> getCommentsList() {
+	public List<Comment> getCommentsList() {
 		try {
 			return dao.findAll();
 
@@ -26,7 +26,7 @@ public class CommentsServiceImpl implements CommentsService {
 		}
 	}
 
-	public Comments getComments(Long id) {
+	public Comment getComments(Long id) {
 		try {
 			return dao.findById(id).get();
 
@@ -37,7 +37,7 @@ public class CommentsServiceImpl implements CommentsService {
 		}
 	}
 
-	public boolean insertComments(Comments Comments) {
+	public boolean insertComments(Comment Comments) {
 		try {
 			Comments.setRegDate(new Date());
 			dao.save(Comments);
@@ -50,9 +50,9 @@ public class CommentsServiceImpl implements CommentsService {
 		}
 	}
 
-	public boolean updateComments(Comments comments) {
+	public boolean updateComments(Comment comments) {
 		try {
-			Comments findComment = dao.findById(comments.getId()).get();
+			Comment findComment = dao.findById(comments.getId()).get();
 			findComment.setFileURL(comments.getFileURL());
 			findComment.setRegDate(new Date());
 			dao.save(findComment);

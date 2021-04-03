@@ -1,9 +1,11 @@
 package babble.entity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -25,7 +27,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 @Entity(name="member")
-public class Member {
+public class User {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -33,7 +35,7 @@ public class Member {
 	
 	private String avatar;
 	
-	private String email;
+	private String username;
 	
 	private String firstName;
 	
@@ -45,25 +47,28 @@ public class Member {
 	
 	private String password;
 	
+	private String role;
+	
 	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date birth;
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date regDate;
 	
-	@OneToMany(mappedBy="member", fetch=FetchType.LAZY)
-	private List<Post> posts;
+	@OneToMany(mappedBy="user", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+	private List<Post> postList;
 	
-	@OneToMany(mappedBy="member", fetch=FetchType.LAZY)
-	private List<Comments> comments;
+	@OneToMany(mappedBy="user", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+	private List<Comment> commentList;
 	
-	@OneToMany(mappedBy="member", fetch=FetchType.LAZY)
-	private List<Likes> likes;
+	@OneToMany(mappedBy="user", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+	private List<Like> likeList;
 	
-	//무한 참조
-//	@OneToMany(mappedBy="following", fetch=FetchType.LAZY)
-//	private List<Follow> followings;
-//
-//	@OneToMany(mappedBy="follower", fetch=FetchType.LAZY)
-//	private List<Follow> followers;
+	public List<String> getRoleList(){
+        if(this.role.length() > 0){
+            return Arrays.asList(this.role.split(","));
+        }
+        return new ArrayList<>();
+    }
+	
 }

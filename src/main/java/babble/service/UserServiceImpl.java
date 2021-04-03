@@ -6,16 +6,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import babble.dao.MemberRepository;
-import babble.entity.Member;
+import babble.dao.UserRepository;
+import babble.entity.User;
 
 @Service
-public class MemberServiceImpl implements MemberService {
+public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private MemberRepository dao;
+	private UserRepository dao;
 
-	public List<Member> getMemberList() {
+	public List<User> getMemberList() {
 		try {
 			return dao.findAll();
 
@@ -26,7 +26,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
-	public Member getMember(Long id) {
+	public User getMember(Long id) {
 		try {
 			return dao.findById(id).get();
 
@@ -37,7 +37,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
-	public boolean insertMember(Member member) {
+	public boolean insertMember(User member) {
 		try {
 			member.setRegDate(new Date());
 			dao.save(member);
@@ -50,9 +50,9 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
-	public boolean updateMember(Member member) {
+	public boolean updateMember(User member) {
 		try {
-			Member findMember = dao.findById(member.getId()).get();
+			User findMember = dao.findById(member.getId()).get();
 			findMember.setRegDate(new Date());
 			dao.save(findMember);
 			return true;
