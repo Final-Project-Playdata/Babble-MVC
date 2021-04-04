@@ -5,70 +5,72 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import babble.dao.PostRepository;
 import babble.dao.TagRepository;
+import babble.entity.Post;
 import babble.entity.Tag;
 
 @Service
 public class TagServiceImpl implements TagService {
 
 	@Autowired
-	private TagRepository dao;
+	private TagRepository tagDao;
 
-	public List<Tag> getTagList() {
+	@Autowired
+	private PostRepository postDao;
+
+	public List<Tag> getTagList(Long postId) {
 		try {
-			return dao.findAll();
+			return tagDao.findByPostId(postId);
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw e;
 
 		}
 	}
 
-	public Tag getTag(Long id) {
+	public void insertTagList(Long postId, List<Tag> tagList) {
 		try {
-			return dao.findById(id).get();
+			Post post = postDao.findById(postId).get();
+
+			tagList.forEach(tag -> {
+				tag.setPost(post);
+				tagDao.save(tag);
+			});
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw e;
 
 		}
 	}
 
-	public boolean insertTag(Tag tag) {
+	public void updateTagList(Long postId, List<Tag> tagList) {
 		try {
-			dao.save(tag);
-			return true;
+			Post post = postDao.findById(postId).get();
+			List<Tag> findTagList = post.getTagList();
+
+			if (tagList.size() > findTagList.size()) {
+				tagList.forEach(tag -> {
+					if (!findTagList.contains(tag)) {
+						tag.setPost(post);
+						tagDao.save(tag);
+					}
+				});
+			} else {
+				findTagList.forEach(tag -> {
+					if (!tagList.contains(tag)) {
+						tagDao.delete(tag);
+					}
+				});
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw e;
 
 		}
 	}
 
-	public boolean updateTag(Tag tag) {
-		try {
-			dao.save(tag);
-			return true;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-
-		}
-	}
-
-	public boolean deleteTag(Long id) {
-		try {
-			dao.deleteById(id);
-			return true;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-
-		}
-	}
 }

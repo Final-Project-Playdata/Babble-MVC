@@ -1,51 +1,45 @@
 package babble.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import babble.config.auth.PrincipalDetails;
+import babble.entity.Comment;
 import babble.service.CommentServiceImpl;
 
 @RestController
 public class CommentController {
 
-	
 	@Autowired
 	private CommentServiceImpl service;
 	
-	@GetMapping("commentList")
-	public String getCommentsList() {
-		if (service.getCommentsList(user)) {
-			return "success";
-		}
-		return "fail";
+	@GetMapping("post/{id}/comments")
+	public List<Comment> getCommentList(@PathVariable("id") Long id) {
+		return service.getCommentList(id);
 	}
 
-	@PutMapping("comments")
-	public String updateComments() {
-		if (service.updateComments(user)) {
-			return "success";
-		}
-		return "fail";
+	@PostMapping("comment")
+	public void insertComment(@RequestBody Comment comment) {
+		service.insertComment(comment);
+	}
+	
+	@PutMapping("comment")
+	public void updateComment(@RequestBody Comment comment) {
+		service.updateComment(comment);
 	}
 
-	@PostMapping("comments")
-	public String insertComments() {
-		if (service.insertComments(user)) {
-			return "success";
-		}
-		return "fail";
-	}
-
-	@DeleteMapping("comments/{id}")
-	public String deleteComments() {
-		if (service.deleteComments(user)) {
-			return "success";
-		}
-		return "fail";
+	@DeleteMapping("comment/{id}")
+	public void deleteComment(@PathVariable("id") Long id) {
+		service.deleteComment(id);
 	}
 
 }

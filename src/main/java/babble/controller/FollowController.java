@@ -1,12 +1,17 @@
 package babble.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import babble.config.auth.PrincipalDetails;
+import babble.entity.Follow;
 import babble.service.FollowServiceImpl;
 
 @RestController
@@ -17,34 +22,22 @@ public class FollowController {
 	private FollowServiceImpl service;
 	
 	@PostMapping("follow/{id}")
-	public String follow(@PathVariable Long id) {
-		if (service.follow(user)) {
-			return "success";
-		}
-		return "fail";
+	public void follow(@PathVariable Long id, @AuthenticationPrincipal PrincipalDetails p) {
+		service.follow(id, p.getUser());
 	}
 
 	@DeleteMapping("follow/{id}")
-	public String unfollow(@PathVariable Long id) {
-		if (service.unfollow(user)) {
-			return "success";
-		}
-		return "fail";
+	public void unfollow(@PathVariable Long id, @AuthenticationPrincipal PrincipalDetails p) {
+		service.unfollow(id, p.getUser());
 	}
 
-	@GetMapping("follow/follower/{id}")
-	public String getFollowerList(@PathVariable Long id) {
-		if (service.getFollowerList(user)) {
-			return "success";
-		}
-		return "fail";
+	@GetMapping("follower/{id}")
+	public List<Follow> getFollowerList(@PathVariable Long id) {
+		return service.getFollowerList(id);
 	}
 
-	@GetMapping("follow/following/{id}")
-	public String getFollowingList(@PathVariable Long id) {
-		if (service.getFollowingList(user)) {
-			return "success";
-		}
-		return "fail";
+	@GetMapping("following/{id}")
+	public List<Follow> getFollowingList(@PathVariable Long id) {
+		return service.getFollowingList(id);
 	}
 }

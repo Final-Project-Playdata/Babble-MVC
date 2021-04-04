@@ -6,13 +6,11 @@ import babble.entity.Comment;
 
 public interface CommentService {
 	
-	List<Comment> getCommentsList();
+	List<Comment> getCommentList(Long id);
 	
-	Comment getComments(Long id);
-	
-	boolean insertComments(Comment comments);
+	void insertComment(Comment comment);
 
-	boolean updateComments(Comment comments);
+	void updateComment(Comment comment);
 
-	boolean deleteComments(Long id);
+	void deleteComment(Long id);
 }

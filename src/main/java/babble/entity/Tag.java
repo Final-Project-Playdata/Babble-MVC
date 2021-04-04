@@ -29,4 +29,5 @@ public class Tag {
 	private Post post;
 	
 	private String name;
+	
 }

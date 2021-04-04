@@ -6,13 +6,10 @@ import babble.entity.Tag;
 
 public interface TagService {
 	
-	List<Tag> getTagList();
+	List<Tag> getTagList(Long postId);
 	
-	Tag getTag(Long id);
-	
-	boolean insertTag(Tag tag);
+	void insertTagList(Long postId, List<Tag> tagList);
 
-	boolean updateTag(Tag tag);
+	void updateTagList(Long postId, List<Tag> tagList);
 
-	boolean deleteTag(Long id);
 }

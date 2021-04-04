@@ -1,77 +1,71 @@
 package babble.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import babble.dao.FollowRepository;
+import babble.dao.UserRepository;
 import babble.entity.Follow;
+import babble.entity.User;
 
 @Service
 public class FollowServiceImpl implements FollowService {
 
 	@Autowired
-	private FollowRepository dao;
+	private FollowRepository followDao;
+	
+	@Autowired
+	private UserRepository userDao;
 
-	public List<Follow> getFollowList() {
+	public List<Follow> getFollowerList(Long id) {
 		try {
-			return dao.findAll();
+			return followDao.findByFollowerId(id);
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw e;
+			
+		}
+	}
+	
+	public List<Follow> getFollowingList(Long id) {
+		try {
+			return followDao.findByFollowingId(id);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+			
+		}
+	}
+
+	public void follow(Long followerId, User following) {
+		try {
+			User follower = userDao.findById(followerId).get();
+			
+			Follow follow = new Follow();
+			follow.setFollower(follower);
+			follow.setFollowing(following);
+			
+			followDao.save(follow);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
 
 		}
 	}
 
-	public Follow getFollow(Long id) {
+	public void unfollow(Long followerId, User following) {
 		try {
-			return dao.findById(id).get();
-
+			followDao.deleteByFollowerAndFollowing(followerId, following.getId());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
-
+			throw e;
+			
 		}
 	}
 
-	public boolean insertFollow(Follow follow) {
-		try {
-			follow.setRegDate(new Date());
-			dao.save(follow);
-			return true;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-
-		}
-	}
-
-	public boolean updateFollow(Follow follow) {
-		try {
-			follow.setRegDate(new Date());
-			dao.save(follow);
-			return true;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-
-		}
-	}
-
-	public boolean deleteFollow(Long id) {
-		try {
-			dao.deleteById(id);
-			return true;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-
-		}
-	}
 }

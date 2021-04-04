@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 
 import babble.config.auth.PrincipalDetails;
 import babble.dao.UserRepository;
@@ -27,6 +28,25 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 	@Autowired
 	private UserRepository userRepository;
 
+	private static String getUserIp(HttpServletRequest request) {
+        String remoteAddr = "";
+        if (request != null) {
+            remoteAddr = request.getHeader("X-FORWARDED-FOR");
+            if (remoteAddr == null || "".equals(remoteAddr)) {
+                remoteAddr = request.getRemoteAddr();
+            }
+        }
+        return remoteAddr;
+	}
+
+	public static String getUserAgent(HttpServletRequest request) {
+	    String ua = "";
+	    if (request != null) {
+	        ua = request.getHeader("User-Agent");
+	    }
+	    return ua;
+	}
+	
 	public JwtAuthorizationFilter(AuthenticationManager authenticationManager, UserRepository userRepository) {
 		super(authenticationManager);
 		this.userRepository = userRepository;
@@ -36,6 +56,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
+		System.out.println("실행?");
 		String header = request.getHeader(JwtProperties.HEADER_STRING);
 		if (header == null || !header.startsWith(JwtProperties.TOKEN_PREFIX)) {
 			chain.doFilter(request, response);
@@ -48,10 +69,15 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 		// 토큰 검증 (이게 인증이기 때문에 AuthenticationManager도 필요 없음)
 		// 내가 SecurityContext에 집적접근해서 세션을 만들때 자동으로 UserDetailsService에 있는
 		// loadByUsername이 호출됨.
-		String username = JWT.require(Algorithm.HMAC512(JwtProperties.SECRET)).build().verify(token)
-				.getClaim("username").asString();
-
-		if (username != null) {
+		DecodedJWT jwtToken = JWT.require(Algorithm.HMAC512(JwtProperties.SECRET)).build().verify(token);
+		String username = jwtToken.getClaim("username").asString();
+		String jwtUserIp = jwtToken.getClaim("ip").asString();
+		String jwtUserAgent = jwtToken.getClaim("User-Agent").asString();
+		
+		String requestIp = getUserIp(request);
+		String requestUserAgent = getUserAgent(request);
+		
+		if (username != null && jwtUserIp.equals(requestIp) && jwtUserAgent.equals(requestUserAgent)) {
 			User user = userRepository.findByUsername(username);
 
 			// 인증은 토큰 검증시 끝. 인증을 하기 위해서가 아닌 스프링 시큐리티가 수행해주는 권한 처리를 위해

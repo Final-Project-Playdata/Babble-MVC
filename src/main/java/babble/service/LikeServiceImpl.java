@@ -1,77 +1,60 @@
 package babble.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import babble.dao.LikeRepository;
+import babble.dao.PostRepository;
 import babble.entity.Like;
+import babble.entity.Post;
+import babble.entity.User;
 
 @Service
 public class LikeServiceImpl implements LikeService {
 
 	@Autowired
-	private LikeRepository dao;
+	private LikeRepository likeDao;
 
-	public List<Like> getLikesList() {
+	@Autowired
+	private PostRepository postDao;
+
+	public List<Like> getLikeList(Long postId) {
 		try {
-			return dao.findAll();
+			return likeDao.findByPostId(postId);
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw e;
 
 		}
 	}
 
-	public Like getLikes(Long id) {
+	public void like(Long postId, User user) {
 		try {
-			return dao.findById(id).get();
+			Post post = postDao.findById(postId).get();
+			Like like = new Like();
+
+			like.setPost(post);
+			like.setUser(user);
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw e;
 
 		}
 	}
 
-	public boolean insertLikes(Like likes) {
+	public void unlike(Long postId, User user) {
 		try {
-			likes.setRegDate(new Date());
-			dao.save(likes);
-			return true;
+			likeDao.deleteByPostIdAndUserId(postId, user.getId());
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw e;
 
 		}
 	}
 
-	public boolean updateLikes(Like likes) {
-		try {
-			likes.setRegDate(new Date());
-			dao.save(likes);
-			return true;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-
-		}
-	}
-
-	public boolean deleteLikes(Long id) {
-		try {
-			dao.deleteById(id);
-			return true;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-
-		}
-	}
 }

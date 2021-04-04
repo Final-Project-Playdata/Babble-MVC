@@ -3,16 +3,14 @@ package babble.service;
 import java.util.List;
 
 import babble.entity.Like;
+import babble.entity.User;
 
 public interface LikeService {
 	
-	List<Like> getLikesList();
+	List<Like> getLikeList(Long postId);
 	
-	Like getLikes(Long id);
+	void like(Long postId, User user);
 	
-	boolean insertLikes(Like likes);
-
-	boolean updateLikes(Like likes);
-
-	boolean deleteLikes(Long id);
+	void unlike(Long postId, User user);
+	
 }

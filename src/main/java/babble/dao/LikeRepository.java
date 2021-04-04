@@ -8,5 +8,8 @@ import babble.entity.Like;
 
 public interface LikeRepository extends JpaRepository<Like, Long>{
 
-	List<Like> findLikesById(Long id);
+	List<Like> findByPostId(Long postId);
+	
+	void deleteByPostIdAndUserId(Long postId, Long userId);
+	
 }

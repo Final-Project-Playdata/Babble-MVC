@@ -1,6 +1,6 @@
 package babble.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,7 +20,7 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name="follow")
+@Entity(name = "follow")
 public class Follow {
 
 	@Id
@@ -32,11 +30,12 @@ public class Follow {
 	@JoinColumn(name = "followingId")
 	@ManyToOne
 	private User following;
-	
+
 	@JoinColumn(name = "followerId")
 	@ManyToOne
 	private User follower;
-	
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date regDate;
+
+	private LocalDateTime regDate;
+
+	private LocalDateTime modDate;
 }

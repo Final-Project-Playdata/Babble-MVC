@@ -10,9 +10,9 @@ public interface PostService {
 	
 	Post getPost(Long id);
 	
-	boolean insertPost(Post post);
+	void insertPost(Post post);
 
-	boolean updatePost(Post post);
+	void updatePost(Post post);
 
-	boolean deletePost(Long id);
+	void deletePost(Long id);
 }

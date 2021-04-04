@@ -8,5 +8,9 @@ import babble.entity.Follow;
 
 public interface FollowRepository extends JpaRepository<Follow, Long>{
 
-	List<Follow> findFollowById(Long id);
+	List<Follow> findByFollowerId(Long followerId);
+	
+	List<Follow> findByFollowingId(Long followingId);
+	
+	void deleteByFollowerAndFollowing(Long followerId, Long followingId);
 }

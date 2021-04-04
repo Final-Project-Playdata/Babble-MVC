@@ -8,5 +8,6 @@ import babble.entity.Comment;
 
 public interface CommentRepository extends JpaRepository<Comment, Long>{
 
-	List<Comment> findCommentsById(Long id);
+	
+	List<Comment> findCommentByPost(Long id);
 }

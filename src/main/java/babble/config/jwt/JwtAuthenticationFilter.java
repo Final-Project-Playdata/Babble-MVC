@@ -27,6 +27,24 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 	private final AuthenticationManager authenticationManager;
 
+	private static String getUserIp(HttpServletRequest request) {
+        String remoteAddr = "";
+        if (request != null) {
+            remoteAddr = request.getHeader("X-FORWARDED-FOR");
+            if (remoteAddr == null || "".equals(remoteAddr)) {
+                remoteAddr = request.getRemoteAddr();
+            }
+        }
+        return remoteAddr;
+	}
+
+	public static String getUserAgent(HttpServletRequest request) {
+	    String ua = "";
+	    if (request != null) {
+	        ua = request.getHeader("User-Agent");
+	    }
+	    return ua;
+	}
 	// Authentication 객체 만들어서 리턴 => 의존 : AuthenticationManager
 	// 인증 요청시에 실행되는 함수 => /login
 	@Override
@@ -80,6 +98,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				.withExpiresAt(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME))
 				.withClaim("id", principalDetailis.getUser().getId())
 				.withClaim("username", principalDetailis.getUser().getUsername())
+				.withClaim("ip", getUserIp(request))
+				.withClaim("User-Agent", getUserAgent(request))
 				.sign(Algorithm.HMAC512(JwtProperties.SECRET));
 
 		response.addHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX + jwtToken);

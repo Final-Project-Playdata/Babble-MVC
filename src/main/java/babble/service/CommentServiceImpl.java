@@ -1,6 +1,6 @@
 package babble.service;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,65 +15,49 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	private CommentRepository dao;
 
-	public List<Comment> getCommentsList() {
+	public List<Comment> getCommentList(Long id) {
 		try {
-			return dao.findAll();
+			return dao.findCommentByPost(id);
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw e;
 
 		}
 	}
 
-	public Comment getComments(Long id) {
+	public void insertComment(Comment Comment) {
 		try {
-			return dao.findById(id).get();
+			Comment.setRegDate(LocalDateTime.now());
+			dao.save(Comment);
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
-
+			throw e;
 		}
 	}
 
-	public boolean insertComments(Comment Comments) {
+	public void updateComment(Comment comment) {
 		try {
-			Comments.setRegDate(new Date());
-			dao.save(Comments);
-			return true;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-
-		}
-	}
-
-	public boolean updateComments(Comment comments) {
-		try {
-			Comment findComment = dao.findById(comments.getId()).get();
-			findComment.setFileURL(comments.getFileURL());
-			findComment.setRegDate(new Date());
+			Comment findComment = dao.findById(comment.getId()).get();
+			findComment.setFileURL(comment.getFileURL());
+			findComment.setModDate(LocalDateTime.now());
 			dao.save(findComment);
-			return true;
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
-
+			throw e;
 		}
 	}
 
-	public boolean deleteComments(Long id) {
+	public void deleteComment(Long id) {
 		try {
 			dao.deleteById(id);
-			return true;
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
-
+			throw e;
 		}
 	}
+
 }

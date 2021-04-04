@@ -3,16 +3,16 @@ package babble.service;
 import java.util.List;
 
 import babble.entity.Follow;
+import babble.entity.User;
 
 public interface FollowService {
 	
-	List<Follow> getFollowList();
+	List<Follow> getFollowerList(Long id);
 	
-	Follow getFollow(Long id);
+	List<Follow> getFollowingList(Long id);
 	
-	boolean insertFollow(Follow follow);
+	void follow(Long followerId, User following);
+	
+	void unfollow(Long followerId, User following);
 
-	boolean updateFollow(Follow follow);
-
-	boolean deleteFollow(Long id);
 }
