@@ -14,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +33,7 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@JsonBackReference
 	@JoinColumn(name = "userId")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private User user;
@@ -48,12 +52,15 @@ public class Post {
 	@JoinColumn(name = "retweetPostId")
 	private Post retweetPost;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Tag> tagList;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Comment> commentList;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Like> likeList;
 

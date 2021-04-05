@@ -6,13 +6,13 @@ import babble.entity.User;
 
 public interface UserService {
 	
-	List<User> getMemberList();
+	List<User> getUserList();
 	
-	User getMember(Long id);
+	User getUser(Long id);
 	
-	boolean insertMember(User member);
+	void signUp(User user);
 
-	boolean updateMember(User member);
+	void updateUser(User user);
 
-	boolean deleteMember(Long id);
+	void withdraw(Long id);
 }

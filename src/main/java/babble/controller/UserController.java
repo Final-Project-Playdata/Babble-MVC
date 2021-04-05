@@ -1,5 +1,7 @@
 package babble.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,45 +21,27 @@ public class UserController {
 	private UserServiceImpl service;
 
 	@PostMapping("signup")
-	public String signUp(@RequestBody User user) {
-		if (service.signUp(user)) {
-			return "success";
-		}
-		return "fail";
+	public void signUp(@RequestBody User user) {
+		service.signUp(user);
 	}
 
 	@DeleteMapping("user/{id}")
-	public String Withdraw(@PathVariable("id") int id) {
-		if (service.Withdraw(id)) {
-			return "success";
-		}
-		return "fail";
+	public void withdraw(@PathVariable("id") Long id) {
+		service.withdraw(id);
 	}
 
 	@PutMapping("user/{id}")
-	public String updateUser(User user) {
-		boolean result = service.updateUser(user);
-		if (result) {
-			return "success";
-		}
-		return "fail";
+	public void updateUser(@RequestBody User user) {
+		service.updateUser(user);
 	}
 
 	@GetMapping("user/{id}")
-	public String getUser(@PathVariable("id") int id) {
-		boolean result = service.getUser(id);
-		if (result) {
-			return "success";
-		}
-		return "fail";
+	public User getUser(@PathVariable("id") Long id) {
+		return service.getUser(id);
 	}
 
-	@GetMapping("userlist")
-	public String getUserList() {
-		boolean result = service.getUserList(user);
-		if (result) {
-			return "success";
-		}
-		return "fail";
+	@GetMapping("users")
+	public List<User> getUserList() {
+		return service.getUserList();
 	}
 }

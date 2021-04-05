@@ -1,6 +1,6 @@
 package babble.service;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,64 +15,58 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository dao;
 
-	public List<User> getMemberList() {
+	public List<User> getUserList() {
 		try {
 			return dao.findAll();
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw e;
 
 		}
 	}
 
-	public User getMember(Long id) {
+	public User getUser(Long id) {
 		try {
 			return dao.findById(id).get();
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw e;
 
 		}
 	}
 
-	public boolean insertMember(User member) {
+	public void signUp(User user) {
 		try {
-			member.setRegDate(new Date());
-			dao.save(member);
-			return true;
+			user.setRegDate(LocalDateTime.now());
+			dao.save(user);
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
-
+			throw e;
 		}
 	}
 
-	public boolean updateMember(User member) {
+	public void updateUser(User user) {
 		try {
-			User findMember = dao.findById(member.getId()).get();
-			findMember.setRegDate(new Date());
-			dao.save(findMember);
-			return true;
+			user.setModDate(LocalDateTime.now());
+			dao.save(user);
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
-
+			throw e;
 		}
 	}
 
-	public boolean deleteMember(Long id) {
+	public void withdraw(Long id) {
 		try {
 			dao.deleteById(id);
-			return true;
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
-
+			throw e;
 		}
 	}
+
 }

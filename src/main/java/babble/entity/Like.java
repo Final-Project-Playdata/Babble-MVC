@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,10 +28,12 @@ public class Like {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "postId")
 	private Post post;
 
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "userId")
 	private User user;
@@ -37,4 +41,5 @@ public class Like {
 	private LocalDateTime regDate;
 
 	private LocalDateTime modDate;
+	
 }
