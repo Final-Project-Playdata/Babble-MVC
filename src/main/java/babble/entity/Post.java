@@ -45,8 +45,8 @@ public class Post {
 	private Long likeCount;
 
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "parentPostId")
-	private Post parentPost;
+	@JoinColumn(name = "originPostId")
+	private Post originPost;
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "retweetPostId")

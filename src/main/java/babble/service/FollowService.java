@@ -2,17 +2,17 @@ package babble.service;
 
 import java.util.List;
 
-import babble.entity.Follow;
-import babble.entity.User;
+import babble.dto.FollowDto;
+import babble.dto.UserDto;
 
 public interface FollowService {
 	
-	List<Follow> getFollowerList(Long id);
+	List<FollowDto> getFollowerList(Long id);
 	
-	List<Follow> getFollowingList(Long id);
+	List<FollowDto> getFollowingList(Long id);
 	
-	void follow(Long followerId, User following);
+	void follow(Long followerId, UserDto following);
 	
-	void unfollow(Long followerId, User following);
+	void unfollow(Long followerId, UserDto following);
 
 }

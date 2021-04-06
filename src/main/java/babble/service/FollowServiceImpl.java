@@ -2,54 +2,32 @@ package babble.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import babble.dao.FollowRepository;
 import babble.dao.UserRepository;
-import babble.entity.Follow;
-import babble.entity.User;
+import babble.dto.FollowDto;
+import babble.dto.UserDto;
+import babble.mapper.FollowMapper;
+import babble.mapper.UserMapper;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class FollowServiceImpl implements FollowService {
 
-	@Autowired
-	private FollowRepository followDao;
-	
-	@Autowired
-	private UserRepository userDao;
+	private final FollowRepository followDao;
 
-	public List<Follow> getFollowerList(Long id) {
-		try {
-			return followDao.findByFollowerId(id);
+	private final UserRepository userDao;
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
-			
-		}
-	}
-	
-	public List<Follow> getFollowingList(Long id) {
-		try {
-			return followDao.findByFollowingId(id);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
-			
-		}
-	}
+	private final FollowMapper followMapper;
 
-	public void follow(Long followerId, User following) {
+	private final UserMapper userMapper;
+
+	public List<FollowDto> getFollowerList(Long id) {
 		try {
-			User follower = userDao.findById(followerId).get();
-			
-			Follow follow = new Follow();
-			follow.setFollower(follower);
-			follow.setFollowing(following);
-			
-			followDao.save(follow);
+			return followMapper.toDtoList(followDao.findByFollowerId(id));
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -57,14 +35,41 @@ public class FollowServiceImpl implements FollowService {
 		}
 	}
 
-	public void unfollow(Long followerId, User following) {
+	public List<FollowDto> getFollowingList(Long id) {
+		try {
+			return followMapper.toDtoList(followDao.findByFollowingId(id));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+
+		}
+	}
+
+	public void follow(Long followerId, UserDto following) {
+		try {
+			UserDto follower = userMapper.toDto(userDao.findById(followerId).get());
+
+			FollowDto followDto = new FollowDto();
+			followDto.setFollower(follower);
+			followDto.setFollowing(following);
+
+			followDao.save(followMapper.toEntity(followDto));
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+
+		}
+	}
+
+	public void unfollow(Long followerId, UserDto following) {
 		try {
 			followDao.deleteByFollowerAndFollowing(followerId, following.getId());
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-			
+
 		}
 	}
 

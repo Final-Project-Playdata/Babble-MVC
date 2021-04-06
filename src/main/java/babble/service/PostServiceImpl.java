@@ -4,26 +4,31 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import babble.dao.PostRepository;
 import babble.dao.TagRepository;
-import babble.entity.Post;
-import babble.entity.Tag;
+import babble.dto.PostDto;
+import babble.dto.TagDto;
+import babble.mapper.PostMapper;
+import babble.mapper.TagMapper;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
 
-	@Autowired
-	private PostRepository postDao;
-	
-	@Autowired
-	private TagRepository tagDao;
+	private final PostRepository postDao;
 
-	public List<Post> getPostList() {
+	private final TagRepository tagDao;
+
+	private final PostMapper postMapper;
+
+	private final TagMapper tagMapper;
+
+	public List<PostDto> getPostList() {
 		try {
-			return postDao.findAll();
+			return postMapper.toDtoList(postDao.findAll());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -31,28 +36,17 @@ public class PostServiceImpl implements PostService {
 
 		}
 	}
-	
-	public List<Post> getPostListWithTag(String tag) {
+
+	public List<PostDto> getPostListWithTag(String tag) {
 		try {
-			List<Tag> tagList = tagDao.findByName(tag);
-			List<Post> postList = new ArrayList<>();
-			
-			tagList.forEach(t -> {
-				postList.add(t.getPost());
+			List<TagDto> tagDtoList = tagMapper.toDtoList(tagDao.findByName(tag));
+			List<PostDto> postDtoList = new ArrayList<>();
+
+			tagDtoList.forEach(t -> {
+				postDtoList.add(t.getPost());
 			});
-			
-			return postList;
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
-			
-		}
-	}
 
-	public Post getPost(Long id) {
-		try {
-			return postDao.findById(id).get();
+			return postDtoList;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -61,10 +55,9 @@ public class PostServiceImpl implements PostService {
 		}
 	}
 
-	public void insertPost(Post post) {
+	public PostDto getPost(Long id) {
 		try {
-			post.setRegDate(LocalDateTime.now());
-			postDao.save(post);
+			return postMapper.toDto(postDao.findById(id).get());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,11 +66,22 @@ public class PostServiceImpl implements PostService {
 		}
 	}
 
-	public void updatePost(Post post) {
+	public void insertPost(PostDto postDto) {
 		try {
-			Post findPost = postDao.findById(post.getId()).get();
-			findPost.setModDate(LocalDateTime.now());
-			postDao.save(findPost);
+			postDto.setRegDate(LocalDateTime.now());
+			postDao.save(postMapper.toEntity(postDto));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+
+		}
+	}
+
+	public void updatePost(PostDto postDto) {
+		try {
+			postDto.setModDate(LocalDateTime.now());
+			postDao.save(postMapper.toEntity(postDto));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -89,6 +93,28 @@ public class PostServiceImpl implements PostService {
 	public void deletePost(Long id) {
 		try {
 			postDao.deleteById(id);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+
+		}
+	}
+
+	public void insertRetweetPost(Long id, PostDto postDto) {
+		try {
+			PostDto findPostDto = postMapper.toDto(postDao.findById(id).get());
+
+			
+			if(findPostDto.getOriginPost() != null) {
+				postDto.setOriginPost(findPostDto.getOriginPost());
+				postDto.setRetweetPost(findPostDto);
+			}else {
+				postDto.setOriginPost(findPostDto);
+			}
+
+			postDto.setRegDate(LocalDateTime.now());
+			postDao.save(postMapper.toEntity(postDto));
 
 		} catch (Exception e) {
 			e.printStackTrace();

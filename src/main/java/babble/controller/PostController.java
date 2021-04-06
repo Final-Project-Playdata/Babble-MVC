@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import babble.entity.Post;
+import babble.dto.PostDto;
 import babble.service.PostServiceImpl;
 
 @RestController
@@ -21,8 +21,8 @@ public class PostController {
 	private PostServiceImpl service;
 
 	@PostMapping("post")
-	public void insertPost(@RequestBody Post post) {
-		service.insertPost(post);
+	public void insertPost(@RequestBody PostDto postDto) {
+		service.insertPost(postDto);
 	}
 
 	@DeleteMapping("post/{id}")
@@ -31,25 +31,30 @@ public class PostController {
 	}
 
 	@PutMapping("post/{id}")
-	public void updatePost(@RequestBody Post post) {
-		service.updatePost(post);
+	public void updatePost(@RequestBody PostDto postDto) {
+		service.updatePost(postDto);
 	}
 
 	@GetMapping("post/{id}")
-	public Post getPost(@PathVariable("id") Long postId) {
+	public PostDto getPost(@PathVariable("id") Long postId) {
 		return service.getPost(postId);
 	}
 
 	@GetMapping("posts")
-	public List<Post> getPostList() {
+	public List<PostDto> getPostList() {
 		return service.getPostList();
 	}
 
 	// 특정 태그가 들어있는 포스트만 반환
 	@GetMapping("posts/tag")
-	public List<Post> getPostListWithTag(@PathVariable("tag") String tag) {
+	public List<PostDto> getPostListWithTag(@PathVariable("tag") String tag) {
 		return service.getPostListWithTag(tag);
 	}
 	
 	//리트윗 기능
+	@PostMapping("post/{id}/retweet")
+	public void insertRetweetPost(@PathVariable("id") Long id, @RequestBody PostDto postDto) {
+		service.insertRetweetPost(id, postDto);
+	}
+	
 }

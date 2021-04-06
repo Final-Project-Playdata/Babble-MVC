@@ -2,15 +2,15 @@ package babble.service;
 
 import java.util.List;
 
-import babble.entity.Like;
-import babble.entity.User;
+import babble.dto.LikeDto;
+import babble.dto.UserDto;
 
 public interface LikeService {
 	
-	List<Like> getLikeList(Long postId);
+	List<LikeDto> getLikeList(Long postId);
 	
-	void like(Long postId, User user);
+	void like(Long postId, UserDto userDto);
 	
-	void unlike(Long postId, User user);
+	void unlike(Long postId, UserDto userDto);
 	
 }

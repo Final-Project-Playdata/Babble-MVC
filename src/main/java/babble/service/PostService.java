@@ -2,17 +2,20 @@ package babble.service;
 
 import java.util.List;
 
-import babble.entity.Post;
+import babble.dto.PostDto;
 
 public interface PostService {
 	
-	List<Post> getPostList();
+	List<PostDto> getPostList();
 	
-	Post getPost(Long id);
+	PostDto getPost(Long id);
 	
-	void insertPost(Post post);
+	void insertPost(PostDto post);
 
-	void updatePost(Post post);
+	void updatePost(PostDto post);
 
 	void deletePost(Long id);
+	
+	void insertRetweetPost(Long id, PostDto post);
+	
 }

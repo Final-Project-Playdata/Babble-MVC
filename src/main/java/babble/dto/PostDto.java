@@ -24,7 +24,7 @@ public class PostDto {
 
 	private Long likeCount;
 
-	private PostDto parentPost;
+	private PostDto originPost;
 
 	private PostDto retweetPost;
 

@@ -3,21 +3,24 @@ package babble.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import babble.dao.CommentRepository;
-import babble.entity.Comment;
+import babble.dto.CommentDto;
+import babble.mapper.CommentMapper;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService {
 
-	@Autowired
-	private CommentRepository dao;
+	private final CommentRepository dao;
 
-	public List<Comment> getCommentList(Long id) {
+	private final CommentMapper mapper;
+
+	public List<CommentDto> getCommentList(Long id) {
 		try {
-			return dao.findCommentByPost(id);
+			return mapper.toDtoList(dao.findCommentByPost(id));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -26,10 +29,10 @@ public class CommentServiceImpl implements CommentService {
 		}
 	}
 
-	public void insertComment(Comment Comment) {
+	public void insertComment(CommentDto commentDto) {
 		try {
-			Comment.setRegDate(LocalDateTime.now());
-			dao.save(Comment);
+			commentDto.setRegDate(LocalDateTime.now());
+			dao.save(mapper.toEntity(commentDto));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,12 +40,10 @@ public class CommentServiceImpl implements CommentService {
 		}
 	}
 
-	public void updateComment(Comment comment) {
+	public void updateComment(CommentDto commentDto) {
 		try {
-			Comment findComment = dao.findById(comment.getId()).get();
-			findComment.setFileURL(comment.getFileURL());
-			findComment.setModDate(LocalDateTime.now());
-			dao.save(findComment);
+			commentDto.setModDate(LocalDateTime.now());
+			dao.save(mapper.toEntity(commentDto));
 
 		} catch (Exception e) {
 			e.printStackTrace();

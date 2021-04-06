@@ -2,7 +2,6 @@ package babble.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,27 +10,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import babble.config.auth.PrincipalDetails;
-import babble.entity.Like;
+import babble.dto.LikeDto;
+import babble.mapper.UserMapper;
 import babble.service.LikeServiceImpl;
+import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequiredArgsConstructor
 public class LikeController {
 
-	@Autowired
-	private LikeServiceImpl service;
+	private final LikeServiceImpl service;
+	
+	private final UserMapper mapper;
 	
 	@PostMapping("post/{id}/like")
 	public void like(@PathVariable("id") Long id, @AuthenticationPrincipal PrincipalDetails p) {
-		service.like(id, p.getUser());
+		service.like(id, mapper.toDto(p.getUser()));
 	}
 
 	@DeleteMapping("post/{id}/like")
 	public void unlike(@PathVariable("id") Long id, @AuthenticationPrincipal PrincipalDetails p) {
-		service.unlike(id, p.getUser());
+		service.unlike(id, mapper.toDto(p.getUser()));
 	}
 
 	@GetMapping("post/{id}/like")
-	public List<Like> getLikeList(@PathVariable("id") Long id, @AuthenticationPrincipal PrincipalDetails p) {
+	public List<LikeDto> getLikeList(@PathVariable("id") Long id) {
 		return service.getLikeList(id);
 	}
 	

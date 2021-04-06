@@ -2,7 +2,6 @@ package babble.controller;
 
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -78,18 +77,19 @@ public class Test {
 	}
 
 	@PostMapping("join")
-	public String join(@RequestBody User user) {
+	public String join(@RequestBody UserDto userDto) {
 		try {
-			System.out.println(user.getUsername());
-			System.out.println(user.getPassword());
-			user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-			user.setRole("ROLE_USER");
-			uDao.save(user);
+			System.out.println("join");
+			System.out.println(userDto.getUsername());
+			System.out.println(userDto.getPassword());
+			userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
+			userDto.setRole("ROLE_USER");
+			uDao.save(userMapper.toEntity(userDto));
 			return "회원가입완료";
 		} catch (Exception e) {
 			e.printStackTrace();
+			return "실패";
 		}
-		return "실패";
 	}
 
 	@GetMapping("authtest")
@@ -122,6 +122,19 @@ public class Test {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
+		}
+	}
+	
+	@GetMapping("jointest")
+	public String jointest(@RequestBody User user) {
+		try {
+			System.out.println("jointest");
+			System.out.println(user.getUsername());
+			System.out.println(user.getPassword());
+			return "회원가입완료";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "실패";
 		}
 	}
 }

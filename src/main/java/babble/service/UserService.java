@@ -2,17 +2,17 @@ package babble.service;
 
 import java.util.List;
 
-import babble.entity.User;
+import babble.dto.UserDto;
 
 public interface UserService {
 	
-	List<User> getUserList();
+	List<UserDto> getUserList();
 	
-	User getUser(Long id);
+	UserDto getUser(Long id, String password) throws Exception ;
 	
-	void signUp(User user);
+	void signUp(UserDto userDto);
 
-	void updateUser(User user);
+	void updateUser(UserDto userDto, Long id, String password) throws Exception ;
 
-	void withdraw(Long id);
+	void withdraw(Long id, String password) throws Exception ;
 }

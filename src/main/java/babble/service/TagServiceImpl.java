@@ -2,26 +2,31 @@ package babble.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import babble.dao.PostRepository;
 import babble.dao.TagRepository;
-import babble.entity.Post;
-import babble.entity.Tag;
+import babble.dto.PostDto;
+import babble.dto.TagDto;
+import babble.mapper.PostMapper;
+import babble.mapper.TagMapper;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class TagServiceImpl implements TagService {
 
-	@Autowired
-	private TagRepository tagDao;
+	private final TagRepository tagDao;
 
-	@Autowired
-	private PostRepository postDao;
+	private final PostRepository postDao;
 
-	public List<Tag> getTagList(Long postId) {
+	private final TagMapper tagMapper;
+
+	private final PostMapper postMapper;
+
+	public List<TagDto> getTagList(Long postId) {
 		try {
-			return tagDao.findByPostId(postId);
+			return tagMapper.toDtoList(tagDao.findByPostId(postId));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -30,13 +35,14 @@ public class TagServiceImpl implements TagService {
 		}
 	}
 
-	public void insertTagList(Long postId, List<Tag> tagList) {
+	public void insertTagList(Long postId, List<TagDto> tagDtoList, String password) {
 		try {
-			Post post = postDao.findById(postId).get();
-
-			tagList.forEach(tag -> {
-				tag.setPost(post);
-				tagDao.save(tag);
+			PostDto postDto = postMapper.toDto(postDao.findById(postId).get());
+			String findPassword = postDto.getUser().getPassword();
+			
+			tagDtoList.forEach(tagDto -> {
+				tagDto.setPost(postDto);
+				tagDao.save(tagMapper.toEntity(tagDto));
 			});
 
 		} catch (Exception e) {
@@ -46,22 +52,22 @@ public class TagServiceImpl implements TagService {
 		}
 	}
 
-	public void updateTagList(Long postId, List<Tag> tagList) {
+	public void updateTagList(Long postId, List<TagDto> tagDtoList, String password) {
 		try {
-			Post post = postDao.findById(postId).get();
-			List<Tag> findTagList = post.getTagList();
+			PostDto postDto = postMapper.toDto(postDao.findById(postId).get());
+			List<TagDto> findTagDtoList = postDto.getTagList();
 
-			if (tagList.size() > findTagList.size()) {
-				tagList.forEach(tag -> {
-					if (!findTagList.contains(tag)) {
-						tag.setPost(post);
-						tagDao.save(tag);
+			if (findTagDtoList.size() > findTagDtoList.size()) {
+				findTagDtoList.forEach(tagDto -> {
+					if (!findTagDtoList.contains(tagDto)) {
+						tagDto.setPost(postDto);
+						tagDao.save(tagMapper.toEntity(tagDto));
 					}
 				});
 			} else {
-				findTagList.forEach(tag -> {
-					if (!tagList.contains(tag)) {
-						tagDao.delete(tag);
+				findTagDtoList.forEach(tagDto -> {
+					if (!findTagDtoList.contains(tagDto)) {
+						tagDao.delete(tagMapper.toEntity(tagDto));
 					}
 				});
 			}

@@ -2,7 +2,6 @@ package babble.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,28 +10,29 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import babble.entity.Comment;
+import babble.dto.CommentDto;
 import babble.service.CommentServiceImpl;
+import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequiredArgsConstructor
 public class CommentController {
 
-	@Autowired
-	private CommentServiceImpl service;
+	private final CommentServiceImpl service;
 	
 	@GetMapping("post/{id}/comments")
-	public List<Comment> getCommentList(@PathVariable("id") Long id) {
+	public List<CommentDto> getCommentList(@PathVariable("id") Long id) {
 		return service.getCommentList(id);
 	}
 
 	@PostMapping("comment")
-	public void insertComment(@RequestBody Comment comment) {
-		service.insertComment(comment);
+	public void insertComment(@RequestBody CommentDto commentDto) {
+		service.insertComment(commentDto);
 	}
 	
 	@PutMapping("comment")
-	public void updateComment(@RequestBody Comment comment) {
-		service.updateComment(comment);
+	public void updateComment(@RequestBody CommentDto commentDto) {
+		service.updateComment(commentDto);
 	}
 
 	@DeleteMapping("comment/{id}")

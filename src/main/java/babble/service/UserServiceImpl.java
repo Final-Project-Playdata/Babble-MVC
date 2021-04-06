@@ -3,21 +3,26 @@ package babble.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import babble.dao.UserRepository;
+import babble.dto.UserDto;
 import babble.entity.User;
+import babble.exception.UserNotMatchException;
+import babble.mapper.UserMapper;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-	@Autowired
-	private UserRepository dao;
+	private final UserRepository dao;
 
-	public List<User> getUserList() {
+	private final UserMapper mapper;
+
+	public List<UserDto> getUserList() {
 		try {
-			return dao.findAll();
+			return mapper.toDtoList(dao.findAll());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -26,20 +31,26 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-	public User getUser(Long id) {
+	public UserDto getUser(Long id, String password) throws Exception {
 		try {
-			return dao.findById(id).get();
+			String findPassword = dao.findById(id).get().getPassword();
 
+			if (findPassword.equals(password)) {
+				return mapper.toDto(dao.findById(id).get());
+			}
+
+			throw new UserNotMatchException("정보를 가져오는 중 예외발생");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-
 		}
 	}
 
-	public void signUp(User user) {
+	public void signUp(UserDto userDto) {
 		try {
-			user.setRegDate(LocalDateTime.now());
+			userDto.setRegDate(LocalDateTime.now());
+			User user = mapper.toEntity(userDto);
 			dao.save(user);
 
 		} catch (Exception e) {
@@ -48,10 +59,17 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-	public void updateUser(User user) {
+	public void updateUser(UserDto userDto, Long id, String password) throws Exception {
 		try {
-			user.setModDate(LocalDateTime.now());
-			dao.save(user);
+			String findPassword = dao.findById(id).get().getPassword();
+
+			if (findPassword.equals(password)) {
+				userDto.setModDate(LocalDateTime.now());
+				User user = mapper.toEntity(userDto);
+				dao.save(user);
+			}
+			
+			throw new UserNotMatchException("정보를 업데이트 하는 중 예외발생");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -59,10 +77,16 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-	public void withdraw(Long id) {
+	public void withdraw(Long id, String password) throws Exception {
 		try {
-			dao.deleteById(id);
+			String findPassword = dao.findById(id).get().getPassword();
 
+			if (findPassword.equals(password)) {
+				dao.deleteById(id);
+			}
+
+			throw new UserNotMatchException("회원탈퇴 중 예외발생");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

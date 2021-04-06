@@ -2,14 +2,14 @@ package babble.service;
 
 import java.util.List;
 
-import babble.entity.Tag;
+import babble.dto.TagDto;
 
 public interface TagService {
 	
-	List<Tag> getTagList(Long postId);
+	List<TagDto> getTagList(Long postId);
 	
-	void insertTagList(Long postId, List<Tag> tagList);
+	void insertTagList(Long postId, List<TagDto> tagList, String password);
 
-	void updateTagList(Long postId, List<Tag> tagList);
+	void updateTagList(Long postId, List<TagDto> tagList, String password);
 
 }

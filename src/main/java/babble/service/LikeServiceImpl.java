@@ -2,27 +2,32 @@ package babble.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import babble.dao.LikeRepository;
 import babble.dao.PostRepository;
-import babble.entity.Like;
-import babble.entity.Post;
-import babble.entity.User;
+import babble.dto.LikeDto;
+import babble.dto.PostDto;
+import babble.dto.UserDto;
+import babble.mapper.LikeMapper;
+import babble.mapper.PostMapper;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class LikeServiceImpl implements LikeService {
 
-	@Autowired
-	private LikeRepository likeDao;
+	private final LikeRepository likeDao;
 
-	@Autowired
-	private PostRepository postDao;
+	private final PostRepository postDao;
 
-	public List<Like> getLikeList(Long postId) {
+	private final LikeMapper likeMapper;
+	
+	private final PostMapper postMapper;
+	
+	public List<LikeDto> getLikeList(Long postId) {
 		try {
-			return likeDao.findByPostId(postId);
+			return likeMapper.toDtoList(likeDao.findByPostId(postId));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -31,14 +36,16 @@ public class LikeServiceImpl implements LikeService {
 		}
 	}
 
-	public void like(Long postId, User user) {
+	public void like(Long postId, UserDto userDto) {
 		try {
-			Post post = postDao.findById(postId).get();
-			Like like = new Like();
+			PostDto postDto = postMapper.toDto(postDao.findById(postId).get());
+			LikeDto likeDto = new LikeDto();
 
-			like.setPost(post);
-			like.setUser(user);
+			likeDto.setPost(postDto);
+			likeDto.setUser(userDto);
 
+			likeDao.save(likeMapper.toEntity(likeDto));
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -46,9 +53,9 @@ public class LikeServiceImpl implements LikeService {
 		}
 	}
 
-	public void unlike(Long postId, User user) {
+	public void unlike(Long postId, UserDto userDto) {
 		try {
-			likeDao.deleteByPostIdAndUserId(postId, user.getId());
+			likeDao.deleteByPostIdAndUserId(postId, userDto.getId());
 
 		} catch (Exception e) {
 			e.printStackTrace();
