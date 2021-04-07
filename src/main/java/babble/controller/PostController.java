@@ -2,7 +2,7 @@ package babble.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,28 +11,33 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import babble.config.auth.PrincipalDetails;
 import babble.dto.PostDto;
+import babble.mapper.UserMapper;
 import babble.service.PostServiceImpl;
+import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequiredArgsConstructor
 public class PostController {
 
-	@Autowired
-	private PostServiceImpl service;
+	private final PostServiceImpl service;
+
+	private final UserMapper userMapper;
 
 	@PostMapping("post")
-	public void insertPost(@RequestBody PostDto postDto) {
-		service.insertPost(postDto);
+	public void insertPost(@RequestBody PostDto postDto, @AuthenticationPrincipal PrincipalDetails p) {
+		service.insertPost(postDto, userMapper.toDto(p.getUser()));
 	}
 
 	@DeleteMapping("post/{id}")
-	public void deletePost(@PathVariable("id") Long postId) {
-		service.deletePost(postId);
+	public void deletePost(@PathVariable("id") Long postId, @AuthenticationPrincipal PrincipalDetails p) {
+		service.deletePost(postId, p.getUser().getId());
 	}
 
 	@PutMapping("post/{id}")
-	public void updatePost(@RequestBody PostDto postDto) {
-		service.updatePost(postDto);
+	public void updatePost(@RequestBody PostDto postDto, @AuthenticationPrincipal PrincipalDetails p) throws Exception {
+		service.updatePost(postDto, p.getUser().getPassword());
 	}
 
 	@GetMapping("post/{id}")
@@ -50,11 +55,12 @@ public class PostController {
 	public List<PostDto> getPostListWithTag(@PathVariable("tag") String tag) {
 		return service.getPostListWithTag(tag);
 	}
-	
-	//리트윗 기능
+
+	// 리트윗 기능
 	@PostMapping("post/{id}/retweet")
-	public void insertRetweetPost(@PathVariable("id") Long id, @RequestBody PostDto postDto) {
-		service.insertRetweetPost(id, postDto);
+	public void insertRetweetPost(@PathVariable("id") Long id, @RequestBody PostDto postDto,
+			@AuthenticationPrincipal PrincipalDetails p) {
+		service.insertRetweetPost(id, postDto, userMapper.toDto(p.getUser()));
 	}
-	
+
 }

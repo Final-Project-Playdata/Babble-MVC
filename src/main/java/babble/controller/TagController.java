@@ -27,12 +27,12 @@ public class TagController {
 	}
 
 	@PostMapping("post/{id}/tags")
-	public void insertTagList(@PathVariable("id") Long id, @RequestBody List<TagDto> tagDtoList, @AuthenticationPrincipal PrincipalDetails p) {
+	public void insertTagList(@PathVariable("id") Long id, @RequestBody List<TagDto> tagDtoList, @AuthenticationPrincipal PrincipalDetails p) throws Exception {
 		service.insertTagList(id, tagDtoList, p.getUser().getPassword());
 	}
 
 	@PutMapping("post/{id}/tags")
-	public void updateTagList(@PathVariable("id") Long id, @RequestBody List<TagDto> tagDtoList, @AuthenticationPrincipal PrincipalDetails p) {
+	public void updateTagList(@PathVariable("id") Long id, @RequestBody List<TagDto> tagDtoList, @AuthenticationPrincipal PrincipalDetails p) throws Exception {
 		service.updateTagList(id, tagDtoList, p.getUser().getPassword());
 	}
 

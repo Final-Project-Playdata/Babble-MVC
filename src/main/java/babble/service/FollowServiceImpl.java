@@ -31,7 +31,6 @@ public class FollowServiceImpl implements FollowService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-
 		}
 	}
 
@@ -42,34 +41,33 @@ public class FollowServiceImpl implements FollowService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-
 		}
 	}
 
-	public void follow(Long followerId, UserDto following) {
+	public void follow(UserDto following, Long followerId) {
 		try {
+
 			UserDto follower = userMapper.toDto(userDao.findById(followerId).get());
 
 			FollowDto followDto = new FollowDto();
-			followDto.setFollower(follower);
 			followDto.setFollowing(following);
+			followDto.setFollower(follower);
 
 			followDao.save(followMapper.toEntity(followDto));
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-
 		}
 	}
 
-	public void unfollow(Long followerId, UserDto following) {
+	public void unfollow(Long followingId, Long followerId) {
 		try {
-			followDao.deleteByFollowerAndFollowing(followerId, following.getId());
+			followDao.deleteByFollowingIdAndFollowerId(followingId, followerId);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-
 		}
 	}
 

@@ -1,7 +1,5 @@
 package babble.entity;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -38,8 +36,4 @@ public class Like {
 	@JoinColumn(name = "userId")
 	private User user;
 
-	private LocalDateTime regDate;
-
-	private LocalDateTime modDate;
-	
 }

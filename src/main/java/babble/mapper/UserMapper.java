@@ -14,9 +14,10 @@ import babble.entity.User;
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_DEFAULT, nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface UserMapper {
 
+	
 	User toEntity(UserDto userDto);
 
-	@Mapping(target = "roleList", ignore = true)
+	@Mapping(target = "password", ignore = true)
 	UserDto toDto(User user);
 	
 	List<UserDto> toDtoList(List<User> userList);

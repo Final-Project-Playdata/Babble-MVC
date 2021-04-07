@@ -8,6 +8,7 @@ import babble.dao.PostRepository;
 import babble.dao.TagRepository;
 import babble.dto.PostDto;
 import babble.dto.TagDto;
+import babble.exception.UserNotMatchException;
 import babble.mapper.PostMapper;
 import babble.mapper.TagMapper;
 import lombok.RequiredArgsConstructor;
@@ -31,51 +32,60 @@ public class TagServiceImpl implements TagService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-
 		}
 	}
 
-	public void insertTagList(Long postId, List<TagDto> tagDtoList, String password) {
+	public void insertTagList(Long postId, List<TagDto> tagDtoList, String password) throws Exception {
 		try {
 			PostDto postDto = postMapper.toDto(postDao.findById(postId).get());
 			String findPassword = postDto.getUser().getPassword();
-			
-			tagDtoList.forEach(tagDto -> {
-				tagDto.setPost(postDto);
-				tagDao.save(tagMapper.toEntity(tagDto));
-			});
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
-
-		}
-	}
-
-	public void updateTagList(Long postId, List<TagDto> tagDtoList, String password) {
-		try {
-			PostDto postDto = postMapper.toDto(postDao.findById(postId).get());
-			List<TagDto> findTagDtoList = postDto.getTagList();
-
-			if (findTagDtoList.size() > findTagDtoList.size()) {
-				findTagDtoList.forEach(tagDto -> {
-					if (!findTagDtoList.contains(tagDto)) {
-						tagDto.setPost(postDto);
-						tagDao.save(tagMapper.toEntity(tagDto));
-					}
+			if (findPassword.equals(password)) {
+				tagDtoList.forEach(tagDto -> {
+					tagDto.setPost(postDto);
+					tagDao.save(tagMapper.toEntity(tagDto));
 				});
 			} else {
-				findTagDtoList.forEach(tagDto -> {
-					if (!findTagDtoList.contains(tagDto)) {
-						tagDao.delete(tagMapper.toEntity(tagDto));
-					}
-				});
+				throw new UserNotMatchException();
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
+		}
+	}
 
+	public void updateTagList(Long postId, List<TagDto> tagDtoList, String password) throws Exception {
+		try {
+			PostDto postDto = postMapper.toDto(postDao.findById(postId).get());
+			String findPassword = postDto.getUser().getPassword();
+
+			if (findPassword.equals(password)) {
+				List<TagDto> findTagDtoList = postDto.getTagList();
+
+				if (tagDtoList.size() > findTagDtoList.size()) {
+					tagDtoList.forEach(tagDto -> {
+
+						if (!findTagDtoList.contains(tagDto)) {
+							tagDto.setPost(postDto);
+							tagDao.save(tagMapper.toEntity(tagDto));
+						}
+					});
+				} else {
+					findTagDtoList.forEach(tagDto -> {
+
+						if (!tagDtoList.contains(tagDto)) {
+							tagDao.delete(tagMapper.toEntity(tagDto));
+						}
+					});
+				}
+			} else {
+				throw new UserNotMatchException();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
 		}
 	}
 

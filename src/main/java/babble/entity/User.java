@@ -2,7 +2,6 @@ package babble.entity;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +17,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,7 +25,6 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Entity(name = "member")
 public class User {
 
@@ -37,10 +34,10 @@ public class User {
 
 	private String avatar;
 
-	private String username; //email
+	private String username; // email
 
 	private String password;
-	
+
 	private String firstName;
 
 	private String lastName;
@@ -60,21 +57,14 @@ public class User {
 
 	@JsonManagedReference
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	private List<Post> postList;
+	private List<Post> postList = new ArrayList<>();
 
 	@JsonManagedReference
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	private List<Comment> commentList;
+	private List<Comment> commentList = new ArrayList<>();
 
 	@JsonManagedReference
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	private List<Like> likeList;
-
-	public List<String> getRoleList() {
-		if (this.role.length() > 0) {
-			return Arrays.asList(this.role.split(","));
-		}
-		return new ArrayList<>();
-	}
+	private List<Like> likeList = new ArrayList<>();
 
 }

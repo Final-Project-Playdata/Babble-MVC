@@ -10,14 +10,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
 @Getter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "follow")
@@ -29,13 +27,12 @@ public class Follow {
 
 	@JoinColumn(name = "followingId")
 	@ManyToOne
-	private User following;
+	private User following; //팔로우하는 사람
 
 	@JoinColumn(name = "followerId")
 	@ManyToOne
-	private User follower;
+	private User follower; //팔로우받는 사람
 
 	private LocalDateTime regDate;
-
-	private LocalDateTime modDate;
+	
 }

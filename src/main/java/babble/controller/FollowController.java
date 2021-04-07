@@ -20,26 +20,26 @@ import lombok.RequiredArgsConstructor;
 public class FollowController {
 
 	private final FollowServiceImpl service;
-	
+
 	private final UserMapper mapper;
-	
-	@PostMapping("follow/{id}")
-	public void follow(@PathVariable Long id, @AuthenticationPrincipal PrincipalDetails p) {
-		service.follow(id, mapper.toDto(p.getUser()));
+
+	@PostMapping("user/{userId}/follow")
+	public void follow(@PathVariable("userId") Long userId, @AuthenticationPrincipal PrincipalDetails p) {
+		service.follow(mapper.toDto(p.getUser()), userId);
 	}
 
-	@DeleteMapping("follow/{id}")
-	public void unfollow(@PathVariable Long id, @AuthenticationPrincipal PrincipalDetails p) {
-		service.unfollow(id, mapper.toDto(p.getUser()));
+	@DeleteMapping("user/{userId}/follow")
+	public void unfollow(@PathVariable("userId") Long userId, @AuthenticationPrincipal PrincipalDetails p) {
+		service.unfollow(p.getUser().getId(), userId);
 	}
 
-	@GetMapping("follower/{id}")
-	public List<FollowDto> getFollowerList(@PathVariable Long id) {
-		return service.getFollowerList(id);
+	@GetMapping("user/{userId}/follower")
+	public List<FollowDto> getFollowerList(@PathVariable("userId") Long userId) {
+		return service.getFollowerList(userId);
 	}
 
-	@GetMapping("following/{id}")
-	public List<FollowDto> getFollowingList(@PathVariable Long id) {
-		return service.getFollowingList(id);
+	@GetMapping("user/{userId}/following")
+	public List<FollowDto> getFollowingList(@PathVariable("userId") Long userId) {
+		return service.getFollowingList(userId);
 	}
 }

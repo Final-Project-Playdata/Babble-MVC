@@ -77,11 +77,11 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-	public void withdraw(Long id, String password) throws Exception {
+	public void withdraw(Long id, String password, UserDto userDto) throws Exception {
 		try {
 			String findPassword = dao.findById(id).get().getPassword();
 
-			if (findPassword.equals(password)) {
+			if (findPassword.equals(password) && findPassword.equals(userDto.getPassword())) {
 				dao.deleteById(id);
 			}
 

@@ -20,9 +20,9 @@ import lombok.RequiredArgsConstructor;
 public class LikeController {
 
 	private final LikeServiceImpl service;
-	
+
 	private final UserMapper mapper;
-	
+
 	@PostMapping("post/{id}/like")
 	public void like(@PathVariable("id") Long id, @AuthenticationPrincipal PrincipalDetails p) {
 		service.like(id, mapper.toDto(p.getUser()));
@@ -30,12 +30,12 @@ public class LikeController {
 
 	@DeleteMapping("post/{id}/like")
 	public void unlike(@PathVariable("id") Long id, @AuthenticationPrincipal PrincipalDetails p) {
-		service.unlike(id, mapper.toDto(p.getUser()));
+		service.unlike(id, p.getUser().getId());
 	}
 
-	@GetMapping("post/{id}/like")
+	@GetMapping("post/{id}/likes")
 	public List<LikeDto> getLikeList(@PathVariable("id") Long id) {
 		return service.getLikeList(id);
 	}
-	
+
 }

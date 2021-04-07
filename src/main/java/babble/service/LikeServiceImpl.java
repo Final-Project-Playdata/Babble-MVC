@@ -22,9 +22,9 @@ public class LikeServiceImpl implements LikeService {
 	private final PostRepository postDao;
 
 	private final LikeMapper likeMapper;
-	
+
 	private final PostMapper postMapper;
-	
+
 	public List<LikeDto> getLikeList(Long postId) {
 		try {
 			return likeMapper.toDtoList(likeDao.findByPostId(postId));
@@ -32,7 +32,6 @@ public class LikeServiceImpl implements LikeService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-
 		}
 	}
 
@@ -45,22 +44,20 @@ public class LikeServiceImpl implements LikeService {
 			likeDto.setUser(userDto);
 
 			likeDao.save(likeMapper.toEntity(likeDto));
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-
 		}
 	}
 
-	public void unlike(Long postId, UserDto userDto) {
+	public void unlike(Long postId, Long userId) {
 		try {
-			likeDao.deleteByPostIdAndUserId(postId, userDto.getId());
+			likeDao.deleteByPostIdAndUserId(postId, userId);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-
 		}
 	}
 

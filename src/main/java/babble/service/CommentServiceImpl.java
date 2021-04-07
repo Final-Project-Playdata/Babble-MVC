@@ -6,7 +6,10 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import babble.dao.CommentRepository;
+import babble.dao.UserRepository;
 import babble.dto.CommentDto;
+import babble.dto.UserDto;
+import babble.exception.UserNotMatchException;
 import babble.mapper.CommentMapper;
 import lombok.RequiredArgsConstructor;
 
@@ -14,13 +17,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService {
 
-	private final CommentRepository dao;
+	private final CommentRepository commentDao;
 
-	private final CommentMapper mapper;
+	private final UserRepository userDao;
+
+	private final CommentMapper commentMapper;
 
 	public List<CommentDto> getCommentList(Long id) {
 		try {
-			return mapper.toDtoList(dao.findCommentByPost(id));
+			return commentMapper.toDtoList(commentDao.findCommentByPost(id));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -29,10 +34,11 @@ public class CommentServiceImpl implements CommentService {
 		}
 	}
 
-	public void insertComment(CommentDto commentDto) {
+	public void insertComment(CommentDto commentDto, UserDto userDto) {
 		try {
+			commentDto.setUser(userDto);
 			commentDto.setRegDate(LocalDateTime.now());
-			dao.save(mapper.toEntity(commentDto));
+			commentDao.save(commentMapper.toEntity(commentDto));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -40,10 +46,17 @@ public class CommentServiceImpl implements CommentService {
 		}
 	}
 
-	public void updateComment(CommentDto commentDto) {
+	public void updateComment(CommentDto commentDto, String password) throws Exception {
 		try {
-			commentDto.setModDate(LocalDateTime.now());
-			dao.save(mapper.toEntity(commentDto));
+			String findPassword = userDao.findPasswordById(commentDto.getUser().getId());
+
+			if (findPassword.equals(password)) {
+				commentDto.setModDate(LocalDateTime.now());
+				commentDao.save(commentMapper.toEntity(commentDto));
+
+			} else {
+				throw new UserNotMatchException();
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,9 +64,9 @@ public class CommentServiceImpl implements CommentService {
 		}
 	}
 
-	public void deleteComment(Long id) {
+	public void deleteComment(Long commentId, Long userId) {
 		try {
-			dao.deleteById(id);
+			commentDao.deleteByIdAndUserId(commentId, userId);
 
 		} catch (Exception e) {
 			e.printStackTrace();

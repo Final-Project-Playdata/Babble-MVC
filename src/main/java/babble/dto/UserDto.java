@@ -44,17 +44,10 @@ public class UserDto {
 
 	private LocalDateTime modDate;
 
-	private List<PostDto> postList;
+	private List<PostDto> postList = new ArrayList<>();
 
-	private List<CommentDto> commentList;
+	private List<CommentDto> commentList = new ArrayList<>();
 
-	private List<LikeDto> likeList;
-
-	public List<String> getRoleList() {
-		if (this.role.length() > 0) {
-			return Arrays.asList(this.role.split(","));
-		}
-		return new ArrayList<>();
-	}
+	private List<LikeDto> likeList = new ArrayList<>();
 
 }

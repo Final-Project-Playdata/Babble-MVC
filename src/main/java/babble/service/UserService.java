@@ -14,5 +14,5 @@ public interface UserService {
 
 	void updateUser(UserDto userDto, Long id, String password) throws Exception ;
 
-	void withdraw(Long id, String password) throws Exception ;
+	void withdraw(Long id, String password, UserDto userDto) throws Exception ;
 }

@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 
 import babble.dao.PostRepository;
 import babble.dao.TagRepository;
+import babble.dao.UserRepository;
 import babble.dto.PostDto;
 import babble.dto.TagDto;
+import babble.dto.UserDto;
+import babble.exception.UserNotMatchException;
 import babble.mapper.PostMapper;
 import babble.mapper.TagMapper;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +25,8 @@ public class PostServiceImpl implements PostService {
 
 	private final TagRepository tagDao;
 
+	private final UserRepository userDao;
+
 	private final PostMapper postMapper;
 
 	private final TagMapper tagMapper;
@@ -33,7 +38,6 @@ public class PostServiceImpl implements PostService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-
 		}
 	}
 
@@ -51,7 +55,6 @@ public class PostServiceImpl implements PostService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-
 		}
 	}
 
@@ -62,65 +65,69 @@ public class PostServiceImpl implements PostService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-
 		}
 	}
 
-	public void insertPost(PostDto postDto) {
+	public void insertPost(PostDto postDto, UserDto userDto) {
 		try {
 			postDto.setRegDate(LocalDateTime.now());
+			postDto.setUser(userDto);
 			postDao.save(postMapper.toEntity(postDto));
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-
 		}
 	}
 
-	public void updatePost(PostDto postDto) {
+	public void updatePost(PostDto postDto, String password) throws Exception {
 		try {
-			postDto.setModDate(LocalDateTime.now());
-			postDao.save(postMapper.toEntity(postDto));
+			Long uploaderId = postDto.getUser().getId();
+			String uploaderPassword = userDao.findById(uploaderId).get().getPassword();
+
+			if (uploaderPassword.equals(password)) {
+				postDto.setModDate(LocalDateTime.now());
+				postDao.save(postMapper.toEntity(postDto));
+
+			} else {
+				throw new UserNotMatchException();
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-
 		}
 	}
 
-	public void deletePost(Long id) {
+	public void deletePost(Long postId, Long userId) {
 		try {
-			postDao.deleteById(id);
+			postDao.deleteByIdAndUserId(postId, userId);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-
 		}
 	}
 
-	public void insertRetweetPost(Long id, PostDto postDto) {
+	public void insertRetweetPost(Long id, PostDto postDto, UserDto userDto) {
 		try {
 			PostDto findPostDto = postMapper.toDto(postDao.findById(id).get());
 
-			
-			if(findPostDto.getOriginPost() != null) {
+			if (findPostDto.getOriginPost() != null) {
 				postDto.setOriginPost(findPostDto.getOriginPost());
 				postDto.setRetweetPost(findPostDto);
-			}else {
+			} else {
 				postDto.setOriginPost(findPostDto);
 			}
 
 			postDto.setRegDate(LocalDateTime.now());
+			postDto.setUser(userDto);
 			postDao.save(postMapper.toEntity(postDto));
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-
 		}
 	}
-	
+
 }

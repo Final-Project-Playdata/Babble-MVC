@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import babble.config.auth.PrincipalDetails;
 import babble.dao.FollowRepository;
 import babble.dao.UserRepository;
+import babble.dto.TagWrapper;
 import babble.dto.UserDto;
 import babble.entity.Follow;
 import babble.entity.User;
@@ -33,9 +34,6 @@ public class Test {
 	@Autowired
 	private UserMapper userMapper;
 
-//	@Autowired
-//	private ModelMapper modelMapper;
-	
 	@GetMapping("test")
 	public List<Follow> test() {
 		System.out.println("test");
@@ -45,8 +43,8 @@ public class Test {
 	@GetMapping("test1")
 	public void test1() {
 		System.out.println("test1");
-		uDao.save(User.builder().build());
-		uDao.save(User.builder().build());
+		uDao.save(new User());
+		uDao.save(new User());
 	}
 
 	@GetMapping("test2")
@@ -124,7 +122,7 @@ public class Test {
 			throw e;
 		}
 	}
-	
+
 	@GetMapping("jointest")
 	public String jointest(@RequestBody User user) {
 		try {
@@ -132,6 +130,19 @@ public class Test {
 			System.out.println(user.getUsername());
 			System.out.println(user.getPassword());
 			return "회원가입완료";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "실패";
+		}
+	}
+
+	@PostMapping("taglist")
+	public String tagListTest(@RequestBody TagWrapper tagList) {
+		try {
+			System.out.println("tagListTest");
+			System.out.println(tagList);
+			System.out.println(tagList.getTagList().get(0).getName());
+			return "성공";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "실패";

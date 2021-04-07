@@ -1,6 +1,7 @@
 package babble.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -42,8 +43,6 @@ public class Post {
 
 	private Long length;
 
-	private Long likeCount;
-
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "originPostId")
 	private Post originPost;
@@ -54,15 +53,15 @@ public class Post {
 
 	@JsonManagedReference
 	@OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	private List<Tag> tagList;
+	private List<Tag> tagList = new ArrayList<>();
 
 	@JsonManagedReference
 	@OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	private List<Comment> commentList;
+	private List<Comment> commentList = new ArrayList<>();
 
 	@JsonManagedReference
 	@OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	private List<Like> likeList;
+	private List<Like> likeList = new ArrayList<>();
 
 	private LocalDateTime regDate;
 

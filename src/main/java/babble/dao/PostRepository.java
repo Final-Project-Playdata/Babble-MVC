@@ -9,4 +9,7 @@ import babble.entity.Post;
 public interface PostRepository extends JpaRepository<Post, Long>{
 
 	List<Post> findPostById(Long id);
+	
+	void deleteByIdAndUserId(Long postId, Long userId);
+	
 }
