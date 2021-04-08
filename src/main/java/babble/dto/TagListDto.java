@@ -13,7 +13,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class TagWrapper {
+public class TagListDto {
 
 	List<TagDto> tagList;
 

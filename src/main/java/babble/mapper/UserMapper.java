@@ -3,7 +3,6 @@ package babble.mapper;
 import java.util.List;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.NullValueMappingStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.ReportingPolicy;
@@ -17,7 +16,6 @@ public interface UserMapper {
 	
 	User toEntity(UserDto userDto);
 
-	@Mapping(target = "password", ignore = true)
 	UserDto toDto(User user);
 	
 	List<UserDto> toDtoList(List<User> userList);

@@ -39,9 +39,9 @@ public class Post {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private User user;
 
-	private String fileURL;
+	private String fileUrl;
 
-	private Long length;
+	private float duration;
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "originPostId")

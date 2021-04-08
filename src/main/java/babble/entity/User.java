@@ -1,8 +1,8 @@
 package babble.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -42,14 +42,12 @@ public class User {
 
 	private String lastName;
 
-	private String fullName;
-
 	private String bio;
 
 	private String role;
 
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date birth;
+	private LocalDate birth;
 
 	private LocalDateTime regDate;
 
@@ -66,5 +64,19 @@ public class User {
 	@JsonManagedReference
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Like> likeList = new ArrayList<>();
+
+	public void update(String avatar, String firstName, String lastName, String bio, LocalDate birth) {
+		this.avatar = avatar;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.bio = bio;
+		this.birth = birth;
+	}
+	
+	public void signUp(String username, String password) {
+		this.username = username;
+		this.password = password;
+		this.regDate = LocalDateTime.now();
+	}
 
 }

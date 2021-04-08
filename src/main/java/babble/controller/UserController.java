@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import babble.config.auth.PrincipalDetails;
+import babble.dto.LoginRequestDto;
 import babble.dto.UserDto;
 import babble.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -23,13 +24,13 @@ public class UserController {
 	private final UserServiceImpl service;
 
 	@PostMapping("signup")
-	public void signUp(@RequestBody UserDto userDto) {
-		service.signUp(userDto);
+	public void signUp(@RequestBody LoginRequestDto loginDto) throws Exception {
+		service.signUp(loginDto);
 	}
 
 	@DeleteMapping("user/{id}")
-	public void withdraw(@PathVariable("id") Long id, @AuthenticationPrincipal PrincipalDetails p, @RequestBody UserDto userDto) throws Exception {
-		service.withdraw(id, p.getUser().getPassword(), userDto);
+	public void withdraw(@PathVariable("id") Long id, @AuthenticationPrincipal PrincipalDetails p, @RequestBody LoginRequestDto loginDto) throws Exception {
+		service.withdraw(id, p.getUser().getPassword(), loginDto);
 	}
 
 	@PutMapping("user/{id}")

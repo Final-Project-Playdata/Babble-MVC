@@ -8,6 +8,7 @@ import babble.dao.PostRepository;
 import babble.dao.TagRepository;
 import babble.dto.PostDto;
 import babble.dto.TagDto;
+import babble.entity.Post;
 import babble.exception.UserNotMatchException;
 import babble.mapper.PostMapper;
 import babble.mapper.TagMapper;
@@ -37,10 +38,11 @@ public class TagServiceImpl implements TagService {
 
 	public void insertTagList(Long postId, List<TagDto> tagDtoList, String password) throws Exception {
 		try {
-			PostDto postDto = postMapper.toDto(postDao.findById(postId).get());
-			String findPassword = postDto.getUser().getPassword();
+			Post post = postDao.findById(postId).get();
+			String findPassword = post.getUser().getPassword();
 
 			if (findPassword.equals(password)) {
+				PostDto postDto = postMapper.toDto(post);
 				tagDtoList.forEach(tagDto -> {
 					tagDto.setPost(postDto);
 					tagDao.save(tagMapper.toEntity(tagDto));
@@ -57,10 +59,11 @@ public class TagServiceImpl implements TagService {
 
 	public void updateTagList(Long postId, List<TagDto> tagDtoList, String password) throws Exception {
 		try {
-			PostDto postDto = postMapper.toDto(postDao.findById(postId).get());
-			String findPassword = postDto.getUser().getPassword();
+			Post post = postDao.findById(postId).get();
+			String findPassword = post.getUser().getPassword();
 
 			if (findPassword.equals(password)) {
+				PostDto postDto = postMapper.toDto(post);
 				List<TagDto> findTagDtoList = postDto.getTagList();
 
 				if (tagDtoList.size() > findTagDtoList.size()) {

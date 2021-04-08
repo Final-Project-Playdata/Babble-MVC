@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import babble.dao.PostRepository;
 import babble.dao.TagRepository;
@@ -15,6 +18,7 @@ import babble.dto.UserDto;
 import babble.exception.UserNotMatchException;
 import babble.mapper.PostMapper;
 import babble.mapper.TagMapper;
+import babble.util.AudioUtil;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -30,6 +34,10 @@ public class PostServiceImpl implements PostService {
 	private final PostMapper postMapper;
 
 	private final TagMapper tagMapper;
+	
+	private final AudioUtil audioUtil;
+	
+	private final ObjectMapper objectMapper;
 
 	public List<PostDto> getPostList() {
 		try {
@@ -68,8 +76,14 @@ public class PostServiceImpl implements PostService {
 		}
 	}
 
-	public void insertPost(PostDto postDto, UserDto userDto) {
+	public void insertPost(MultipartFile file, String post, UserDto userDto) throws Exception {
 		try {
+			PostDto postDto = objectMapper.readValue(post, PostDto.class);
+			String fileUrl = audioUtil.saveAudioFile(file, userDto.getUsername());
+			float duration = audioUtil.getDuration(file);
+			
+			postDto.setFileUrl(fileUrl);
+			postDto.setDuration(duration);
 			postDto.setRegDate(LocalDateTime.now());
 			postDto.setUser(userDto);
 			postDao.save(postMapper.toEntity(postDto));

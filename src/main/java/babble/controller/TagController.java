@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import babble.config.auth.PrincipalDetails;
 import babble.dto.TagDto;
+import babble.dto.TagListDto;
 import babble.service.TagServiceImpl;
 import lombok.RequiredArgsConstructor;
 
@@ -27,13 +28,13 @@ public class TagController {
 	}
 
 	@PostMapping("post/{id}/tags")
-	public void insertTagList(@PathVariable("id") Long id, @RequestBody List<TagDto> tagDtoList, @AuthenticationPrincipal PrincipalDetails p) throws Exception {
-		service.insertTagList(id, tagDtoList, p.getUser().getPassword());
+	public void insertTagList(@PathVariable("id") Long id, @RequestBody TagListDto tagDtoList, @AuthenticationPrincipal PrincipalDetails p) throws Exception {
+		service.insertTagList(id, tagDtoList.getTagList(), p.getUser().getPassword());
 	}
 
 	@PutMapping("post/{id}/tags")
-	public void updateTagList(@PathVariable("id") Long id, @RequestBody List<TagDto> tagDtoList, @AuthenticationPrincipal PrincipalDetails p) throws Exception {
-		service.updateTagList(id, tagDtoList, p.getUser().getPassword());
+	public void updateTagList(@PathVariable("id") Long id, @RequestBody TagListDto tagDtoList, @AuthenticationPrincipal PrincipalDetails p) throws Exception {
+		service.updateTagList(id, tagDtoList.getTagList(), p.getUser().getPassword());
 	}
 
 }

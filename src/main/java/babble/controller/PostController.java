@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import babble.config.auth.PrincipalDetails;
 import babble.dto.PostDto;
@@ -26,8 +28,9 @@ public class PostController {
 	private final UserMapper userMapper;
 
 	@PostMapping("post")
-	public void insertPost(@RequestBody PostDto postDto, @AuthenticationPrincipal PrincipalDetails p) {
-		service.insertPost(postDto, userMapper.toDto(p.getUser()));
+	public void insertPost(@RequestParam("file") MultipartFile file, @RequestParam("post") String post,
+			@AuthenticationPrincipal PrincipalDetails p) throws Exception {
+		service.insertPost(file, post, userMapper.toDto(p.getUser()));
 	}
 
 	@DeleteMapping("post/{id}")
@@ -51,7 +54,7 @@ public class PostController {
 	}
 
 	// 특정 태그가 들어있는 포스트만 반환
-	@GetMapping("posts/tag")
+	@GetMapping("posts/{tag}")
 	public List<PostDto> getPostListWithTag(@PathVariable("tag") String tag) {
 		return service.getPostListWithTag(tag);
 	}

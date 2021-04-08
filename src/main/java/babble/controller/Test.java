@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import babble.config.auth.PrincipalDetails;
 import babble.dao.FollowRepository;
 import babble.dao.UserRepository;
-import babble.dto.TagWrapper;
+import babble.dto.LoginRequestDto;
+import babble.dto.TagListDto;
 import babble.dto.UserDto;
 import babble.entity.Follow;
 import babble.entity.User;
@@ -75,14 +76,17 @@ public class Test {
 	}
 
 	@PostMapping("join")
-	public String join(@RequestBody UserDto userDto) {
+	public String join(@RequestBody LoginRequestDto userDto) {
 		try {
 			System.out.println("join");
 			System.out.println(userDto.getUsername());
 			System.out.println(userDto.getPassword());
 			userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
-			userDto.setRole("ROLE_USER");
-			uDao.save(userMapper.toEntity(userDto));
+			User user = new User();
+			user.setUsername(userDto.getUsername());
+			user.setPassword(userDto.getPassword());
+			user.setRole("ROLE_USER");
+			uDao.save(user);
 			return "회원가입완료";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -137,7 +141,7 @@ public class Test {
 	}
 
 	@PostMapping("taglist")
-	public String tagListTest(@RequestBody TagWrapper tagList) {
+	public String tagListTest(@RequestBody TagListDto tagList) {
 		try {
 			System.out.println("tagListTest");
 			System.out.println(tagList);

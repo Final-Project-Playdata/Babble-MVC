@@ -2,6 +2,8 @@ package babble.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import babble.dto.PostDto;
 import babble.dto.UserDto;
 
@@ -13,7 +15,7 @@ public interface PostService {
 
 	PostDto getPost(Long id);
 
-	void insertPost(PostDto post, UserDto userDto);
+	void insertPost(MultipartFile file, String post, UserDto userDto) throws Exception;
 
 	void updatePost(PostDto post, String password) throws Exception;
 

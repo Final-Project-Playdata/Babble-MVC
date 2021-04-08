@@ -1,6 +1,5 @@
 package babble.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,16 +11,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import babble.config.jwt.JwtAuthenticationFilter;
 import babble.config.jwt.JwtAuthorizationFilter;
 import babble.dao.UserRepository;
+import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity // 시큐리티 활성화 -> 기본 스프링 필터체인에 등록
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter{	
 	
-	@Autowired
-	private UserRepository userRepository;
+	private final UserRepository userRepository;
 	
-	@Autowired
-	private CorsConfig corsConfig;
+	private final CorsConfig corsConfig;
 	
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {

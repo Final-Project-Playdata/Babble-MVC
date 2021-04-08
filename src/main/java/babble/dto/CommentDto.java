@@ -15,8 +15,6 @@ public class CommentDto {
 
 	private Long id;
 
-	private PostDto post;
-
 	private UserDto user;
 
 	private String fileURL;

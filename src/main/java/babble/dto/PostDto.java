@@ -19,9 +19,9 @@ public class PostDto {
 
 	private UserDto user;
 
-	private String fileURL;
+	private String fileUrl;
 
-	private Long length;
+	private float duration;
 
 	private PostDto originPost;
 
