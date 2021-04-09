@@ -8,11 +8,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,7 +46,6 @@ public class AudioController {
 		System.out.println(file.getName());
 		System.out.println(file.getSize());
 		System.out.println(file.getOriginalFilename());
-		byte[] data = file.getBytes();
 
 		return "성공";
 	}
@@ -97,10 +99,10 @@ public class AudioController {
 	public String fileUpload3(@RequestParam("file") MultipartFile file, @RequestParam("test") String t,
 			@AuthenticationPrincipal PrincipalDetails p) throws Exception {
 		String uploadFolder = "C:/audiotest";
-		
-		//파일명 검증(해킹이나 오류 막기위해)
+
+		// 파일명 검증(해킹이나 오류 막기위해)
 		String originalFilename = file.getOriginalFilename();
-		if(originalFilename.contains("..")) {
+		if (originalFilename.contains("..")) {
 			throw new Exception("올바르지 않은 파일명입니다.");
 		}
 
@@ -112,10 +114,10 @@ public class AudioController {
 
 		// 파일 이름 재설정
 		String uploadFilename = p.getUsername() + "." + LocalDateTime.now();
-		
+
 		// 파일 이름 정리
 		uploadFilename = uploadFilename.replace(":", "-");
-		
+
 		// 파일 경로 정리
 		String fileFullPath = uploadPath + "/" + uploadFilename;
 		fileFullPath = fileFullPath.replace(".wav", "");
@@ -151,4 +153,13 @@ public class AudioController {
 //		Assert.state(!Files.exists(targetPath), fileName + " File alerdy exists.");
 //		file.transferTo(targetPath);
 //	}
+	
+	@GetMapping("download")
+	public FileSystemResource download(){
+		File file = new File("011.wav");
+//		response.setContentType("응답헤더 타입");  //예 "application/txt"
+//		response.setHeader("Content-Disposition", "attachment; filename=사용자가받을 파일이름");		
+		return new FileSystemResource(file);
+	}
+	
 }

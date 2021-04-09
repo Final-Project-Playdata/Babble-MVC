@@ -11,7 +11,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import babble.dao.PostRepository;
 import babble.dao.TagRepository;
-import babble.dao.UserRepository;
 import babble.dto.PostDto;
 import babble.dto.TagDto;
 import babble.dto.UserDto;
@@ -29,14 +28,12 @@ public class PostServiceImpl implements PostService {
 
 	private final TagRepository tagDao;
 
-	private final UserRepository userDao;
-
 	private final PostMapper postMapper;
 
 	private final TagMapper tagMapper;
-	
+
 	private final AudioUtil audioUtil;
-	
+
 	private final ObjectMapper objectMapper;
 
 	public List<PostDto> getPostList() {
@@ -81,7 +78,7 @@ public class PostServiceImpl implements PostService {
 			PostDto postDto = objectMapper.readValue(post, PostDto.class);
 			String fileUrl = audioUtil.saveAudioFile(file, userDto.getUsername());
 			float duration = audioUtil.getDuration(file);
-			
+
 			postDto.setFileUrl(fileUrl);
 			postDto.setDuration(duration);
 			postDto.setRegDate(LocalDateTime.now());
@@ -94,12 +91,19 @@ public class PostServiceImpl implements PostService {
 		}
 	}
 
-	public void updatePost(PostDto postDto, String password) throws Exception {
+	public void updatePost(MultipartFile file, String post, UserDto userDto) throws Exception {
 		try {
-			Long uploaderId = postDto.getUser().getId();
-			String uploaderPassword = userDao.findById(uploaderId).get().getPassword();
+			PostDto postDto = objectMapper.readValue(post, PostDto.class);
+			
+			Long uploaderId = postDto.getId();
+			String uploaderUsername = postDao.findById(uploaderId).get().getUser().getUsername();
 
-			if (uploaderPassword.equals(password)) {
+			if (uploaderUsername.equals(userDto.getUsername())) {
+				String fileUrl = audioUtil.saveAudioFile(file, userDto.getUsername());
+				float duration = audioUtil.getDuration(file);
+				
+				postDto.setFileUrl(fileUrl);
+				postDto.setDuration(duration);
 				postDto.setModDate(LocalDateTime.now());
 				postDao.save(postMapper.toEntity(postDto));
 
@@ -123,17 +127,24 @@ public class PostServiceImpl implements PostService {
 		}
 	}
 
-	public void insertRetweetPost(Long id, PostDto postDto, UserDto userDto) {
+	public void insertRetweetPost(MultipartFile file, String post, UserDto userDto) throws Exception {
 		try {
-			PostDto findPostDto = postMapper.toDto(postDao.findById(id).get());
+			PostDto postDto = objectMapper.readValue(post, PostDto.class);
+			PostDto findPostDto = postDto.getRetweetPost();
 
-			if (findPostDto.getOriginPost() != null) {
-				postDto.setOriginPost(findPostDto.getOriginPost());
-				postDto.setRetweetPost(findPostDto);
+			PostDto originPostDto = findPostDto.getOriginPost();
+			if (originPostDto != null) {
+				postDto.setOriginPost(originPostDto);
 			} else {
 				postDto.setOriginPost(findPostDto);
 			}
 
+			String fileUrl = audioUtil.saveAudioFile(file, userDto.getUsername());
+			float duration = audioUtil.getDuration(file);
+			
+			postDto.setFileUrl(fileUrl);
+			postDto.setDuration(duration);
+			postDto.setRetweetPost(findPostDto);
 			postDto.setRegDate(LocalDateTime.now());
 			postDto.setUser(userDto);
 			postDao.save(postMapper.toEntity(postDto));

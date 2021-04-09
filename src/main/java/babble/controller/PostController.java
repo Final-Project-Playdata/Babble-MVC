@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,8 +38,9 @@ public class PostController {
 	}
 
 	@PutMapping("post/{id}")
-	public void updatePost(@RequestBody PostDto postDto, @AuthenticationPrincipal PrincipalDetails p) throws Exception {
-		service.updatePost(postDto, p.getUser().getPassword());
+	public void updatePost(@RequestParam("file") MultipartFile file, @RequestParam("post") String post,
+			@AuthenticationPrincipal PrincipalDetails p) throws Exception {
+		service.updatePost(file, post, userMapper.toDto(p.getUser()));
 	}
 
 	@GetMapping("post/{id}")
@@ -60,10 +60,10 @@ public class PostController {
 	}
 
 	// 리트윗 기능
-	@PostMapping("post/{id}/retweet")
-	public void insertRetweetPost(@PathVariable("id") Long id, @RequestBody PostDto postDto,
-			@AuthenticationPrincipal PrincipalDetails p) {
-		service.insertRetweetPost(id, postDto, userMapper.toDto(p.getUser()));
+	@PostMapping("retweet")
+	public void insertRetweetPost(@RequestParam("file") MultipartFile file, @RequestParam("post") String post,
+			@AuthenticationPrincipal PrincipalDetails p) throws Exception {
+		service.insertRetweetPost(file, post, userMapper.toDto(p.getUser()));
 	}
 
 }

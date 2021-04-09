@@ -17,10 +17,10 @@ public interface PostService {
 
 	void insertPost(MultipartFile file, String post, UserDto userDto) throws Exception;
 
-	void updatePost(PostDto post, String password) throws Exception;
+	void updatePost(MultipartFile file, String post, UserDto userDto) throws Exception;
 
 	void deletePost(Long postId, Long userId);
 
-	void insertRetweetPost(Long id, PostDto post, UserDto userDto);
+	void insertRetweetPost(MultipartFile file, String post, UserDto userDto) throws Exception;
 
 }
