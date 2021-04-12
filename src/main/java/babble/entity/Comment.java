@@ -38,7 +38,7 @@ public class Comment {
 	@JoinColumn(name = "userId")
 	private User user;
 
-	private String fileURL;
+	private String fileUrl;
 
 	private LocalDateTime regDate;
 

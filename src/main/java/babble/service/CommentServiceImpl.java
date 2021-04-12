@@ -11,6 +11,7 @@ import babble.dto.CommentDto;
 import babble.dto.UserDto;
 import babble.exception.UserNotMatchException;
 import babble.mapper.CommentMapper;
+import babble.util.AudioUtil;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -23,6 +24,8 @@ public class CommentServiceImpl implements CommentService {
 
 	private final CommentMapper commentMapper;
 
+	private final AudioUtil audioUtil;
+
 	public List<CommentDto> getCommentList(Long id) {
 		try {
 			return commentMapper.toDtoList(commentDao.findCommentByPost(id));
@@ -34,26 +37,32 @@ public class CommentServiceImpl implements CommentService {
 		}
 	}
 
-	public void insertComment(CommentDto commentDto, UserDto userDto) {
+	public void insertComment(CommentDto commentDto, UserDto userDto) throws Exception {
 		try {
-			commentDto.setUser(userDto);
-			commentDto.setRegDate(LocalDateTime.now());
-			commentDao.save(commentMapper.toEntity(commentDto));
-
+			if (audioUtil.checkPath(commentDto.getFileUrl(), userDto.getUsername())) {
+				commentDto.setUser(userDto);
+				commentDto.setRegDate(LocalDateTime.now());
+				commentDao.save(commentMapper.toEntity(commentDto));
+			} else {
+				throw new Exception("저장실패");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
 	}
 
-	public void updateComment(CommentDto commentDto, String password) throws Exception {
+	public void updateComment(CommentDto commentDto, String password, String username) throws Exception {
 		try {
 			String findPassword = userDao.findPasswordById(commentDto.getUser().getId());
 
 			if (findPassword.equals(password)) {
-				commentDto.setModDate(LocalDateTime.now());
-				commentDao.save(commentMapper.toEntity(commentDto));
-
+				if (audioUtil.checkPath(commentDto.getFileUrl(), username)) {
+					commentDto.setModDate(LocalDateTime.now());
+					commentDao.save(commentMapper.toEntity(commentDto));
+				} else {
+					throw new Exception("저장실패");
+				}
 			} else {
 				throw new UserNotMatchException();
 			}

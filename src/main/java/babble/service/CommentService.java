@@ -9,9 +9,9 @@ public interface CommentService {
 
 	List<CommentDto> getCommentList(Long id);
 
-	void insertComment(CommentDto commentDto, UserDto userDto);
+	void insertComment(CommentDto commentDto, UserDto userDto) throws Exception;
 
-	void updateComment(CommentDto commentDto, String password) throws Exception;
+	void updateComment(CommentDto commentDto, String password, String username) throws Exception;
 
-	void deleteComment(Long commentId, Long userId);
+	void deleteComment(Long commentId, Long userId) throws Exception;
 }

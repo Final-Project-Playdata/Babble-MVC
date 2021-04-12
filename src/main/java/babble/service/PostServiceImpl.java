@@ -76,15 +76,14 @@ public class PostServiceImpl implements PostService {
 	public void insertPost(MultipartFile file, String post, UserDto userDto) throws Exception {
 		try {
 			PostDto postDto = objectMapper.readValue(post, PostDto.class);
-			String fileUrl = audioUtil.saveAudioFile(file, userDto.getUsername());
-			float duration = audioUtil.getDuration(file);
 
-			postDto.setFileUrl(fileUrl);
-			postDto.setDuration(duration);
-			postDto.setRegDate(LocalDateTime.now());
-			postDto.setUser(userDto);
-			postDao.save(postMapper.toEntity(postDto));
-
+			if (audioUtil.checkPath(postDto.getFileUrl(), userDto.getUsername())) {
+				postDto.setRegDate(LocalDateTime.now());
+				postDto.setUser(userDto);
+				postDao.save(postMapper.toEntity(postDto));
+			} else {
+				throw new Exception("저장실패");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -94,19 +93,17 @@ public class PostServiceImpl implements PostService {
 	public void updatePost(MultipartFile file, String post, UserDto userDto) throws Exception {
 		try {
 			PostDto postDto = objectMapper.readValue(post, PostDto.class);
-			
+
 			Long uploaderId = postDto.getId();
 			String uploaderUsername = postDao.findById(uploaderId).get().getUser().getUsername();
 
 			if (uploaderUsername.equals(userDto.getUsername())) {
-				String fileUrl = audioUtil.saveAudioFile(file, userDto.getUsername());
-				float duration = audioUtil.getDuration(file);
-				
-				postDto.setFileUrl(fileUrl);
-				postDto.setDuration(duration);
-				postDto.setModDate(LocalDateTime.now());
-				postDao.save(postMapper.toEntity(postDto));
-
+				if (audioUtil.checkPath(postDto.getFileUrl(), userDto.getUsername())) {
+					postDto.setModDate(LocalDateTime.now());
+					postDao.save(postMapper.toEntity(postDto));
+				} else {
+					throw new Exception("저장실패");
+				}
 			} else {
 				throw new UserNotMatchException();
 			}
@@ -130,24 +127,24 @@ public class PostServiceImpl implements PostService {
 	public void insertRetweetPost(MultipartFile file, String post, UserDto userDto) throws Exception {
 		try {
 			PostDto postDto = objectMapper.readValue(post, PostDto.class);
-			PostDto findPostDto = postDto.getRetweetPost();
 
-			PostDto originPostDto = findPostDto.getOriginPost();
-			if (originPostDto != null) {
-				postDto.setOriginPost(originPostDto);
+			if (audioUtil.checkPath(postDto.getFileUrl(), userDto.getUsername())) {
+				PostDto findPostDto = postDto.getRetweetPost();
+
+				PostDto originPostDto = findPostDto.getOriginPost();
+				if (originPostDto != null) {
+					postDto.setOriginPost(originPostDto);
+				} else {
+					postDto.setOriginPost(findPostDto);
+				}
+
+				postDto.setRetweetPost(findPostDto);
+				postDto.setRegDate(LocalDateTime.now());
+				postDto.setUser(userDto);
+				postDao.save(postMapper.toEntity(postDto));
 			} else {
-				postDto.setOriginPost(findPostDto);
+				throw new Exception("저장실패");
 			}
-
-			String fileUrl = audioUtil.saveAudioFile(file, userDto.getUsername());
-			float duration = audioUtil.getDuration(file);
-			
-			postDto.setFileUrl(fileUrl);
-			postDto.setDuration(duration);
-			postDto.setRetweetPost(findPostDto);
-			postDto.setRegDate(LocalDateTime.now());
-			postDto.setUser(userDto);
-			postDao.save(postMapper.toEntity(postDto));
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -31,14 +31,15 @@ public class CommentController {
 	}
 
 	@PostMapping("post/{postId}/comment")
-	public void insertComment(@RequestBody CommentDto commentDto, @AuthenticationPrincipal PrincipalDetails p) {
+	public void insertComment(@RequestBody CommentDto commentDto, @AuthenticationPrincipal PrincipalDetails p)
+			throws Exception {
 		service.insertComment(commentDto, userMappper.toDto(p.getUser()));
 	}
 
 	@PutMapping("post/{postId}/comment/{commentId}")
 	public void updateComment(@RequestBody CommentDto commentDto, @AuthenticationPrincipal PrincipalDetails p)
 			throws Exception {
-		service.updateComment(commentDto, p.getPassword());
+		service.updateComment(commentDto, p.getPassword(), p.getUsername());
 	}
 
 	@DeleteMapping("post/{postId}/comment/{commentId}")

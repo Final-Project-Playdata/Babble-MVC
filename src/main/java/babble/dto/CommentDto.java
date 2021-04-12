@@ -17,7 +17,7 @@ public class CommentDto {
 
 	private UserDto user;
 
-	private String fileURL;
+	private String fileUrl;
 
 	private LocalDateTime regDate;
 
