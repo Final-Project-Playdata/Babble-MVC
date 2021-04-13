@@ -1,43 +1,26 @@
-<template>
-	<div id="app">
-		<router-view />
-	</div>
-</template>
-
-<style>
-@import 'css/style.css';
-@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
-</style>
-
-<script>
 /* eslint-disable no-undef */
 $(document).ready(function () {
 	// Here we put all the code
-	let heart = $('.heart'),
+	var heart = $('.heart'),
 		cog = $('#cog'),
 		popUp = $('.popUp'),
 		closePopUp = $('#closePopUp'),
 		cancelPopUp = $('#cancelPopUp');
 
 	heart.click(function () {
-		alert(1);
 		$(this).toggleClass('fa-heart-o');
 		$(this).toggleClass('heart-red fa-heart');
 	});
 
 	cog.click(function () {
-		alert(1);
 		popUp.fadeIn(500);
 	});
 
 	closePopUp.click(function () {
-		alert(1);
 		popUp.fadeOut(500);
 	});
 
 	cancelPopUp.click(function () {
-		alert(1);
 		popUp.slideUp(500);
 	});
 });
-</script>
