@@ -10,3 +10,6 @@ new Vue({
 	store,
 	render: h => h(App),
 }).$mount('#app');
+
+require('./js/freqtimeupdate.js');
+require('./js/app.js');

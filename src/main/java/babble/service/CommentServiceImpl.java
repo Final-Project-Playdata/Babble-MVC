@@ -28,7 +28,7 @@ public class CommentServiceImpl implements CommentService {
 
 	public List<CommentDto> getCommentList(Long id) {
 		try {
-			return commentMapper.toDtoList(commentDao.findCommentByPost(id));
+			return commentMapper.toDtoList(commentDao.findByPostId(id));
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -48,20 +48,20 @@ public class Test {
 		uDao.save(new User());
 	}
 
-	@GetMapping("test2")
-	public void test2() {
-		System.out.println("test2");
-		User m1 = uDao.findById(1l).orElse(null);
-		User m2 = uDao.findById(2l).orElse(null);
-		Follow f = new Follow();
-		f.setFollower(m1);
-		f.setFollowing(m2);
-		dao.save(f);
-		Follow f1 = new Follow();
-		f1.setFollower(m2);
-		f1.setFollowing(m1);
-		dao.save(f1);
-	}
+//	@GetMapping("test2")
+//	public void test2() {
+//		System.out.println("test2");
+//		User m1 = uDao.findById(1l).orElse(null);
+//		User m2 = uDao.findById(2l).orElse(null);
+//		Follow f = new Follow();
+//		f.setFollower(m1);
+//		f.setFollowing(m2);
+//		dao.save(f);
+//		Follow f1 = new Follow();
+//		f1.setFollower(m2);
+//		f1.setFollowing(m1);
+//		dao.save(f1);
+//	}
 
 	@GetMapping("test3")
 	public List<User> test3() {

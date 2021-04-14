@@ -23,15 +23,15 @@ public class PostDto {
 
 	private float duration;
 
-	private PostDto originPost;
+	private Long originPostId;
 
-	private PostDto retweetPost;
+	private Long retweetPostId;
 
-	private List<TagDto> tagList = new ArrayList<>();
+	private List<String> tagList = new ArrayList<>();
 
 	private List<CommentDto> commentList = new ArrayList<>();
 
-	private List<LikeDto> likeList = new ArrayList<>();
+	private List<UserDto> likeList = new ArrayList<>();
 
 	private LocalDateTime regDate;
 

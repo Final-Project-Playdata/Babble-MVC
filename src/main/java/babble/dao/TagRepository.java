@@ -8,7 +8,6 @@ import babble.entity.Tag;
 
 public interface TagRepository extends JpaRepository<Tag, Long>{
 
-	List<Tag> findByPostId(Long postId);
-
+	List<Tag> findTagByPostId(Long postId);
 	List<Tag> findByName(String tag);
 }

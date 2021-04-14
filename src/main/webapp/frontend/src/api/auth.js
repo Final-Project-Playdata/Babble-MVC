@@ -6,11 +6,6 @@ function signUp(data) {
 	return instance.post('/signup', data);
 }
 
-// 약관동의 API
-function memberAgreeUser(data) {
-	return instance.post('MemberAgree', data);
-}
-
 // 로그인 API
 function signIn(data) {
 	return instance.post('/login', data);
@@ -21,9 +16,4 @@ function allClient(data) {
 	return instance.get('/getMemberList', data);
 }
 
-//로그아웃
-function logout(userData) {
-	return instance.post('/logout', userData);
-}
-
-export { signUp, signIn, memberAgreeUser, allClient, logout };
+export { signUp, signIn, allClient };

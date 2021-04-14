@@ -1,5 +1,6 @@
 package babble.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -51,16 +52,17 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-	public void signUp(LoginRequestDto loginDto) throws Exception {
+	public void signUp(UserDto userDto) throws Exception {
 		try {
-			User findUser = dao.findByUsername(loginDto.getUsername());
+			User findUser = dao.findByUsername(userDto.getUsername());
 			if (findUser == null) {
-				User user = new User();
-				user.signUp(loginDto.getUsername(), bCryptPasswordEncoder.encode(loginDto.getPassword()));
-				dao.save(user);
+				userDto.setRole("ROLE_USER");
+				userDto.setRegDate(LocalDateTime.now());
+				userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
+				dao.save(mapper.toEntity(userDto));
+			} else {
+				throw new Exception("유저가 이미 존재합니다.");
 			}
-
-			throw new Exception("유저가 이미 존재합니다.");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,9 +79,9 @@ public class UserServiceImpl implements UserService {
 				user.update(userDto.getAvatar(), userDto.getFirstName(), userDto.getLastName(), userDto.getBio(),
 						userDto.getBirth());
 				dao.save(user);
+			} else {
+				throw new UserNotMatchException("정보를 업데이트 하는 중 예외발생");
 			}
-
-			throw new UserNotMatchException("정보를 업데이트 하는 중 예외발생");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,9 +96,9 @@ public class UserServiceImpl implements UserService {
 
 			if (findPassword.equals(password) && findPassword.equals(doubleCheckPassword)) {
 				dao.deleteById(id);
+			} else {
+				throw new UserNotMatchException("회원탈퇴 중 예외발생");
 			}
-
-			throw new UserNotMatchException("회원탈퇴 중 예외발생");
 
 		} catch (Exception e) {
 			e.printStackTrace();

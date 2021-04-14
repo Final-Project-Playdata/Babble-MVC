@@ -3,6 +3,7 @@ package babble.mapper;
 import java.util.List;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.NullValueMappingStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.ReportingPolicy;
@@ -15,6 +16,7 @@ public interface TagMapper {
 
 	Tag toEntity(TagDto tagDto);
 
+	@Mapping(target="post", ignore=true)
 	TagDto toDto(Tag tag);
 
 	List<Tag> toEntityList(List<TagDto> tagDtoList);

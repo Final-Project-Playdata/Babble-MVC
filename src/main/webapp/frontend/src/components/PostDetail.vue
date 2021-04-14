@@ -41,6 +41,6 @@
 
 <script>
 export default {
-	name: 'FeedDetail',
+	name: 'PostDetail',
 };
 </script>

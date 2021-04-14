@@ -1,20 +1,20 @@
 <template>
 	<div>
 		<Header />
-		<FeedDetail />
+		<PostDetail />
 		<Footer />
 	</div>
 </template>
 
 <script>
-import FeedDetail from '@/components/FeedDetail.vue';
+import PostDetail from '@/components/PostDetail.vue';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 
 export default {
-	name: 'FeedDetailView',
+	name: 'PostDetailView',
 	components: {
-		FeedDetail,
+		PostDetail,
 		Header,
 		Footer,
 	},

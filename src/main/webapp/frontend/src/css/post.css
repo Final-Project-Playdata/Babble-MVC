@@ -1,0 +1,101 @@
+.post {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.audio {
+	width: 60%;
+	background-color: white;
+	border-radius: 5px;
+	border: 1px solid rgba(0, 0, 0, 0.0975);
+	max-width: 800px;
+	margin-bottom: 40px;
+}
+
+.audio__header {
+	padding: 15px 20px;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
+}
+
+.audio__avatar {
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	margin-right: 15px;
+}
+
+.audio__username {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+
+.audio__file {
+	max-width: 100%;
+}
+
+.audio__info {
+	padding: 20px 20px 0 20px;
+}
+
+.audio__icons {
+	margin-bottom: 10px;
+	font-size: 18px;
+}
+
+.audio__icon:first-child {
+	margin-right: 10px;
+}
+
+.audio__likes {
+	font-weight: 600;
+	margin-bottom: 10px;
+	display: block;
+}
+
+.audio__comment {
+	margin-bottom: 10px;
+}
+
+.audio__comment-author {
+	font-weight: 600;
+	margin-right: 5px;
+}
+
+.audio__time-ago {
+	color: #999;
+	text-transform: uppercase;
+	font-size: 10px;
+	padding-bottom: 10px;
+	display: block;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
+}
+
+.audio__add-comment-container {
+	position: relative;
+}
+
+.audio__add-comment-container i {
+	position: absolute;
+	top: 17px;
+	right: 0;
+}
+
+.audio__add-comment {
+	width: 97%;
+	border: 0;
+	resize: none;
+	font-size: 14px;
+	padding-top: 15px;
+}
+
+.audio__add-comment:focus {
+	outline: none;
+}
+
+.heart-red {
+	color: red;
+}

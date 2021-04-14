@@ -3,6 +3,7 @@ package babble.mapper;
 import java.util.List;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.NullValueMappingStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.ReportingPolicy;
@@ -15,6 +16,7 @@ public interface CommentMapper {
 
 	Comment toEntity(CommentDto commentDto);
 
+	@Mapping(target="post", ignore=true)
 	CommentDto toDto(Comment comment);
 	
 	List<Comment> toEntityList(List<CommentDto> commentDtoList);

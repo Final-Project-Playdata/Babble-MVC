@@ -24,11 +24,21 @@ public class UserDto {
 
 	private String username; // email
 
+	private String password;
+	
+	private String nickname;
+	
 	private String firstName;
 
 	private String lastName;
-
+	
+	private String phoneNumber;
+	
+	private String gender;
+	
 	private String bio; //자기소개 audio 파일 url
+	
+	private String role;
 
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate birth;

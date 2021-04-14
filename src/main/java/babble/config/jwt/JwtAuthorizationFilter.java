@@ -6,6 +6,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -53,10 +54,11 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 	}
 
 	@Override
+	@Transactional
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
-		System.out.println("실행?");
+		System.out.println("authorizationfilter?");
 		String header = request.getHeader(JwtProperties.HEADER_STRING);
 		if (header == null || !header.startsWith(JwtProperties.TOKEN_PREFIX)) {
 			chain.doFilter(request, response);
@@ -78,7 +80,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 		String requestUserAgent = getUserAgent(request);
 		
 		if (username != null && jwtUserIp.equals(requestIp) && jwtUserAgent.equals(requestUserAgent)) {
-			User user = userRepository.findByUsername(username);
+			User user = getUser(username);
 
 			// 인증은 토큰 검증시 끝. 인증을 하기 위해서가 아닌 스프링 시큐리티가 수행해주는 권한 처리를 위해
 			// 아래와 같이 토큰을 만들어서 Authentication 객체를 강제로 만들고 그걸 세션에 저장!
@@ -91,6 +93,12 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 		}
 
 		chain.doFilter(request, response);
+	}
+	
+	@Transactional
+	public User getUser(String username) {
+		User user = userRepository.findByUsername(username);
+		return user;
 	}
 
 }

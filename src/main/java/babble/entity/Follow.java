@@ -3,6 +3,7 @@ package babble.entity;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,11 +27,11 @@ public class Follow {
 	private Long id;
 
 	@JoinColumn(name = "followingId")
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private User following; //팔로우하는 사람
 
 	@JoinColumn(name = "followerId")
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private User follower; //팔로우받는 사람
 
 	private LocalDateTime regDate;

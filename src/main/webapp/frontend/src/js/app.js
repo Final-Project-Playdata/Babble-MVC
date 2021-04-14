@@ -8,6 +8,7 @@ $(document).ready(function () {
 		cancelPopUp = $('#cancelPopUp');
 
 	heart.click(function () {
+		alert(1);
 		$(this).toggleClass('fa-heart-o');
 		$(this).toggleClass('heart-red fa-heart');
 	});

@@ -6,9 +6,9 @@ Vue.use(VueRouter);
 
 const routes = [
 	{
-		path: '/feed',
-		name: 'Feed',
-		component: () => import('../views/Feed.vue'),
+		path: '/post',
+		name: 'Post',
+		component: () => import('../views/Post.vue'),
 	},
 	{
 		path: '/edit',
@@ -22,8 +22,8 @@ const routes = [
 	},
 	{
 		path: '/detail',
-		name: 'FeedDetail',
-		component: () => import('../views/FeedDetail.vue'),
+		name: 'PostDetail',
+		component: () => import('../views/PostDetail.vue'),
 	},
 	{
 		path: '/profile',
@@ -34,6 +34,11 @@ const routes = [
 		path: '/',
 		name: 'SingIn',
 		component: () => import('../views/SingIn.vue'),
+	},
+	{
+		path: '/signup',
+		name: 'SignUp',
+		component: () => import('../views/SignUp.vue'),
 	},
 	{
 		path: '*',

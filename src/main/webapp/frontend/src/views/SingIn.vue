@@ -8,7 +8,7 @@
 import SingIn from '../components/SignIn.vue';
 
 export default {
-	name: 'HomeView',
+	name: 'SignInView',
 	components: {
 		SingIn,
 	},

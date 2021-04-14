@@ -11,7 +11,7 @@ public interface UserService {
 
 	UserDto getUser(Long id, String password) throws Exception;
 
-	void signUp(LoginRequestDto loginDto) throws Exception;
+	void signUp(UserDto userDto) throws Exception;
 
 	void updateUser(UserDto userDto, Long id, String password) throws Exception;
 

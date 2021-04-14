@@ -23,7 +23,6 @@
 							type="text"
 							name="username"
 							placeholder="Username"
-							required
 							class="login__input"
 							v-model="username"
 						/>
@@ -33,7 +32,6 @@
 							type="password"
 							name="password"
 							placeholder="Password"
-							required
 							class="login__input"
 							v-model="password"
 						/>
@@ -57,7 +55,7 @@
 			<div class="login__section login__sign-up">
 				<span class="login__text">
 					Don't have an account?
-					<a href="#" class="login__link"> Sign up </a>
+					<a href="signup" class="login__link"> Sign up </a>
 				</span>
 			</div>
 			<div class="login__section login__section--transparent login__app">
@@ -91,7 +89,6 @@ export default {
 		return {
 			username: '',
 			password: '',
-			temp: '',
 		};
 	},
 	computed: {
@@ -102,6 +99,9 @@ export default {
 	methods: {
 		async signIn() {
 			try {
+				this.$store.state.username = this.username;
+				this.$store.state.password = this.password;
+
 				const userData = {
 					username: this.username,
 					password: this.password,
@@ -109,12 +109,11 @@ export default {
 
 				const data = await signIn(userData);
 
-				console.log(data.headers['authorization']);
-				// this.$store.commit('setToken', data.data.token);
-				// this.$router.push('home');
+				this.$store.commit('setToken', data.headers['authorization']);
+				this.$router.push('../post');
 			} catch (error) {
 				console.log(error.response.data);
-				this.$router.push('../Signin');
+				this.$router.push('../signin');
 			} finally {
 				this.username = '';
 				this.password = '';

@@ -3,6 +3,7 @@ package babble.mapper;
 import java.util.List;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.NullValueMappingStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.ReportingPolicy;
@@ -15,6 +16,7 @@ public interface PostMapper {
 
 	Post toEntity(PostDto postDto);
 
+	@Mapping(target="user.password", ignore=true)
 	PostDto toDto(Post post);
 
 	List<Post> toEntityList(List<PostDto> postDtoList);
