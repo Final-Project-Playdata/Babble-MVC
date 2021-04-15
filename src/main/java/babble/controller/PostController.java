@@ -26,13 +26,9 @@ public class PostController {
 	private final UserMapper userMapper;
 
 	@PostMapping("post")
-	public void insertPost(@RequestBody PostDto postDto, @AuthenticationPrincipal PrincipalDetails p) throws Exception {
-		try {
-			System.out.println(postDto.getTagList().toString());
-			service.insertPost(postDto, userMapper.toDto(p.getUser()));
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
+	public PostDto insertPost(@RequestBody PostDto postDto, @AuthenticationPrincipal PrincipalDetails p)
+			throws Exception {
+		return service.insertPost(postDto, userMapper.toDto(p.getUser()));
 	}
 
 	@DeleteMapping("post/{id}")
@@ -41,8 +37,8 @@ public class PostController {
 	}
 
 	@PutMapping("post/{id}")
-	public void updatePost(@RequestBody PostDto postDto, @AuthenticationPrincipal PrincipalDetails p) throws Exception {
-		service.updatePost(postDto, userMapper.toDto(p.getUser()));
+	public PostDto updatePost(@RequestBody PostDto postDto, @AuthenticationPrincipal PrincipalDetails p) throws Exception {
+		return service.updatePost(postDto, userMapper.toDto(p.getUser()));
 	}
 
 	@GetMapping("post/{id}")
@@ -63,9 +59,9 @@ public class PostController {
 
 	// 리트윗 기능
 	@PostMapping("retweet")
-	public void insertRetweetPost(@RequestBody PostDto postDto, @AuthenticationPrincipal PrincipalDetails p)
+	public PostDto insertRetweetPost(@RequestBody PostDto postDto, @AuthenticationPrincipal PrincipalDetails p)
 			throws Exception {
-		service.insertRetweetPost(postDto, userMapper.toDto(p.getUser()));
+		return service.insertRetweetPost(postDto, userMapper.toDto(p.getUser()));
 	}
 
 }

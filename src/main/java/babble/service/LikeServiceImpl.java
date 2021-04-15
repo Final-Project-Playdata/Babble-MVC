@@ -1,6 +1,9 @@
 package babble.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
@@ -35,6 +38,17 @@ public class LikeServiceImpl implements LikeService {
 		}
 	}
 
+	public List<PostDto> getLikePostList(Long userId) {
+		try {
+
+			return postMapper.toDtoList(
+					likeDao.findByUserId(userId).stream().map(like -> like.getPost()).collect(Collectors.toList()));
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
 	public void like(Long postId, UserDto userDto) {
 		try {
 			PostDto postDto = postMapper.toDto(postDao.findById(postId).get());
@@ -51,9 +65,22 @@ public class LikeServiceImpl implements LikeService {
 		}
 	}
 
+	@Transactional
 	public void unlike(Long postId, Long userId) {
 		try {
 			likeDao.deleteByPostIdAndUserId(postId, userId);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	public void deleteLikeList(Long postId, Long userId) {
+		try {
+			if (postDao.findById(postId).get().getUser().getId() == userId) {
+				likeDao.deleteByPostId(postId);
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

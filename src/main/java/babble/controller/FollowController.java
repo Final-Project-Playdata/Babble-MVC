@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import babble.config.auth.PrincipalDetails;
 import babble.dto.FollowDto;
+import babble.dto.UserDto;
 import babble.mapper.UserMapper;
 import babble.service.FollowServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -34,12 +35,12 @@ public class FollowController {
 	}
 
 	@GetMapping("user/{userId}/follower")
-	public List<FollowDto> getFollowerList(@PathVariable("userId") Long userId) {
+	public List<UserDto> getFollowerList(@PathVariable("userId") Long userId) {
 		return service.getFollowerList(userId);
 	}
 
 	@GetMapping("user/{userId}/following")
-	public List<FollowDto> getFollowingList(@PathVariable("userId") Long userId) {
+	public List<UserDto> getFollowingList(@PathVariable("userId") Long userId) {
 		return service.getFollowingList(userId);
 	}
 }

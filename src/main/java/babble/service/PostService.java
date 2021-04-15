@@ -13,12 +13,12 @@ public interface PostService {
 
 	PostDto getPost(Long id);
 
-	void insertPost(PostDto postDto, UserDto userDto) throws Exception;
+	PostDto insertPost(PostDto postDto, UserDto userDto) throws Exception;
 
-	void updatePost(PostDto postDto, UserDto userDto) throws Exception;
+	PostDto updatePost(PostDto postDto, UserDto userDto) throws Exception;
 
 	void deletePost(Long postId, Long userId);
 
-	void insertRetweetPost(PostDto postDto, UserDto userDto) throws Exception;
+	PostDto insertRetweetPost(PostDto postDto, UserDto userDto) throws Exception;
 
 }

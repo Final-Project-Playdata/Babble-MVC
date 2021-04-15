@@ -9,7 +9,7 @@ public interface CommentService {
 
 	List<CommentDto> getCommentList(Long id);
 
-	void insertComment(CommentDto commentDto, UserDto userDto) throws Exception;
+	CommentDto insertComment(CommentDto commentDto, UserDto userDto) throws Exception;
 
 	void updateComment(CommentDto commentDto, String password, String username) throws Exception;
 

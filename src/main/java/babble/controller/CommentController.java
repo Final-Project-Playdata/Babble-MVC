@@ -31,9 +31,9 @@ public class CommentController {
 	}
 
 	@PostMapping("post/{postId}/comment")
-	public void insertComment(@RequestBody CommentDto commentDto, @AuthenticationPrincipal PrincipalDetails p)
+	public CommentDto insertComment(@RequestBody CommentDto commentDto, @AuthenticationPrincipal PrincipalDetails p)
 			throws Exception {
-		service.insertComment(commentDto, userMappper.toDto(p.getUser()));
+		return service.insertComment(commentDto, userMappper.toDto(p.getUser()));
 	}
 
 	@PutMapping("post/{postId}/comment/{commentId}")
@@ -45,6 +45,11 @@ public class CommentController {
 	@DeleteMapping("post/{postId}/comment/{commentId}")
 	public void deleteComment(@PathVariable("commentId") Long commentId, @AuthenticationPrincipal PrincipalDetails p) {
 		service.deleteComment(commentId, p.getUser().getId());
+	}
+	
+	@DeleteMapping("post/{postId}/comments")
+	public void deleteCommentList(@PathVariable("postId") Long postId, @AuthenticationPrincipal PrincipalDetails p) {
+		service.deleteCommentList(postId, p.getUser().getId());
 	}
 
 }

@@ -13,7 +13,8 @@ public class LikeDto {
 
 	private Long id;
 
+	private PostDto post;
+	
 	private UserDto user;
 
-	private PostDto post;
 }

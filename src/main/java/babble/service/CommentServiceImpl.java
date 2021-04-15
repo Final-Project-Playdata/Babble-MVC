@@ -3,12 +3,16 @@ package babble.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import babble.dao.CommentRepository;
+import babble.dao.PostRepository;
 import babble.dao.UserRepository;
 import babble.dto.CommentDto;
 import babble.dto.UserDto;
+import babble.entity.Comment;
 import babble.exception.UserNotMatchException;
 import babble.mapper.CommentMapper;
 import babble.util.AudioUtil;
@@ -21,6 +25,8 @@ public class CommentServiceImpl implements CommentService {
 	private final CommentRepository commentDao;
 
 	private final UserRepository userDao;
+
+	private final PostRepository postDao;
 
 	private final CommentMapper commentMapper;
 
@@ -37,12 +43,13 @@ public class CommentServiceImpl implements CommentService {
 		}
 	}
 
-	public void insertComment(CommentDto commentDto, UserDto userDto) throws Exception {
+	public CommentDto insertComment(CommentDto commentDto, UserDto userDto) throws Exception {
 		try {
 			if (audioUtil.checkPath(commentDto.getFileUrl(), userDto.getUsername())) {
 				commentDto.setUser(userDto);
 				commentDto.setRegDate(LocalDateTime.now());
-				commentDao.save(commentMapper.toEntity(commentDto));
+				Comment comment = commentDao.save(commentMapper.toEntity(commentDto));
+				return commentMapper.toDto(comment);
 			} else {
 				throw new Exception("저장실패");
 			}
@@ -73,9 +80,22 @@ public class CommentServiceImpl implements CommentService {
 		}
 	}
 
+	@Transactional
 	public void deleteComment(Long commentId, Long userId) {
 		try {
 			commentDao.deleteByIdAndUserId(commentId, userId);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	public void deleteCommentList(Long postId, Long userId) {
+		try {
+			if (postDao.findById(postId).get().getUser().getId() == userId) {
+				commentDao.deleteByPostId(postId);
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

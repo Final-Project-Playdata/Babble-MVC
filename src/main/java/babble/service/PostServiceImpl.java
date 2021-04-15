@@ -16,7 +16,6 @@ import babble.dao.TagRepository;
 import babble.dto.PostDto;
 import babble.dto.TagDto;
 import babble.dto.UserDto;
-import babble.entity.Post;
 import babble.entity.Tag;
 import babble.exception.UserNotMatchException;
 import babble.mapper.CommentMapper;
@@ -52,13 +51,10 @@ public class PostServiceImpl implements PostService {
 		try {
 			List<PostDto> list = postMapper.toDtoList(postDao.findAll());
 			list.forEach(p -> {
-				p.setTagList(tagDao.findTagByPostId(p.getId()).stream().map(tag -> tag.getName())
-						.collect(Collectors.toList()));
-
-				p.setLikeList(userMapper.toDtoList(likeDao.findByPostId(p.getId()).stream().map(like -> like.getUser())
-						.collect(Collectors.toList())));
-
-				p.setCommentList(commentMapper.toDtoList(commentDao.findByPostId(p.getId())));
+				System.out.println("---------");
+				System.out.println(p.toString());
+				p = checkPost(p);
+				System.out.println(p.toString());
 			});
 
 			return list;
@@ -79,13 +75,7 @@ public class PostServiceImpl implements PostService {
 			});
 
 			postDtoList.forEach(p -> {
-				p.setTagList(tagDao.findTagByPostId(p.getId()).stream().map(tag -> tag.getName())
-						.collect(Collectors.toList()));
-
-				p.setLikeList(userMapper.toDtoList(likeDao.findByPostId(p.getId()).stream().map(like -> like.getUser())
-						.collect(Collectors.toList())));
-
-				p.setCommentList(commentMapper.toDtoList(commentDao.findByPostId(p.getId())));
+				p = checkPost(p);
 			});
 
 			return postDtoList;
@@ -99,15 +89,7 @@ public class PostServiceImpl implements PostService {
 	public PostDto getPost(Long id) {
 		try {
 			PostDto postDto = postMapper.toDto(postDao.findById(id).get());
-			postDto.setTagList(tagDao.findTagByPostId(postDto.getId()).stream().map(tag -> tag.getName())
-					.collect(Collectors.toList()));
-
-			postDto.setLikeList(userMapper.toDtoList(likeDao.findByPostId(postDto.getId()).stream()
-					.map(like -> like.getUser()).collect(Collectors.toList())));
-
-			postDto.setCommentList(commentMapper.toDtoList(commentDao.findByPostId(postDto.getId())));
-
-			return postDto;
+			return checkPost(postDto);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -115,7 +97,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Transactional
-	public void insertPost(PostDto postDto, UserDto userDto) throws Exception {
+	public PostDto insertPost(PostDto postDto, UserDto userDto) throws Exception {
 		try {
 			if (audioUtil.checkPath(postDto.getFileUrl(), userDto.getUsername())) {
 				postDto.setRegDate(LocalDateTime.now());
@@ -130,6 +112,7 @@ public class PostServiceImpl implements PostService {
 					tagDao.save(tagMapper.toEntity(tagDto));
 				});
 
+				return postMapper.toDto(postDao.findById(id).get());
 			} else {
 				throw new Exception("저장실패");
 			}
@@ -139,10 +122,10 @@ public class PostServiceImpl implements PostService {
 		}
 	}
 
-	public void updatePost(PostDto postDto, UserDto userDto) throws Exception {
+	public PostDto updatePost(PostDto postDto, UserDto userDto) throws Exception {
 		try {
-			Long uploaderId = postDto.getId();
-			String uploaderUsername = postDao.findById(uploaderId).get().getUser().getUsername();
+			Long postId = postDto.getId();
+			String uploaderUsername = postDao.findById(postId).get().getUser().getUsername();
 
 			if (uploaderUsername.equals(userDto.getUsername())) {
 				if (audioUtil.checkPath(postDto.getFileUrl(), userDto.getUsername())) {
@@ -150,7 +133,7 @@ public class PostServiceImpl implements PostService {
 					postDao.save(postMapper.toEntity(postDto));
 
 					List<String> tagNameList = postDto.getTagList();
-					List<Tag> findTagDtoList = tagDao.findTagByPostId(uploaderId);
+					List<Tag> findTagDtoList = tagDao.findTagByPostId(postId);
 
 					tagNameList.forEach(tagName -> {
 						if (!findTagDtoList.contains(tagName)) {
@@ -167,6 +150,7 @@ public class PostServiceImpl implements PostService {
 						}
 					});
 
+					return checkPost(postMapper.toDto(postDao.findById(postId).get()));
 				} else {
 					throw new Exception("저장실패");
 				}
@@ -180,8 +164,14 @@ public class PostServiceImpl implements PostService {
 		}
 	}
 
+	@Transactional
 	public void deletePost(Long postId, Long userId) {
 		try {
+			if (postDao.findById(postId).get().getUser().getId() == userId) {
+				commentDao.deleteByPostId(postId);
+				likeDao.deleteByPostId(postId);
+				tagDao.deleteByPostId(postId);
+			}
 			postDao.deleteByIdAndUserId(postId, userId);
 
 		} catch (Exception e) {
@@ -190,23 +180,14 @@ public class PostServiceImpl implements PostService {
 		}
 	}
 
-	public void insertRetweetPost(PostDto postDto, UserDto userDto) throws Exception {
+	@Transactional
+	public PostDto insertRetweetPost(PostDto postDto, UserDto userDto) throws Exception {
 		try {
 			if (audioUtil.checkPath(postDto.getFileUrl(), userDto.getUsername())) {
-				Long retweetPostId = postDto.getRetweetPostId();
-				Post findPostDto = postDao.findById(retweetPostId).get();
-
-				Long originPostId = findPostDto.getOriginPostId();
-				if (originPostId != null) {
-					postDto.setOriginPostId(originPostId);
-				} else {
-					postDto.setOriginPostId(retweetPostId);
-				}
-
-				postDto.setRetweetPostId(retweetPostId);
 				postDto.setRegDate(LocalDateTime.now());
 				postDto.setUser(userDto);
-				postDao.save(postMapper.toEntity(postDto));
+				Long id = postDao.save(postMapper.toEntity(postDto)).getId();
+				postDto.setId(id);
 
 				postDto.getTagList().forEach(tag -> {
 					TagDto tagDto = new TagDto();
@@ -215,14 +196,42 @@ public class PostServiceImpl implements PostService {
 					tagDao.save(tagMapper.toEntity(tagDto));
 				});
 
+				return checkPost(postMapper.toDto(postDao.findById(id).get()));
 			} else {
 				throw new Exception("저장실패");
 			}
 
-		} catch (Exception e) {
+		} catch (
+
+		Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
+	}
+
+	public PostDto checkPost(PostDto postDto) {
+		Long retweetPostId = postDto.getRetweetPostId();
+		if (retweetPostId != null) {
+			postDto.setRetweetUser(postDto.getUser());
+			postDto.setUser(userMapper.toDto(postDao.findById(retweetPostId).get().getUser()));
+			postDto.setTagList(tagDao.findTagByPostId(retweetPostId).stream().map(tag -> tag.getName())
+					.collect(Collectors.toList()));
+
+			postDto.setLikeList(userMapper.toDtoList(likeDao.findByPostId(retweetPostId).stream()
+					.map(like -> like.getUser()).collect(Collectors.toList())));
+
+			postDto.setCommentList(commentMapper.toDtoList(commentDao.findByPostId(retweetPostId)));
+		} else {
+			postDto.setTagList(tagDao.findTagByPostId(postDto.getId()).stream().map(tag -> tag.getName())
+					.collect(Collectors.toList()));
+
+			postDto.setLikeList(userMapper.toDtoList(likeDao.findByPostId(postDto.getId()).stream()
+					.map(like -> like.getUser()).collect(Collectors.toList())));
+
+			postDto.setCommentList(commentMapper.toDtoList(commentDao.findByPostId(postDto.getId())));
+		}
+		postDto.setRetweetList(postMapper.toDtoList(postDao.findByRetweetPostId(postDto.getId())));
+		return postDto;
 	}
 
 }

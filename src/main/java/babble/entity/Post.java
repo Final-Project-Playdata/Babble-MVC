@@ -34,8 +34,6 @@ public class Post {
 
 	private float duration;
 
-	private Long originPostId;
-
 	private Long retweetPostId;
 
 	private LocalDateTime regDate;

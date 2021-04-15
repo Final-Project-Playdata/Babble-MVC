@@ -1,6 +1,7 @@
 package babble.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -24,19 +25,21 @@ public class FollowServiceImpl implements FollowService {
 
 	private final UserMapper userMapper;
 
-	public List<FollowDto> getFollowerList(Long id) {
+	// following -> follower 
+	public List<UserDto> getFollowerList(Long id) {
 		try {
-			return followMapper.toDtoList(followDao.findByFollowerId(id));
-
+			return userMapper.toDtoList(followDao.findByFollowerId(id).stream().map(follower -> follower.getFollowing())
+					.collect(Collectors.toList()));
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
 	}
 
-	public List<FollowDto> getFollowingList(Long id) {
+	public List<UserDto> getFollowingList(Long id) {
 		try {
-			return followMapper.toDtoList(followDao.findByFollowingId(id));
+			return userMapper.toDtoList(followDao.findByFollowingId(id).stream().map(follower -> follower.getFollower())
+					.collect(Collectors.toList()));
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import babble.config.auth.PrincipalDetails;
 import babble.dto.LikeDto;
+import babble.dto.PostDto;
 import babble.mapper.UserMapper;
 import babble.service.LikeServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -38,4 +39,14 @@ public class LikeController {
 		return service.getLikeList(id);
 	}
 
+	@DeleteMapping("post/{id}/likes")
+	public void deleteLikeList(@PathVariable("id") Long id, @AuthenticationPrincipal PrincipalDetails p) {
+		service.deleteLikeList(id, p.getUser().getId());
+	}
+	
+	@GetMapping("user/{id}/likes")
+	public List<PostDto> getLikeListInUser(@PathVariable("id") Long id) {
+		return service.getLikePostList(id);
+	}
+	
 }

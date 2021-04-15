@@ -1,31 +1,25 @@
-//package babble.service;
-//
-//import java.util.List;
-//
-//import org.springframework.stereotype.Service;
-//
-//import babble.dao.PostRepository;
-//import babble.dao.TagRepository;
-//import babble.dto.PostDto;
-//import babble.dto.TagDto;
-//import babble.entity.Post;
-//import babble.exception.UserNotMatchException;
-//import babble.mapper.PostMapper;
-//import babble.mapper.TagMapper;
-//import lombok.RequiredArgsConstructor;
-//
-//@Service
-//@RequiredArgsConstructor
-//public class TagServiceImpl implements TagService {
-//
-//	private final TagRepository tagDao;
-//
-//	private final PostRepository postDao;
-//
-//	private final TagMapper tagMapper;
-//
-//	private final PostMapper postMapper;
-//
+package babble.service;
+
+import org.springframework.stereotype.Service;
+
+import babble.dao.PostRepository;
+import babble.dao.TagRepository;
+import babble.mapper.PostMapper;
+import babble.mapper.TagMapper;
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class TagServiceImpl implements TagService {
+
+	private final TagRepository tagDao;
+
+	private final PostRepository postDao;
+
+	private final TagMapper tagMapper;
+
+	private final PostMapper postMapper;
+
 //	public List<TagDto> getTagList(Long postId) {
 //		try {
 //			return tagMapper.toDtoList(tagDao.findByPostId(postId));
@@ -91,5 +85,16 @@
 //			throw e;
 //		}
 //	}
-//
-//}
+
+	public void deleteTagList(Long postId, Long userId) {
+		try {
+			if (postDao.findById(postId).get().getUser().getId() == userId) {
+				tagDao.deleteByPostId(postId);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+}
