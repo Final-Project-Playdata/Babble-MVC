@@ -25,22 +25,31 @@
     
       2-1. 주요 추진 과정 절차      
             1. SQL table 구성
-            <img src ="https://user-images.githubusercontent.com/74331913/114919980-e83a0700-9e63-11eb-9a22-1d49c7cea84a.png">
+   ![sqltable](https://user-images.githubusercontent.com/74331913/114953383-3b777e00-9e93-11eb-9bfc-1123a83b8eed.png)
             2. SPRING Boot
             3. VUE
             4. FLASK
-            5. 
+            
       
       
       
       2-2. 방법 및 활용 프로그램
-      
+   ![used stack](https://user-images.githubusercontent.com/74331913/114956385-bcd20f00-9e99-11eb-9825-5c15d424ca3e.png)
+
       
         
       2-3. 단계별 수행 내용
           (기획, 제작, 테스트)
-          
-          
+          기획 : 
+                1. PPT로 필요한 요구사항 도출
+                2. OVENAPP으로 PROTOTYPE 제작
+                3. ERD설계로 TABLE 구조 정립         
+          제작 : 
+                - ECLIPSE 와 VSCode로 제작
+   ![program structure](https://user-images.githubusercontent.com/74331913/114956288-84cacc00-9e99-11eb-94fb-ba9e2096224f.png)
+                - 
+          테스트 : 
+                - backend에서 Postman으로 
          
           
    
