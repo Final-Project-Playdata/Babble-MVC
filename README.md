@@ -34,7 +34,7 @@
       
       
       2-2. 방법 및 활용 프로그램
-![usedStack](https://user-images.githubusercontent.com/74331913/114958640-63201380-9e9e-11eb-847d-423690d0b5fc.png)
+![used stack](https://user-images.githubusercontent.com/74331913/114956385-bcd20f00-9e99-11eb-9825-5c15d424ca3e.png)
 
       
         
@@ -46,7 +46,7 @@
                 3. ERD설계로 TABLE 구조 정립         
           제작 : 
                 - ECLIPSE 와 VSCode로 제작
-   ![program structure](https://user-images.githubusercontent.com/74331913/114956288-84cacc00-9e99-11eb-94fb-ba9e2096224f.png)
+![usedStack](https://user-images.githubusercontent.com/74331913/114958640-63201380-9e9e-11eb-847d-423690d0b5fc.png)
                 
           테스트 : 
                 - backend: Postman을 사용하여 test실행
