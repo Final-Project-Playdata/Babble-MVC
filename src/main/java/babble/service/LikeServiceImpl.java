@@ -27,6 +27,8 @@ public class LikeServiceImpl implements LikeService {
 	private final LikeMapper likeMapper;
 
 	private final PostMapper postMapper;
+	
+	private final PostServiceImpl postService;
 
 	public List<LikeDto> getLikeList(Long postId) {
 		try {
@@ -40,9 +42,14 @@ public class LikeServiceImpl implements LikeService {
 
 	public List<PostDto> getLikePostList(Long userId) {
 		try {
-
-			return postMapper.toDtoList(
+			List<PostDto> postDtoList =  postMapper.toDtoList(
 					likeDao.findByUserId(userId).stream().map(like -> like.getPost()).collect(Collectors.toList()));
+			
+			postDtoList.forEach(p -> {
+				p = postService.checkPost(p);
+			});
+			
+			return postDtoList;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

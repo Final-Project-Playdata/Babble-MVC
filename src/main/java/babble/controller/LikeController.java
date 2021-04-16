@@ -45,7 +45,7 @@ public class LikeController {
 	}
 	
 	@GetMapping("user/{id}/likes")
-	public List<PostDto> getLikeListInUser(@PathVariable("id") Long id) {
+	public List<PostDto> getLikePostList(@PathVariable("id") Long id) {
 		return service.getLikePostList(id);
 	}
 	

@@ -21,6 +21,8 @@ public class UserDto {
 	private Long id;
 
 	private String avatar; //프로필 사진
+	
+	private String background;
 
 	private String username; // email
 

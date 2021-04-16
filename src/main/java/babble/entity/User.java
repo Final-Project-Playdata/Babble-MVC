@@ -29,19 +29,21 @@ public class User {
 
 	private String avatar;
 
-	@Column(unique=true)
+	private String background;
+
+	@Column(unique = true)
 	private String username; // email
 
 	private String password;
 
 	private String nickname;
-	
+
 	private String firstName;
 
 	private String lastName;
-	
+
 	private String phoneNumber;
-	
+
 	private String gender;
 
 	private String bio;
@@ -55,12 +57,17 @@ public class User {
 
 	private LocalDateTime modDate;
 
-	public void update(String avatar, String firstName, String lastName, String bio, LocalDate birth) {
+	public void update(String avatar, String firstName, String lastName, String bio, LocalDate birth, String nickname,
+			String gender, String phoneNumber, String background) {
 		this.avatar = avatar;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.bio = bio;
 		this.birth = birth;
+		this.nickname = nickname;
+		this.gender = gender;
+		this.phoneNumber = phoneNumber;
+		this.background = background;
 	}
-	
+
 }

@@ -70,15 +70,17 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-	public void updateUser(UserDto userDto, Long id, String password) throws Exception {
+	public UserDto updateUser(UserDto userDto, Long id, String password) throws Exception {
 		try {
 			User user = dao.findById(id).get();
 			String findPassword = user.getPassword();
 
 			if (findPassword.equals(password) && userDto.getId() == id) {
 				user.update(userDto.getAvatar(), userDto.getFirstName(), userDto.getLastName(), userDto.getBio(),
-						userDto.getBirth());
-				dao.save(user);
+						userDto.getBirth(), userDto.getNickname(), userDto.getGender(), userDto.getPhoneNumber(),
+						userDto.getBackground());
+				User savedUser = dao.save(user);
+				return mapper.toDto(savedUser);
 			} else {
 				throw new UserNotMatchException("정보를 업데이트 하는 중 예외발생");
 			}

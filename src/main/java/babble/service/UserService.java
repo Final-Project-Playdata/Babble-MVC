@@ -13,7 +13,7 @@ public interface UserService {
 
 	void signUp(UserDto userDto) throws Exception;
 
-	void updateUser(UserDto userDto, Long id, String password) throws Exception;
+	UserDto updateUser(UserDto userDto, Long id, String password) throws Exception;
 
 	void withdraw(Long id, String password, LoginRequestDto loginDto) throws Exception;
 
