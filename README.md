@@ -26,9 +26,9 @@
       2-1. 주요 추진 과정 절차      
             1. SQL table 구성
    ![sqltable](https://user-images.githubusercontent.com/74331913/114953383-3b777e00-9e93-11eb-9bfc-1123a83b8eed.png)
-            2. SPRING Boot
-            3. VUE
-            4. FLASK
+            2. SPRING Boot<br>
+            3. VUE<br>
+            4. FLASK<br>
             
       
       
@@ -49,7 +49,7 @@
    ![program structure](https://user-images.githubusercontent.com/74331913/114956288-84cacc00-9e99-11eb-94fb-ba9e2096224f.png)
                 - 
           테스트 : 
-                - backend에서 Postman으로 
+                - backend: Postman을 사용하여 test실행
          
           
    
@@ -57,9 +57,9 @@
 ## 3. 결과 	
    3-1. 시연
         
-   3-2. 느낀 점, 결론, 기대효과
-       - 차왕현 :
-       - 김연지 :
-       - 김창훈 :
-       - 박민영 :
-   3-3. 개선 사항 및 활용 계획
+   3-2. 느낀 점, 결론, 기대효과<br>
+       - 차왕현 :<br>
+       - 김연지 :<br>
+       - 김창훈 :<br>
+       - 박민영 :<br>
+   3-3. 개선 사항 및 활용 계획<br>
