@@ -9,7 +9,7 @@ public interface UserService {
 
 	List<UserDto> getUserList();
 
-	UserDto getUser(Long id, String password) throws Exception;
+	UserDto getUserInfo(Long id) throws Exception;
 
 	void signUp(UserDto userDto) throws Exception;
 

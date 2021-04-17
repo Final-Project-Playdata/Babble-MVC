@@ -2,6 +2,7 @@ package babble.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -35,13 +36,11 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-	public UserDto getUser(Long id, String password) throws Exception {
+	public UserDto getUserInfo(Long id) throws Exception {
 		try {
-			User user = dao.findById(id).get();
-			String findPassword = user.getPassword();
-
-			if (findPassword.equals(password)) {
-				return mapper.toDto(user);
+			Optional<User> user = dao.findById(id);
+			if (user.isPresent()) {
+				return mapper.toDto(user.get());
 			}
 
 			throw new UserNotMatchException("정보를 가져오는 중 예외발생");

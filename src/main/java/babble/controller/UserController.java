@@ -43,8 +43,13 @@ public class UserController {
 		return service.updateUser(userDto, id, p.getUser().getPassword());
 	}
 
-	@GetMapping("user")
-	public UserDto getUser(@AuthenticationPrincipal PrincipalDetails p) throws Exception {
+	@GetMapping("user/{id}")
+	public UserDto getUserInfo(@PathVariable("id") Long id) throws Exception {
+		return service.getUserInfo(id);
+	}
+	
+	@GetMapping("my")
+	public UserDto getMyInfo(@AuthenticationPrincipal PrincipalDetails p) throws Exception {
 		return userMapper.toDto(p.getUser());
 	}
 

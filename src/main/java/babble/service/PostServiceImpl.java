@@ -16,6 +16,7 @@ import babble.dao.TagRepository;
 import babble.dto.PostDto;
 import babble.dto.TagDto;
 import babble.dto.UserDto;
+import babble.entity.Post;
 import babble.entity.Tag;
 import babble.exception.UserNotMatchException;
 import babble.mapper.CommentMapper;
@@ -51,10 +52,7 @@ public class PostServiceImpl implements PostService {
 		try {
 			List<PostDto> list = postMapper.toDtoList(postDao.findAll());
 			list.forEach(p -> {
-				System.out.println("---------");
-				System.out.println(p.toString());
 				p = checkPost(p);
-				System.out.println(p.toString());
 			});
 
 			return list;
@@ -67,12 +65,14 @@ public class PostServiceImpl implements PostService {
 
 	public List<PostDto> getPostListWithTag(String tagName) {
 		try {
-			List<TagDto> tagDtoList = tagMapper.toDtoList(tagDao.findByName(tagName));
-			List<PostDto> postDtoList = new ArrayList<>();
+			List<Tag> tagList = tagDao.findByName(tagName);
+			List<Post> postList = new ArrayList<>();
 
-			tagDtoList.forEach(t -> {
-				postDtoList.add(t.getPost());
+			tagList.forEach(t -> {
+				postList.add(t.getPost());
 			});
+
+			List<PostDto> postDtoList = postMapper.toDtoList(postList);
 
 			postDtoList.forEach(p -> {
 				p = checkPost(p);
