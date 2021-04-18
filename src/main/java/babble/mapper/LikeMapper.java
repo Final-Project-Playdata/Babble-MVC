@@ -16,7 +16,7 @@ public interface LikeMapper {
 
 	Like toEntity(LikeDto likeDto);
 
-	@Mapping(target="post", ignore=true)
+	@Mapping(target="babble", ignore=true)
 	LikeDto toDto(Like like);
 
 	List<Like> toEntityList(List<LikeDto> likeDtoList);

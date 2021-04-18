@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import babble.config.auth.PrincipalDetails;
-import babble.dto.FollowDto;
 import babble.dto.UserDto;
 import babble.mapper.UserMapper;
 import babble.service.FollowServiceImpl;
@@ -35,12 +34,12 @@ public class FollowController {
 	}
 
 	@GetMapping("user/{userId}/follower")
-	public List<UserDto> getFollowerList(@PathVariable("userId") Long userId) {
-		return service.getFollowerList(userId);
+	public List<UserDto> getFollowers(@PathVariable("userId") Long userId) {
+		return service.getFollowers(userId);
 	}
 
 	@GetMapping("user/{userId}/following")
-	public List<UserDto> getFollowingList(@PathVariable("userId") Long userId) {
-		return service.getFollowingList(userId);
+	public List<UserDto> getFollowings(@PathVariable("userId") Long userId) {
+		return service.getFollowings(userId);
 	}
 }

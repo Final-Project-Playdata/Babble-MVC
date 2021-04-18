@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	public List<UserDto> getUserList() {
+	public List<UserDto> getUsers() {
 		try {
 			return mapper.toDtoList(dao.findAll());
 

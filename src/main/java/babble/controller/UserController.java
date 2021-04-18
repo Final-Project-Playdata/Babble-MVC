@@ -54,7 +54,7 @@ public class UserController {
 	}
 
 	@GetMapping("admin/users")
-	public List<UserDto> getUserList() {
-		return service.getUserList();
+	public List<UserDto> getUsers() {
+		return service.getUsers();
 	}
 }

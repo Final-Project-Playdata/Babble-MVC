@@ -20,7 +20,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "post")
-public class Post {
+public class Babble {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,7 +34,7 @@ public class Post {
 
 	private float duration;
 
-	private Long retweetPostId;
+	private Long rebabbleId;
 
 	private LocalDateTime regDate;
 

@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import babble.dao.CommentRepository;
-import babble.dao.PostRepository;
+import babble.dao.BabbleRepository;
 import babble.dao.UserRepository;
 import babble.dto.CommentDto;
 import babble.dto.UserDto;
@@ -23,18 +23,16 @@ import lombok.RequiredArgsConstructor;
 public class CommentServiceImpl implements CommentService {
 
 	private final CommentRepository commentDao;
-
 	private final UserRepository userDao;
-
-	private final PostRepository postDao;
+	private final BabbleRepository postDao;
 
 	private final CommentMapper commentMapper;
 
 	private final AudioUtil audioUtil;
 
-	public List<CommentDto> getCommentList(Long id) {
+	public List<CommentDto> getComments(Long id) {
 		try {
-			return commentMapper.toDtoList(commentDao.findByPostId(id));
+			return commentMapper.toDtoList(commentDao.findByBabbleId(id));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -91,10 +89,10 @@ public class CommentServiceImpl implements CommentService {
 		}
 	}
 
-	public void deleteCommentList(Long postId, Long userId) {
+	public void deleteComments(Long babbleId, Long userId) {
 		try {
-			if (postDao.findById(postId).get().getUser().getId() == userId) {
-				commentDao.deleteByPostId(postId);
+			if (postDao.findById(babbleId).get().getUser().getId() == userId) {
+				commentDao.deleteByBabbleId(babbleId);
 			}
 
 		} catch (Exception e) {

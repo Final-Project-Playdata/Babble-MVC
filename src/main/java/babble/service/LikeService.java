@@ -7,7 +7,7 @@ import babble.dto.UserDto;
 
 public interface LikeService {
 
-	List<LikeDto> getLikeList(Long postId);
+	List<LikeDto> getLikes(Long postId);
 
 	void like(Long postId, UserDto userDto);
 

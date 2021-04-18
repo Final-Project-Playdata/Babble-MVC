@@ -13,7 +13,7 @@ public class TagDto {
 
 	private Long id;
 
-	private PostDto post;
+	private BabbleDto babble;
 
 	private String name;
 

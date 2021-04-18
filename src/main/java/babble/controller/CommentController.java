@@ -25,31 +25,31 @@ public class CommentController {
 
 	private final UserMapper userMappper;
 
-	@GetMapping("post/{postId}/comments")
-	public List<CommentDto> getCommentList(@PathVariable("id") Long id) {
-		return service.getCommentList(id);
+	@GetMapping("babble/{babbleId}/comments")
+	public List<CommentDto> getComments(@PathVariable("babbleId") Long id) {
+		return service.getComments(id);
 	}
 
-	@PostMapping("post/{postId}/comment")
+	@PostMapping("babble/{babbleId}/comment")
 	public CommentDto insertComment(@RequestBody CommentDto commentDto, @AuthenticationPrincipal PrincipalDetails p)
 			throws Exception {
 		return service.insertComment(commentDto, userMappper.toDto(p.getUser()));
 	}
 
-	@PutMapping("post/{postId}/comment/{commentId}")
+	@PutMapping("babble/{babbleId}/comment/{commentId}")
 	public void updateComment(@RequestBody CommentDto commentDto, @AuthenticationPrincipal PrincipalDetails p)
 			throws Exception {
 		service.updateComment(commentDto, p.getPassword(), p.getUsername());
 	}
 
-	@DeleteMapping("post/{postId}/comment/{commentId}")
+	@DeleteMapping("babble/{babbleId}/comment/{commentId}")
 	public void deleteComment(@PathVariable("commentId") Long commentId, @AuthenticationPrincipal PrincipalDetails p) {
 		service.deleteComment(commentId, p.getUser().getId());
 	}
 	
-	@DeleteMapping("post/{postId}/comments")
-	public void deleteCommentList(@PathVariable("postId") Long postId, @AuthenticationPrincipal PrincipalDetails p) {
-		service.deleteCommentList(postId, p.getUser().getId());
+	@DeleteMapping("babble/{babbleId}/comments")
+	public void deleteComments(@PathVariable("babbleId") Long babbleId, @AuthenticationPrincipal PrincipalDetails p) {
+		service.deleteComments(babbleId, p.getUser().getId());
 	}
 
 }

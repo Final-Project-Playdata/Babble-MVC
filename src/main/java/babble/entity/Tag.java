@@ -24,9 +24,9 @@ public class Tag {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	@JoinColumn(name="postId")
+	@JoinColumn(name="babbleId")
 	@ManyToOne(fetch=FetchType.LAZY)
-	private Post post;
+	private Babble babble;
 	
 	private String name;
 	

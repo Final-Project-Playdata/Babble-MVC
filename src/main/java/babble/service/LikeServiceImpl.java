@@ -7,13 +7,13 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import babble.dao.BabbleRepository;
 import babble.dao.LikeRepository;
-import babble.dao.PostRepository;
+import babble.dto.BabbleDto;
 import babble.dto.LikeDto;
-import babble.dto.PostDto;
 import babble.dto.UserDto;
+import babble.mapper.BabbleMapper;
 import babble.mapper.LikeMapper;
-import babble.mapper.PostMapper;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -21,18 +21,16 @@ import lombok.RequiredArgsConstructor;
 public class LikeServiceImpl implements LikeService {
 
 	private final LikeRepository likeDao;
-
-	private final PostRepository postDao;
+	private final BabbleRepository postDao;
 
 	private final LikeMapper likeMapper;
+	private final BabbleMapper babbleMapper;
 
-	private final PostMapper postMapper;
-	
-	private final PostServiceImpl postService;
+	private final BabbleServiceImpl postService;
 
-	public List<LikeDto> getLikeList(Long postId) {
+	public List<LikeDto> getLikes(Long babbleId) {
 		try {
-			return likeMapper.toDtoList(likeDao.findByPostId(postId));
+			return likeMapper.toDtoList(likeDao.findByBabbleId(babbleId));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -40,28 +38,28 @@ public class LikeServiceImpl implements LikeService {
 		}
 	}
 
-	public List<PostDto> getLikePostList(Long userId) {
+	public List<BabbleDto> getLikeBabbles(Long userId) {
 		try {
-			List<PostDto> postDtoList =  postMapper.toDtoList(
-					likeDao.findByUserId(userId).stream().map(like -> like.getPost()).collect(Collectors.toList()));
-			
-			postDtoList.forEach(p -> {
-				p = postService.checkPost(p);
+			List<BabbleDto> babbleDtos = babbleMapper.toDtoList(
+					likeDao.findByUserId(userId).stream().map(like -> like.getBabble()).collect(Collectors.toList()));
+
+			babbleDtos.forEach(p -> {
+				p = postService.checkBabble(p);
 			});
-			
-			return postDtoList;
+
+			return babbleDtos;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
 	}
 
-	public void like(Long postId, UserDto userDto) {
+	public void like(Long babbleId, UserDto userDto) {
 		try {
-			PostDto postDto = postMapper.toDto(postDao.findById(postId).get());
+			BabbleDto babbleDto = babbleMapper.toDto(postDao.findById(babbleId).get());
 			LikeDto likeDto = new LikeDto();
 
-			likeDto.setPost(postDto);
+			likeDto.setBabble(babbleDto);
 			likeDto.setUser(userDto);
 
 			likeDao.save(likeMapper.toEntity(likeDto));
@@ -73,9 +71,9 @@ public class LikeServiceImpl implements LikeService {
 	}
 
 	@Transactional
-	public void unlike(Long postId, Long userId) {
+	public void unlike(Long babbleId, Long userId) {
 		try {
-			likeDao.deleteByPostIdAndUserId(postId, userId);
+			likeDao.deleteByBabbleIdAndUserId(babbleId, userId);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -83,10 +81,10 @@ public class LikeServiceImpl implements LikeService {
 		}
 	}
 
-	public void deleteLikeList(Long postId, Long userId) {
+	public void deleteLikes(Long babbleId, Long userId) {
 		try {
-			if (postDao.findById(postId).get().getUser().getId() == userId) {
-				likeDao.deleteByPostId(postId);
+			if (postDao.findById(babbleId).get().getUser().getId() == userId) {
+				likeDao.deleteByBabbleId(babbleId);
 			}
 
 		} catch (Exception e) {

@@ -47,6 +47,6 @@ public class UserDto {
 
 	private LocalDateTime regDate;
 
-	private List<PostDto> postList = new ArrayList<>();
+	private List<BabbleDto> babbles = new ArrayList<>();
 
 }

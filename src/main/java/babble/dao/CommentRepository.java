@@ -6,12 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import babble.entity.Comment;
 
-public interface CommentRepository extends JpaRepository<Comment, Long>{
-	
+public interface CommentRepository extends JpaRepository<Comment, Long> {
+
 	void deleteByIdAndUserId(Long commentId, Long userId);
 
-	List<Comment> findByPostId(Long id);
+	void deleteByBabbleId(Long babbleId);
 
-	void deleteByPostId(Long postId);
-	
+	List<Comment> findByBabbleId(Long id);
+
 }

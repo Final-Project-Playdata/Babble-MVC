@@ -15,6 +15,6 @@ import lombok.ToString;
 @ToString
 public class TagListDto {
 
-	List<TagDto> tagList;
+	List<TagDto> tags;
 
 }

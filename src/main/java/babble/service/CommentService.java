@@ -7,7 +7,7 @@ import babble.dto.UserDto;
 
 public interface CommentService {
 
-	List<CommentDto> getCommentList(Long id);
+	List<CommentDto> getComments(Long id);
 
 	CommentDto insertComment(CommentDto commentDto, UserDto userDto) throws Exception;
 

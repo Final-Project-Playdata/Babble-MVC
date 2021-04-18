@@ -14,8 +14,8 @@ import lombok.Setter;
 public class CommentDto {
 
 	private Long id;
-	
-	private PostDto post;
+
+	private BabbleDto babble;
 
 	private UserDto user;
 

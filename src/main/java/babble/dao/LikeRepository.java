@@ -6,14 +6,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import babble.entity.Like;
 
-public interface LikeRepository extends JpaRepository<Like, Long>{
+public interface LikeRepository extends JpaRepository<Like, Long> {
 
-	List<Like> findByPostId(Long postId);
-	
-	void deleteByPostIdAndUserId(Long postId, Long userId);
+	List<Like> findByBabbleId(Long babbleId);
 
-	void deleteByPostId(Long postId);
+	void deleteByBabbleIdAndUserId(Long babbleId, Long userId);
 
 	List<Like> findByUserId(Long userId);
-	
+
+	void deleteByBabbleId(Long babbleId);
+
 }

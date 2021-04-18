@@ -15,7 +15,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class PostDto {
+public class BabbleDto {
 
 	private Long id;
 
@@ -25,17 +25,17 @@ public class PostDto {
 
 	private float duration;
 
-	private Long retweetPostId;
+	private Long rebabbleId;
 	
-	private UserDto retweetUser;
+	private UserDto rebabbleUser;
 
-	private List<String> tagList = new ArrayList<>();
+	private List<String> tags = new ArrayList<>();
 
-	private List<CommentDto> commentList = new ArrayList<>();
+	private List<CommentDto> comments = new ArrayList<>();
 
-	private List<UserDto> likeList = new ArrayList<>();
+	private List<UserDto> likes = new ArrayList<>();
 	
-	private List<PostDto> retweetList = new ArrayList<>();
+	private List<BabbleDto> rebabbles = new ArrayList<>();
 	
 	private LocalDateTime regDate;
 

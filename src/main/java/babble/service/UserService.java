@@ -7,7 +7,7 @@ import babble.dto.UserDto;
 
 public interface UserService {
 
-	List<UserDto> getUserList();
+	List<UserDto> getUsers();
 
 	UserDto getUserInfo(Long id) throws Exception;
 

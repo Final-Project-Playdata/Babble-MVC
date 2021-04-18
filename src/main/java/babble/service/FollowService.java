@@ -6,9 +6,9 @@ import babble.dto.UserDto;
 
 public interface FollowService {
 
-	List<UserDto> getFollowerList(Long id);
+	List<UserDto> getFollowers(Long id);
 
-	List<UserDto> getFollowingList(Long id);
+	List<UserDto> getFollowings(Long id);
 
 	void follow(UserDto following, Long followerId);
 

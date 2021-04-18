@@ -16,7 +16,7 @@ public interface TagMapper {
 
 	Tag toEntity(TagDto tagDto);
 
-	@Mapping(target="post", ignore=true)
+	@Mapping(target="babble", ignore=true)
 	TagDto toDto(Tag tag);
 
 	List<Tag> toEntityList(List<TagDto> tagDtoList);

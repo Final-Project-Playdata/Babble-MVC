@@ -16,7 +16,7 @@ public interface CommentMapper {
 
 	Comment toEntity(CommentDto commentDto);
 
-	@Mapping(target="post", ignore=true)
+	@Mapping(target="babble", ignore=true)
 	CommentDto toDto(Comment comment);
 	
 	List<Comment> toEntityList(List<CommentDto> commentDtoList);

@@ -8,18 +8,18 @@ import org.mapstruct.NullValueMappingStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.ReportingPolicy;
 
-import babble.dto.PostDto;
-import babble.entity.Post;
+import babble.dto.BabbleDto;
+import babble.entity.Babble;
 
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_DEFAULT, nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT, unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface PostMapper {
+public interface BabbleMapper {
 
-	Post toEntity(PostDto postDto);
+	Babble toEntity(BabbleDto babbleDto);
 
 	@Mapping(target="user.password", ignore=true)
-	PostDto toDto(Post post);
+	BabbleDto toDto(Babble babble);
 
-	List<Post> toEntityList(List<PostDto> postDtoList);
+	List<Babble> toEntityList(List<BabbleDto> babbleDtoList);
 
-	List<PostDto> toDtoList(List<Post> postList);
+	List<BabbleDto> toDtoList(List<Babble> babbleList);
 }
