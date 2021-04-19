@@ -66,9 +66,15 @@
     - 짧은시간에 많은 양의 정보 전달
 4. 계획(초안, 수정안)
     1. 기존 SNS에 있는 기능들
-         - 음성 : 유튜브 타임라인 태그
-         - 트위터 리트윗
-         - 해시태그         
+         - 음성 : 유튜브 타임라인 태그<br>
+          ![유튜브 타임 스탬프](https://user-images.githubusercontent.com/74331913/115144708-12204300-a089-11eb-8f45-ab5991c489c3.png)
+
+         - 트위터 리트윗<br>
+          ![리트윗](https://user-images.githubusercontent.com/74331913/115144691-ffa60980-a088-11eb-9a09-6689b0c72498.png)
+          
+         - 해시태그 <br>
+          ![인스타 해시태그](https://user-images.githubusercontent.com/74331913/115144689-fcab1900-a088-11eb-9c36-60e70f4dd706.png)
+        
     2. :family_man_woman_boy_boy:	 모든 소통은 오디오 (게시, 소개, 답) 
     3. :wastebasket:	필터링
          - 욕을 하거나 좋지 않은 언어를 사용시 필터링 기능
