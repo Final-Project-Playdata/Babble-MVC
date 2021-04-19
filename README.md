@@ -47,7 +47,7 @@
                 - High Fidelity : 공간 오디오(spatial audio)를 제공하는 곳 <br>
                사람들이 말 했을 때 실제 공간이 있는 것 처럼 공간 오디오를 사용함.<br>
        
-     #### 수 많은 오디오 SNS들이 있지만 기존의 SNS소통 형식의 오디오 VERSION은 없는 것을 확인하였다.
+     #### :clipboard:수 많은 오디오 SNS들이 있지만 기존의 SNS소통 형식의 오디오 VERSION은 없는 것을 확인하였다.
 
 
 
@@ -118,7 +118,17 @@
    
   
 ### 3. 결과 	
-   3-1. 시연
+   3-1. 시연<br>
+       1. :open_file_folder: 설치 <br>
+            git clone https://github.com/Final-Project-Playdata/Babble-MVC.git <br>
+		    git clone https://github.com/Final-Project-Playdata/Babble-Webflux.git <br>
+	        git clone https://github.com/Final-Project-Playdata/Babble-Frontend.git <br>
+       2. :floppy_disk: 테스트 실행<br>
+             - vue에서 npm i <br>
+	                   npm run dev <br>
+             - IDE에서 프로젝트 추가 후 <br>
+               spring application 실행 <br>
+      
         
    3-2. 느낀 점, 결론, 기대효과<br>
        - 차왕현 :<br>
@@ -126,3 +136,4 @@
        - 김창훈 :<br>
        - 박민영 :<br>
    3-3. 개선 사항 및 활용 계획<br>
+    1. spring web flux 제한적으로 부분 사용이 되어있는 상태에서 전체 서비스를 web flux로 변환하고 싶다. (효율적인 측면)
