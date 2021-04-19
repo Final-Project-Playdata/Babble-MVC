@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
 			User user = dao.findById(id).get();
 			String findPassword = user.getPassword();
 
-			if (findPassword.equals(password) && userDto.getId() == id) {
+			if (findPassword.equals(password) && userDto.getId().equals(id)) {
 				user.update(userDto.getAvatar(), userDto.getFirstName(), userDto.getLastName(), userDto.getBio(),
 						userDto.getBirth(), userDto.getNickname(), userDto.getGender(), userDto.getPhoneNumber(),
 						userDto.getBackground());
