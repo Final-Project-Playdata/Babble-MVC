@@ -8,14 +8,25 @@
     - :loudspeaker:	요즘 대세인 club house도 음성중심이고 동영상이 넘쳐나는 요즘 짧은 음성sns로 간단한 나의 일상과 감정을 공유하면 좋을 것 같다고 생각했다.
     -  :microphone:	음성은 문자보다 정보전달에 우위를 점하고 있어 중국에서는 wechat이라는 한국의 카카오톡이 있는데 거의 언어적 특성 때문에 거의 모든 사람들이 음성메세지를 보냈다.<br>
 2. 기획배경 & 시장분석 <br>
-![__2021-04-16_004753](https://user-images.githubusercontent.com/81513737/115322398-f750ea00-a1c0-11eb-965d-bfee11654496.png)
+	2-1. SNS 시장분석 <br>
+	<img src="https://i.imgur.com/VhBBhMV.png" width="500"> <br>
+출처 : 한국지능정보사회진흥원 Special Report 2021-1호
+	- 코로나19 확산에 따라 비대면 인터렉션이 늘어나면서 영상기반 서비스의 이용 증가
+	- 재택근무 증가로 온라인 화상회의 서비스 사용이 늘면서, 그로인한 피로감 증가 (Zoom-Fatique)
+	- 영상기반 서비스와 비교해 상대적으로 일상생활에서 간편하게 사용할 수 있는 오디오 기반 서비스의 인기
+	- 유튜브, 인스타그램 등 이미지, 비디오기반 SNS 서비스는 포화상태임 <br>
 
- ### 오디오 sns <br>
-  :fire: 2021년 초 가장 hot하고 유명한 sns를 뽑자면 단연  Club House이다.
-  아래의 표는 최근  Club House의 이용자 수이다.
-![clubhouse 1024x768](https://user-images.githubusercontent.com/74331913/115107515-453dd600-9fa6-11eb-9469-a91cd6e8bb0f.jpg)
-      
-  -  한 기사에서 Club House의 흥행을 이렇게 분석했다. <br>
+	 2-2. 오디오 sns 특징 <br>
+	 <img src="https://i.imgur.com/idDIfFI.png" width="500"> <br>
+	 - 오디오 컨텐츠의 가장 큰 장점은 두가지 이상 작업을 동시에 하는 것 (Multi-Tasaking)
+	 - Zoom-Fatique를 우회하면서 연락을 유지할 수 있는 간편한 방법임
+	 - 오디오의 즉각적이고 생생함이 핵심경험임
+	 - 기존 오디오북, 팟캐스트, 인터넷 라디오 등의 형태에서 사전녹음, 인터렉티브 등의 세분화된 서비스 모델 등장
+
+	2-3. ClubHouse의 성장
+	<img src="https://i.imgur.com/AESIjuj.png" width="500"> <br>
+	:fire: 2021년 초 가장 hot하고 유명한 sns를 뽑자면 단연  Club House이다.
+	- 한 기사에서 Club House의 흥행을 이렇게 분석했다. <br>
             - :lock_with_ink_pen: 폐쇄성 : 초대장이 있어야만 진입이 가능한 이 곳은 아무나 들어가지 못하기에 
                  특별함을 느끼게 해주고 다른 사람들로 하여금 호기심을 유발한다.<br>
             - :sound: audio sns : 텍스트와 사진으로만 되어 있던 기존 sns와는 달리 
@@ -25,32 +36,8 @@
             - :pill: covid19 : 코로나19로 인해 사람들이 대면하지 못하면서 sns 수요가 더욱 늘어났고 
                  컨퍼런스도 많이 온라인으로 진행되었다.<br>
 		 <br>
-   ![화면 캡처 2021-04-17 180642](https://user-images.githubusercontent.com/74331913/115141530-d4ff8500-a077-11eb-88fc-990a7ae2fb9a.png) 
    
-   - 현존하고 있는 수 많은 오디오 sns들의 특징이다.
-             - 아래의 sns는 클럽하우스와 비슷한 성격을 띄고 있고 기존 sns들도 클럽하우스와 비슷한 시스템을 런칭하고 있다.<br>
-             - JoinClubhouse ($1B valuation): 클럽하우스<br>
-             - Twitter Spaces: 트위터가 운영하는 오디오 모드<br>
-             - Facebook (reportedly): 페이스북이 클럽하우스랑 같이 론칭할 예정<br>
-             - Fireside Chat (Mark Cuban): 전문가가 말하는 방, (클럽하우스의 가장 주를 이루는 방 타입)<br>
-             - Locker Room : 스포츠 전용 클럽하우스<br>
-             - Space : 클럽하우스와 거의 같음<br>
-             - Soapbox : 클럽하우스와 비슷<br>
-             - Quilt : 클럽하우스와 비슷<br>
-        
-   - 아래의 sns들은 클럽하우스와는 다른 기능들이 있는 개성있는 오디오 sns이다.
-                - Chalk : 친구 지인끼리 private room<br>
-                - Discord : 오디오 슬랙 느낌 현재 게임할 때 많이 사용 됌<br>
-                -  Roadtrip : 음악을 같이 듣고 오디오로 채팅하면서 경험을 공유하는 플랫폼 <br>
-                - Capiche.fm : 스푼 라디오 개인 라디오<br>
-                - Cappuccino : 위와 같음<br>
-                - Stereo : 오디오 크리에이터/ 셀럽 생산 플랫폼<br>
-                - GetRiff : 원격 협업을 위한 오디오 서비스<br>
-                - Yac : 오디오 협업 툴 (Synchronous 대신 음성 지원도 하고 Transcription 도 제공)<br>
-                - Dialup : 랜덤한 사람과 오디오 챗 데이팅 서비스에 가까운 듯<br>
-                - Saga : 가족이나 친구 / 지인끼리 질문을 선택하면 상대방이 오디오로 답변을 녹음해서 기록하는 서비스<br>
-                - High Fidelity : 공간 오디오(spatial audio)를 제공하는 곳 <br>
-               사람들이 말 했을 때 실제 공간이 있는 것 처럼 공간 오디오를 사용함.<br>
+   
        
      #### :clipboard:수 많은 오디오 SNS들이 있지만 기존의 SNS소통 형식의 오디오 VERSION은 없는 것을 확인하였다.
  
