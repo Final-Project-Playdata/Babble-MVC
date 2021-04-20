@@ -64,17 +64,26 @@
     
   ### 2. 추진과정 및 방법
     
-      2-1. 주요 추진 과정 절차      
+2-1. 주요 추진 과정 절차      
             1. SQL table 구성
-   ![sqltable](https://user-images.githubusercontent.com/74331913/114953383-3b777e00-9e93-11eb-9bfc-1123a83b8eed.png)
+![sqltable](https://user-images.githubusercontent.com/74331913/114953383-3b777e00-9e93-11eb-9bfc-1123a83b8eed.png)
             2. SPRING Boot<br>
             3. VUE<br>
             4. FLASK<br>
-            
+- app.py <br>
+	```def STT(): 사용자가 녹음한 음성파일을 Vue에서 전달받아 서버에 저장한 후 음성분석 및 비속어 필터링된 음성을 반환```
+		
+- googleSTT.py <br>
+
+	
+		def total_api(file_dir, file_name): 서버 내 저장된 음성파일을 load후 아래의 기능들을 실행한 결과값을 반환
+		def sample_recognize(file_dir, file_name): 음성파일을 Google STT API를 이용하여 반환받은 값들을 이용해 비속어 필터링(Text)
+		def create_beep(duration): 문장 내 비속어 존재시 적용할 beep음 생성
+		def saltlux_api(service_id, type_number, text): 감정, 감성분석 및 키워드 추출을 위하여 필요한 파라메터들을 JSON화
+		def saltlux_api_post(params): 위의 코드에서 생성된 JSON은 Saltlux API 통신하기 위한 메서드		
       
-      
-      
-      2-2. 방법 및 활용 프로그램
+2-2. 방법 및 활용 프로그램
+![used stack](https://user-images.githubusercontent.com/74331913/114956385-bcd20f00-9e99-11eb-9825-5c15d424ca3e.png)
 ![used stack](https://user-images.githubusercontent.com/74331913/114956385-bcd20f00-9e99-11eb-9825-5c15d424ca3e.png)
 
       
