@@ -16,16 +16,7 @@
 	- 영상기반 서비스와 비교해 상대적으로 일상생활에서 간편하게 사용할 수 있는 오디오 기반 서비스의 인기
 	- 유튜브, 인스타그램 등 이미지, 비디오기반 SNS 서비스는 포화상태임 <br>
 
-	 2-2. 오디오 sns 특징 <br>
-	 <img src="https://i.imgur.com/idDIfFI.png" width="500"> <br>
-	 - 오디오 컨텐츠의 가장 큰 장점은 두가지 이상 작업을 동시에 하는 것 (Multi-Tasaking)
-	 - Zoom-Fatique를 우회하면서 연락을 유지할 수 있는 간편한 방법임
-	 - 오디오의 즉각적이고 생생함이 핵심경험임
-	 - 기존 오디오북, 팟캐스트, 인터넷 라디오 등의 형태에서 사전녹음, 인터렉티브 등의 세분화된 서비스 모델 등장
-
-	#### :clipboard:수 많은 오디오 SNS들이 있지만 기존의 SNS소통 형식의 오디오 VERSION은 없는 것을 확인하였다.
-
-	2-3. ClubHouse의 성장 <br>
+	2-2. ClubHouse의 성장 <br>
 	<img src="https://i.imgur.com/AESIjuj.png" width="500"> <br>
 	:fire: 2021년 초 가장 hot하고 유명한 sns를 뽑자면 단연  Club House이다.
 	- 한 기사에서 Club House의 흥행을 이렇게 분석했다. <br>
@@ -38,9 +29,18 @@
             - :pill: covid19 : 코로나19로 인해 사람들이 대면하지 못하면서 sns 수요가 더욱 늘어났고 
                  컨퍼런스도 많이 온라인으로 진행되었다.<br>
 		 <br>
+
+	 2-3. 오디오 sns 특징 <br>
+	 <img src="https://i.imgur.com/idDIfFI.png" width="500"> <br>
+	 - 오디오 컨텐츠의 가장 큰 장점은 두가지 이상 작업을 동시에 하는 것 (Multi-Tasaking)
+	 - Zoom-Fatique를 우회하면서 연락을 유지할 수 있는 간편한 방법임
+	 - 오디오의 즉각적이고 생생함이 핵심경험임
+	 - 기존 오디오북, 팟캐스트, 인터넷 라디오 등의 형태에서 사전녹음, 인터렉티브 등의 세분화된 서비스 모델 등장
+
+	#### :clipboard:수 많은 오디오 SNS들이 있지만 기존의 SNS소통 형식의 오디오 VERSION은 없는 것을 확인하였다.
         
 3. 과제 목표, 작품 제작의도 및 컨셉
-    - :telephone_receiver:	 30초 짧은 음성으로 소통하는 SNS 
+    - :telephone_receiver: 30초 짧은 음성으로 소통하는 SNS 
     - :memo: 해시태그를 통한 감정 분석
     - 짧은시간에 많은 양의 정보 전달
 4. 계획(초안, 수정안)
