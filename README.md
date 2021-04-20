@@ -74,21 +74,22 @@
 	```def STT(): 사용자가 녹음한 음성파일을 Vue에서 전달받아 서버에 저장한 후 음성분석 및 비속어 필터링된 음성을 반환```
 		
 - googleSTT.py <br>
-
 	
-		def total_api(file_dir, file_name): 서버 내 저장된 음성파일을 load후 아래의 기능들을 실행한 결과값을 반환
-		def sample_recognize(file_dir, file_name): 음성파일을 Google STT API를 이용하여 반환받은 값들을 이용해 비속어 필터링(Text)
-		def create_beep(duration): 문장 내 비속어 존재시 적용할 beep음 생성
-		def saltlux_api(service_id, type_number, text): 감정, 감성분석 및 키워드 추출을 위하여 필요한 파라메터들을 JSON화
-		def saltlux_api_post(params): 위의 코드에서 생성된 JSON은 Saltlux API 통신하기 위한 메서드		
+		def total_api(file_dir, file_name): 
+			- 서버 내 저장된 음성파일을 load후 아래의 기능들을 실행한 결과값을 반환
+		def sample_recognize(file_dir, file_name): 
+			- 음성파일을 Google STT API를 이용하여 반환받은 값들을 이용해 비속어 필터링(Text)
+		def create_beep(duration): 
+			- 문장 내 비속어 존재시 적용할 beep음 생성
+		def saltlux_api(service_id, type_number, text): 
+			- 감정, 감성분석 및 키워드 추출을 위하여 필요한 파라메터들을 JSON화
+		def saltlux_api_post(params): 
+			- 위의 코드에서 생성된 JSON은 Saltlux API 통신하기 위한 메서드
       
 2-2. 방법 및 활용 프로그램
 ![used stack](https://user-images.githubusercontent.com/74331913/114956385-bcd20f00-9e99-11eb-9825-5c15d424ca3e.png)
-![used stack](https://user-images.githubusercontent.com/74331913/114956385-bcd20f00-9e99-11eb-9825-5c15d424ca3e.png)
 
-      
-        
-      2-3. 단계별 수행 내용
+2-3. 단계별 수행 내용
           (기획, 제작, 테스트)
           기획 : 
                 1. PPT로 필요한 요구사항 도출
@@ -96,9 +97,8 @@
                 3. ERD설계로 TABLE 구조 정립         
           제작 : 
                 - ECLIPSE 와 VSCode로 제작
-![usedStack](https://user-images.githubusercontent.com/74331913/114958640-63201380-9e9e-11eb-847d-423690d0b5fc.png)
-                
-          테스트 : 
+![usedStack](https://user-images.githubusercontent.com/74331913/114958640-63201380-9e9e-11eb-847d-423690d0b5fc.png)      
+	테스트 : 
                 - backend: Postman을 사용하여 test실행
          
           
