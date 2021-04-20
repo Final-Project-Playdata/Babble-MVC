@@ -28,7 +28,7 @@
                  계속해서 라디오 수요가 존재하는 이유는 다른 것을 하면서도 들을 수 있기 때문이다.<br> 
             - :pill: covid19 : 코로나19로 인해 사람들이 대면하지 못하면서 sns 수요가 더욱 늘어났고 
                  컨퍼런스도 많이 온라인으로 진행되었다.<br>
-		 <br>
+		 <br> <br>
 
 	 2-3. 오디오 sns 특징 <br>
 	 <img src="https://i.imgur.com/idDIfFI.png" width="500"> <br>
