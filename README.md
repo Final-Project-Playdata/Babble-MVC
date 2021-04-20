@@ -78,7 +78,17 @@
             1) SQL table 구성<br>
 ![sqltable](https://user-images.githubusercontent.com/74331913/114953383-3b777e00-9e93-11eb-9bfc-1123a83b8eed.png)<br>
             2) SPRING Boot<br>
-            3) VUE<br>
+            3) VUE
+## :movie_camera: Feature
+| Loggin | Recoding |
+|:------:|:------:|
+| <img src = "https://i.imgur.com/aruZjjg.gif"> | <img src = "https://i.imgur.com/hEvvltQ.gif"> |
+| 게시물 확인 | 댓글 |
+| <img src = "https://i.imgur.com/r49RcBs.gif"> | <img src = "https://i.imgur.com/E3c9jV8.gif"> |
+| 프로필 수정 | CRUD Menu |
+| <img src = "https://i.imgur.com/3nvyT59.gif"> | |
+
+<br>
             4) FLASK<br>
 - app.py <br>
 
