@@ -7,7 +7,9 @@
     - :computer:	sns를 만들자는 의견들이 많이 나왔고 독특한 sns를 만들어보자는 의견이 나왔다.
     - :loudspeaker:	요즘 대세인 club house도 음성중심이고 동영상이 넘쳐나는 요즘 짧은 음성sns로 간단한 나의 일상과 감정을 공유하면 좋을 것 같다고 생각했다.
     -  :microphone:	음성은 문자보다 정보전달에 우위를 점하고 있어 중국에서는 wechat이라는 한국의 카카오톡이 있는데 거의 언어적 특성 때문에 거의 모든 사람들이 음성메세지를 보냈다.<br>
-2. 기획배경 & 시장분석
+2. 기획배경 & 시장분석 <br>
+![__2021-04-16_004753](https://user-images.githubusercontent.com/81513737/115322398-f750ea00-a1c0-11eb-965d-bfee11654496.png)
+
         ### 오디오 sns <br>
        :fire: 2021년 초 가장 hot하고 유명한 sns를 뽑자면 단연  Club House이다.
        아래의 표는 최근  Club House의 이용자 수이다.
