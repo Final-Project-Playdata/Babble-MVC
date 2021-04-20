@@ -1,48 +1,52 @@
 # babble
-![babble](https://user-images.githubusercontent.com/74331913/115321397-ab9d4100-a1be-11eb-9273-3cf31d8617d5.jpg)
+<img src="https://user-images.githubusercontent.com/74331913/115321397-ab9d4100-a1be-11eb-9273-3cf31d8617d5.jpg" width="500">
 
-## 텍스트론 부족하고, 비디오는 과하며 오디오는 적당하다.
+## 텍스트론 부족하고, 비디오는 과하며, 오디오는 적당하다.
+
 ### 1. 개요
 1. 주제 선정 배경
-    - :computer:	sns를 만들자는 의견들이 많이 나왔고 독특한 sns를 만들어보자는 의견이 나왔다.
-    - :loudspeaker:	요즘 대세인 club house도 음성중심이고 동영상이 넘쳐나는 요즘 짧은 음성sns로 간단한 나의 일상과 감정을 공유하면 좋을 것 같다고 생각했다.
-    -  :microphone:	음성은 문자보다 정보전달에 우위를 점하고 있어 중국에서는 wechat이라는 한국의 카카오톡이 있는데 거의 언어적 특성 때문에 거의 모든 사람들이 음성메세지를 보냈다.<br>
+    - :computer:	독특한 SNS를 만들어보자는 의견이 나왔다.
+    - :loudspeaker:	요즘 대세인 Clubhouse처럼 음성 중심이되 Tiktok처럼 짧은! 
+    			음성 SNS로 나의 일상과 감정을 공유하는 SNS는 세상에 아직 없다!
+    -  :microphone:	음성은 문자보다 정보전달에 우위를 점하고 있다. 
+    			중국의 대세 SNS인 Wechat은 표의문자라는 한자의 특성 때문에 음성메세지가 활발하다.<br>
 2. 기획배경 & 시장분석 <br>
 	2-1. SNS 시장분석 <br>
 	<img src="https://i.imgur.com/VhBBhMV.png" width="500"> <br>
-	출처 : 한국지능정보사회진흥원 Special Report 2021-1호
+	[출처 : 한국지능정보사회진흥원 Special Report 2021-1호]
 	- 코로나19 확산에 따라 비대면 인터렉션이 늘어나면서 영상기반 서비스의 이용 증가
-	- 재택근무 증가로 온라인 화상회의 서비스 사용이 늘면서, 그로인한 피로감 증가 (Zoom-Fatique)
-	- 영상기반 서비스와 비교해 상대적으로 일상생활에서 간편하게 사용할 수 있는 오디오 기반 서비스의 인기
-	- 유튜브, 인스타그램 등 이미지, 비디오기반 SNS 서비스는 포화상태임 <br>
+	- 재택근무로 온라인 화상회의가 늘면서, 사람들의 피로감 증가 (Zoom-Fatique, Zoombie)
+	- 영상 기반(시청각) 서비스 대비 간편한 오디오(청각) 기반 서비스의 인기
+	- 유튜브, 인스타그램 등 시청각 SNS 서비스는 포화 상태<br> 
 
-	2-2. ClubHouse의 성장 <br>
+	2-2. Clubhouse의 성장 <br>
 	<img src="https://i.imgur.com/AESIjuj.png" width="500"> <br>
-	:fire: 2021년 초 가장 hot하고 유명한 sns를 뽑자면 단연  Club House이다.
-	- 한 기사에서 Club House의 흥행을 이렇게 분석했다. <br>
+	:fire: 2021년 대세 SNS "Clubouse",
+	- 한 기사는 Club House의 흥행을 이렇게 분석했다. <br>
             - :lock_with_ink_pen: 폐쇄성 : 초대장이 있어야만 진입이 가능한 이 곳은 아무나 들어가지 못하기에 
                  특별함을 느끼게 해주고 다른 사람들로 하여금 호기심을 유발한다.<br>
-            - :sound: audio sns : 텍스트와 사진으로만 되어 있던 기존 sns와는 달리 
+            - :sound: Audio SNS : 텍스트와 사진으로만 되어 있던 기존 SNS와는 달리 
                  오디오를 기반으로 하여 사람들에게 흥미를 유발했다.<br>
-            - :iphone: multie tasking : 유튜브시장이 엄청 커졌음에도 불구하고 
+            - :iphone: Multi Tasking : 동영상 시장이 엄청 커졌음에도 불구하고 
                  계속해서 라디오 수요가 존재하는 이유는 다른 것을 하면서도 들을 수 있기 때문이다.<br> 
-            - :pill: covid19 : 코로나19로 인해 사람들이 대면하지 못하면서 sns 수요가 더욱 늘어났고 
-                 컨퍼런스도 많이 온라인으로 진행되었다.<br>
+            - :pill: Covid-19 : 코로나19로 인해 사람들이 대면하지 못하면서 sns 수요가 더욱 늘어났고 
+                 컨퍼런스도 온라인으로 진행되었다.<br>
 		 <br>
 
-	 2-3. 오디오 sns 특징 <br>
+	 2-3. 오디오 SNS 특징 <br>
 	 <img src="https://i.imgur.com/idDIfFI.png" width="500"> <br>
-	 - 오디오 컨텐츠의 가장 큰 장점은 두가지 이상 작업을 동시에 하는 것 (Multi-Tasaking)
-	 - Zoom-Fatique를 우회하면서 연락을 유지할 수 있는 간편한 방법임
-	 - 오디오의 즉각적이고 생생함이 핵심경험임
+	 - 오디오 컨텐츠의 가장 큰 장점은 두가지 이상의 작업을 할 수 있는 것 (Multi-Tasaking)
+	 - 오디오는 Zoom-Fatique를 우회하면서 연락을 유지할 수 있는 간편한 방법
+	 - 오디오의 즉각적이고 생생함이 핵심 경험임
 	 - 기존 오디오북, 팟캐스트, 인터넷 라디오 등의 형태에서 사전녹음, 인터렉티브 등의 세분화된 서비스 모델 등장
 
-	#### :clipboard:수 많은 오디오 SNS들이 있지만 기존의 SNS소통 형식의 오디오 VERSION은 없는 것을 확인하였다.
+	#### :clipboard:수많은 오디오 SNS들 중 기존의 SNS소통 형식의 오디오 VERSION은 없는 것을 확인하였다.
         
 3. 과제 목표, 작품 제작의도 및 컨셉
-    - :telephone_receiver: 30초 짧은 음성으로 소통하는 SNS 
+    - :telephone_receiver: 30초의 짧은 음성 SNS 
     - :memo: 해시태그를 통한 감정 분석
-    - 짧은시간에 많은 양의 정보 전달
+    - 짧은 시간에 많은 양의 정보 전달
+    - 
 4. 계획(초안, 수정안)
     1. 기존 SNS에 있는 기능들
         
@@ -51,16 +55,23 @@
           
          - 해시태그 <br>
           ![인스타 해시태그](https://user-images.githubusercontent.com/74331913/115144689-fcab1900-a088-11eb-9c36-60e70f4dd706.png)
-         - 이모티콘 <br>
+      
+      - 이모티콘 <br>
          ![이모지](https://user-images.githubusercontent.com/74331913/115328680-f6718580-a1cb-11eb-8d61-5288c9e26320.png)
 	
-    2. :family_man_woman_boy_boy:	 모든 소통은 오디오 (게시, 소개, 답) 
+    2. :family_man_woman_boy_boy:	 모든 소통은 오디오 (게시, 소개, 답글) 
+    
     3. :wastebasket:	필터링
-         - 욕을 하거나 좋지 않은 언어를 사용시 필터링 기능
-    4. :bar_chart: 감정분석(추가기능)
-    5. 그 외 기능들 extras :construction:
-         - 화자가 다 쏟아내면 그거에 관해 기분 좋아질 수 있는 음악, 행동 등 추천
-         - 자연소리, 어투
+         - 욕을 하거나 좋지 않은 언어를 사용시 필터링하여 '삐'소리로 처리
+
+4. :bar_chart: 감정분석(추가기능)
+
+5. 향후 추가 계획 extras :construction:
+         - 추천서비스 : 화자가 다 쏟아내면 그거에 관해 기분 좋아질 수 있는 음악, 행동 등 추천
+         - 딥러닝을 통한 문맥상 욕설 탐지
+         - 엘라스틱 서치를 통한 로그 기록 분석
+         - 사용자의 누적 배블을 분석하여 최근 감정 상태 및 사용 단어 빈도 분석
+         - 자연소리, 어투 등 음성이 아닌 소리들에도 감정 처리
     
   ### 2. 추진과정 및 방법
     
@@ -137,7 +148,7 @@
    	-  중국에서는 "만리방화벽"(Great Firewall) 때문에 페이스북, 구글, 트위터, 페이스북이 안되는 상황이기 때문에     
    	  중국 현지화 전략을 통해 진출할 수 있다면 중국내에서의 점유율을 빠르게 확보할 수 있을 것으로 예상된다.
    	<br>
- 	 ![china flag](https://user-images.githubusercontent.com/74331913/115199246-f7ec7080-a12d-11eb-873f-0c03d774f83d.png)
+ 	![china flag](https://user-images.githubusercontent.com/74331913/115199246-f7ec7080-a12d-11eb-873f-0c03d774f83d.png)
   	![wechat](https://user-images.githubusercontent.com/74331913/115198963-a17f3200-a12d-11eb-8db8-d935c3aa0af2.png)<br>
 	- 세계에서 가장인구가 많은 두 나라가 오디오 메시지를 주로 사용하는 나라들이다.<br>
 	- 음성 메시지로 연락하는 것이 익숙한 나라를 공략한다면 더욱 빠르게 시장 점유를 할 수 있을 것으로 예상된다.
