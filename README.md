@@ -10,9 +10,9 @@
 2. 기획배경 & 시장분석 <br>
 ![__2021-04-16_004753](https://user-images.githubusercontent.com/81513737/115322398-f750ea00-a1c0-11eb-965d-bfee11654496.png)
 
-        ### 오디오 sns <br>
-       :fire: 2021년 초 가장 hot하고 유명한 sns를 뽑자면 단연  Club House이다.
-       아래의 표는 최근  Club House의 이용자 수이다.
+ ### 오디오 sns <br>
+  :fire: 2021년 초 가장 hot하고 유명한 sns를 뽑자면 단연  Club House이다.
+  아래의 표는 최근  Club House의 이용자 수이다.
 ![clubhouse 1024x768](https://user-images.githubusercontent.com/74331913/115107515-453dd600-9fa6-11eb-9469-a91cd6e8bb0f.jpg)
       
   -  한 기사에서 Club House의 흥행을 이렇게 분석했다. <br>
