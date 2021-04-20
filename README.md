@@ -13,7 +13,8 @@
    -  :microphone:	음성은 문자보다 정보전달에 우위를 점하고 있다. <br>
     			중국의 대세 SNS인 Wechat은 표의문자라는 한자의 특성 때문에 음성메세지가 활발하다.<br><br>
 			
-   나. 기획배경 & 시장분석 <br>
+   나. 기획배경 & 시장
+   <br>
 
    2-1) SNS 시장분석 <br>
 	<img src="https://i.imgur.com/VhBBhMV.png" width="500"> <br>
@@ -38,10 +39,10 @@
 
    2-3) 오디오 SNS 특징 <br>
 	 <img src="https://i.imgur.com/idDIfFI.png" width="500"> <br>
-    - 오디오 컨텐츠의 가장 큰 장점은 두가지 이상의 작업을 할 수 있는 것 (Multi-Tasking)<br>
-    - 오디오는 Zoom-Fatique를 우회하면서 연락을 유지할 수 있는 간편한 방법<br>
-    - 오디오의 즉각적이고 생생함이 핵심 경험임<br>
-    - 기존 오디오북, 팟캐스트, 인터넷 라디오 등의 형태에서 사전녹음, 인터렉티브 등의 세분화된 서비스 모델 등장<br><br>
+   - 오디오 컨텐츠의 가장 큰 장점은 두가지 이상의 작업을 할 수 있는 것 (Multi-Tasking)<br>
+   - 오디오는 Zoom-Fatique를 우회하면서 연락을 유지할 수 있는 간편한 방법<br>
+   - 오디오의 즉각적이고 생생함이 핵심 경험임<br>
+   - 기존 오디오북, 팟캐스트, 인터넷 라디오 등의 형태에서 사전녹음, 인터렉티브 등의 세분화된 서비스 모델 등장<br><br>
 
 #### :clipboard:수많은 오디오 SNS들 중 기존의 SNS소통 형식의 오디오는 없는 것을 확인하였다.<br><br>
         
@@ -154,14 +155,14 @@
    - 자연소리, 어투 등 음성이 아닌 소리들도 분석 처리<br><br>
    라. 활용 계획 <br>
    -  페이스북이 운영하는 메신저인 whatsapp의 음성 메모는 인도에서 폭발적인 인기를 얻고 있다.<br>
-   	![indiaflag](https://user-images.githubusercontent.com/74331913/115198575-2c136180-a12d-11eb-967b-ded45aea9ad0.png)<br>
-	![whatsapp](https://user-images.githubusercontent.com/74331913/115198956-a04e0500-a12d-11eb-9ba4-bdc30a84e015.png)<br>
+   	|![indiaflag](https://user-images.githubusercontent.com/74331913/115198575-2c136180-a12d-11eb-967b-ded45aea9ad0.png)|
+	![whatsapp](https://user-images.githubusercontent.com/74331913/115198956-a04e0500-a12d-11eb-9ba4-bdc30a84e015.png)|<br>
    -  중국의 메신저인 wechat의 음성메시지 기능은 압도적인 사용수치를 보여주고 있다. <br>
    -  중국에서는 "만리방화벽"(Great Firewall) 때문에 페이스북, 구글, 트위터, 페이스북이 안되는 상황이기 때문에     <br>
       중국 현지화 전략을 통해 진출할 수 있다면 중국내에서의 점유율을 빠르게 확보할 수 있을 것으로 예상된다.<br>
    	<br>
- 	![china flag](https://user-images.githubusercontent.com/74331913/115199246-f7ec7080-a12d-11eb-873f-0c03d774f83d.png)<br>
-  	![wechat](https://user-images.githubusercontent.com/74331913/115198963-a17f3200-a12d-11eb-8db8-d935c3aa0af2.png)<br>
+ 	|![china flag](https://user-images.githubusercontent.com/74331913/115199246-f7ec7080-a12d-11eb-873f-0c03d774f83d.png)|
+  	![wechat](https://user-images.githubusercontent.com/74331913/115198963-a17f3200-a12d-11eb-8db8-d935c3aa0af2.png)|<br>
    - 세계에서 가장인구가 많은 두 나라가 오디오 메시지를 주로 사용하는 나라들이다.<br>
    - 음성 메시지로 연락하는 것이 익숙한 나라를 공략한다면 더욱 빠르게 시장 점유를 할 수 있을 것으로 예상된다.<br>
 	![상승그래프](https://user-images.githubusercontent.com/74331913/115319461-d7b6c300-a1ba-11eb-8cc6-f7966132a043.jpeg)<br>
