@@ -7,10 +7,10 @@
 ### 1. 개요<br><br>
 
    가. 주제 선정 배경<br>
-    - :computer:	독특한 SNS를 만들어보자는 의견이 나왔다.<br>
-    - :loudspeaker:	요즘 대세인 Clubhouse처럼 음성 중심이되 Tiktok처럼 짧은! <br>
+   - :computer:	독특한 SNS를 만들어보자는 의견이 나왔다.<br>
+   - :loudspeaker:	요즘 대세인 Clubhouse처럼 음성 중심이되 Tiktok처럼 짧은! <br>
     			음성 SNS로 나의 일상과 감정을 공유하는 SNS는 세상에 아직 없다!<br>
-    -  :microphone:	음성은 문자보다 정보전달에 우위를 점하고 있다. <br>
+   -  :microphone:	음성은 문자보다 정보전달에 우위를 점하고 있다. <br>
     			중국의 대세 SNS인 Wechat은 표의문자라는 한자의 특성 때문에 음성메세지가 활발하다.<br><br>
 			
    나. 기획배경 & 시장분석 <br><br>
