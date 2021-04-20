@@ -23,7 +23,7 @@
 	 - 오디오의 즉각적이고 생생함이 핵심경험임
 	 - 기존 오디오북, 팟캐스트, 인터넷 라디오 등의 형태에서 사전녹음, 인터렉티브 등의 세분화된 서비스 모델 등장
 
-	2-3. ClubHouse의 성장
+	2-3. ClubHouse의 성장 <br>
 	<img src="https://i.imgur.com/AESIjuj.png" width="500"> <br>
 	:fire: 2021년 초 가장 hot하고 유명한 sns를 뽑자면 단연  Club House이다.
 	- 한 기사에서 Club House의 흥행을 이렇게 분석했다. <br>
