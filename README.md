@@ -51,7 +51,9 @@
           
          - 해시태그 <br>
           ![인스타 해시태그](https://user-images.githubusercontent.com/74331913/115144689-fcab1900-a088-11eb-9c36-60e70f4dd706.png)
-        
+         - 이모티콘 <br>
+         ![이모지](https://user-images.githubusercontent.com/74331913/115328680-f6718580-a1cb-11eb-8d61-5288c9e26320.png)
+	
     2. :family_man_woman_boy_boy:	 모든 소통은 오디오 (게시, 소개, 답) 
     3. :wastebasket:	필터링
          - 욕을 하거나 좋지 않은 언어를 사용시 필터링 기능
