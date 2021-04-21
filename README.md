@@ -92,7 +92,8 @@
             4) FLASK<br>
 - app.py <br>
 
-		def STT(): 사용자가 녹음한 음성파일을 Vue에서 전달받아 서버에 저장한 후 음성분석 및 비속어 필터링된 음성을 반환
+		def STT(): 사용자가 녹음한 음성파일을 Vue에서 전달받아 
+			   서버에 저장한 후 음성분석 및 비속어 필터링된 음성을 반환
 		
 - googleSTT.py <br>
 	 
@@ -109,7 +110,7 @@
       
     나. 방법 및 활용 프로그램<br>
 ![used stack](https://user-images.githubusercontent.com/74331913/114956385-bcd20f00-9e99-11eb-9825-5c15d424ca3e.png)<br>
-badword_check : https://github.com/Nam-SW/badword_check
+- badword_check : https://github.com/Nam-SW/badword_check
 <br><br>
 
 
@@ -145,10 +146,10 @@ badword_check : https://github.com/Nam-SW/badword_check
       
         
    나. 기대효과<br>
-      데이터가 중요해지고 있는 요즈음, 음성 데이터 샘플을 모을 수 있는 기반이다.<br>
-	접근하기 어려운 정보인 감정 정보에 대한 데이터를 축적할 수 있다.<br> 
-	해외에도 출시한다면 여러나라의 여러사람의 어투, 특성 등 방대한 양의 언어학적 가치를 지니고 있다.<br>
-	외국어를 배우기에도 좋은 학습자료가 될 수 있다.<br><br>
+   - 데이터가 중요해지고 있는 요즈음, 음성 데이터 샘플을 모을 수 있는 기반이다.<br>
+   - 접근하기 어려운 정보인 감정 정보에 대한 데이터를 축적할 수 있다.<br> 
+   - 해외에도 출시한다면 여러나라의 여러사람의 어투, 특성 등 방대한 양의 언어학적 가치를 지니고 있다.<br>
+   - 외국어를 배우기에도 좋은 학습자료가 될 수 있다.<br><br>
    다. 추가 예정 기능 :construction:<br>
    - Spring Web Flux가 부분적으로 사용 되어있는 상태에서 전체 서비스를 Web Flux로 변환 (효율성)<br>
    - 추천서비스 : 녹음된 음성의 기분, 정서 등을 분석하여 관련된 음악, 행동 등 추천<br>
