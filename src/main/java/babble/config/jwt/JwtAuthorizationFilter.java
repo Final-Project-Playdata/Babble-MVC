@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,25 +31,27 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 	@Autowired
 	private UserRepository userRepository;
 
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
 	private static String getUserIp(HttpServletRequest request) {
-        String remoteAddr = "";
-        if (request != null) {
-            remoteAddr = request.getHeader("X-FORWARDED-FOR");
-            if (remoteAddr == null || "".equals(remoteAddr)) {
-                remoteAddr = request.getRemoteAddr();
-            }
-        }
-        return remoteAddr;
+		String remoteAddr = "";
+		if (request != null) {
+			remoteAddr = request.getHeader("X-FORWARDED-FOR");
+			if (remoteAddr == null || "".equals(remoteAddr)) {
+				remoteAddr = request.getRemoteAddr();
+			}
+		}
+		return remoteAddr;
 	}
 
 	public static String getUserAgent(HttpServletRequest request) {
-	    String ua = "";
-	    if (request != null) {
-	        ua = request.getHeader("User-Agent");
-	    }
-	    return ua;
+		String ua = "";
+		if (request != null) {
+			ua = request.getHeader("User-Agent");
+		}
+		return ua;
 	}
-	
+
 	public JwtAuthorizationFilter(AuthenticationManager authenticationManager, UserRepository userRepository) {
 		super(authenticationManager);
 		this.userRepository = userRepository;
@@ -58,14 +62,13 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
-		System.out.println("authorizationfilter?");
 		String header = request.getHeader(JwtProperties.HEADER_STRING);
 		if (header == null || !header.startsWith(JwtProperties.TOKEN_PREFIX)) {
 			chain.doFilter(request, response);
 			return;
 		}
 
-		System.out.println("header : " + header);
+		logger.info("Header : {}", header);
 		String token = request.getHeader(JwtProperties.HEADER_STRING).replace(JwtProperties.TOKEN_PREFIX, "");
 
 		// 토큰 검증 (이게 인증이기 때문에 AuthenticationManager도 필요 없음)
@@ -75,13 +78,14 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 		String username = jwtToken.getClaim("username").asString();
 		String jwtUserIp = jwtToken.getClaim("ip").asString();
 		String jwtUserAgent = jwtToken.getClaim("User-Agent").asString();
-		
+
 		String requestIp = getUserIp(request);
 		String requestUserAgent = getUserAgent(request);
-		
+
 		if (username != null && jwtUserIp.equals(requestIp) && jwtUserAgent.equals(requestUserAgent)) {
 			User user = getUser(username);
 
+			logger.info("JWT Done : {}", username);
 			// 인증은 토큰 검증시 끝. 인증을 하기 위해서가 아닌 스프링 시큐리티가 수행해주는 권한 처리를 위해
 			// 아래와 같이 토큰을 만들어서 Authentication 객체를 강제로 만들고 그걸 세션에 저장!
 			PrincipalDetails principalDetails = new PrincipalDetails(user);
@@ -94,7 +98,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
 		chain.doFilter(request, response);
 	}
-	
+
 	@Transactional
 	public User getUser(String username) {
 		User user = userRepository.findByUsername(username);

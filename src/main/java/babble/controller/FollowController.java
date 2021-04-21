@@ -1,16 +1,12 @@
 package babble.controller;
 
-import java.util.List;
-
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import babble.config.auth.PrincipalDetails;
-import babble.dto.UserDto;
 import babble.mapper.UserMapper;
 import babble.service.FollowServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -33,13 +29,4 @@ public class FollowController {
 		service.unfollow(p.getUser().getId(), userId);
 	}
 
-	@GetMapping("user/{userId}/follower")
-	public List<UserDto> getFollowers(@PathVariable("userId") Long userId) {
-		return service.getFollowers(userId);
-	}
-
-	@GetMapping("user/{userId}/following")
-	public List<UserDto> getFollowings(@PathVariable("userId") Long userId) {
-		return service.getFollowings(userId);
-	}
 }

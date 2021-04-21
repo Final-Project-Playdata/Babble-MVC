@@ -57,4 +57,5 @@ public class UserController {
 	public List<UserDto> getUsers() {
 		return service.getUsers();
 	}
+	
 }

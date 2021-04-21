@@ -15,10 +15,6 @@ public interface BabbleService {
 
 	BabbleDto getBabble(Long id) throws Exception;
 
-	BabbleDto insertBabble(BabbleDto babbleDto, UserDto userDto) throws Exception;
-
-	BabbleDto updateBabble(BabbleDto babbleDto, UserDto userDto) throws Exception;
-
 	void deleteBabble(Long babbleId, Long userId);
 
 	BabbleDto insertRebabble(BabbleDto babbleDto, UserDto userDto) throws Exception;

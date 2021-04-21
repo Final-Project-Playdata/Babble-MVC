@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import babble.dao.BabbleRepository;
@@ -28,15 +30,7 @@ public class LikeServiceImpl implements LikeService {
 
 	private final BabbleServiceImpl postService;
 
-	public List<LikeDto> getLikes(Long babbleId) {
-		try {
-			return likeMapper.toDtoList(likeDao.findByBabbleId(babbleId));
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
-		}
-	}
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	public List<BabbleDto> getLikeBabbles(Long userId) {
 		try {
@@ -47,9 +41,12 @@ public class LikeServiceImpl implements LikeService {
 				p = postService.checkBabble(p);
 			});
 
+			logger.info("getLikeBabbles : {}", userId);
+
 			return babbleDtos;
+
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error : {}", e);
 			throw e;
 		}
 	}
@@ -62,10 +59,11 @@ public class LikeServiceImpl implements LikeService {
 			likeDto.setBabble(babbleDto);
 			likeDto.setUser(userDto);
 
+			logger.info("like : {}", likeDto);
 			likeDao.save(likeMapper.toEntity(likeDto));
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error : {}", e);
 			throw e;
 		}
 	}
@@ -74,21 +72,9 @@ public class LikeServiceImpl implements LikeService {
 	public void unlike(Long babbleId, Long userId) {
 		try {
 			likeDao.deleteByBabbleIdAndUserId(babbleId, userId);
-
+			logger.info("unlike : {} - {}", babbleId, userId);
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
-		}
-	}
-
-	public void deleteLikes(Long babbleId, Long userId) {
-		try {
-			if (postDao.findById(babbleId).get().getUser().getId() == userId) {
-				likeDao.deleteByBabbleId(babbleId);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error : {}", e);
 			throw e;
 		}
 	}

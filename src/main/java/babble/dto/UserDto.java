@@ -11,9 +11,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter
 @Getter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
@@ -48,5 +50,11 @@ public class UserDto {
 	private LocalDateTime regDate;
 
 	private List<BabbleDto> babbles = new ArrayList<>();
+	
+	private List<BabbleDto> likeBabbles = new ArrayList<>();
+	
+	private List<UserDto> followings = new ArrayList<>();
+	
+	private List<UserDto> followers = new ArrayList<>();
 
 }
