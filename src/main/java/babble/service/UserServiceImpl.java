@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
 			userDto.setFollowings(followService.getFollowings(id));
 			userDto.setFollowers(followService.getFollowers(id));
 
-			logger.info("getUserInfo : {}", userDto);
+			logger.info("getUserInfo : {}", userDto.getUsername());
 			return userDto;
 
 		} catch (Exception e) {
