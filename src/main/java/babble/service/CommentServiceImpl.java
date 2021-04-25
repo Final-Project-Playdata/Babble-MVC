@@ -34,7 +34,7 @@ public class CommentServiceImpl implements CommentService {
 				commentDto.setUser(userDto);
 				commentDto.setRegDate(LocalDateTime.now());
 				Comment comment = commentDao.save(commentMapper.toEntity(commentDto));
-				logger.info("inserComment : {}", commentDto);
+				logger.info("insertComment : {}", commentDto);
 				return commentMapper.toDto(comment);
 			} else {
 				logger.info("inserComment fail : {}", commentDto);
