@@ -51,10 +51,10 @@
     
    
    #### 라. 계획<br><br>
+| 트위터 리트윗 |  해시태그  |  이모티콘  |
+|------|------|------|
+| <img src="https://user-images.githubusercontent.com/74331913/115144691-ffa60980-a088-11eb-9a09-6689b0c72498.png" width="300"> | <img src="https://user-images.githubusercontent.com/74331913/115144689-fcab1900-a088-11eb-9c36-60e70f4dd706.png" width="300"> | <img src="https://user-images.githubusercontent.com/74331913/115328680-f6718580-a1cb-11eb-8d61-5288c9e26320.png" width="300">
    - 기존 SNS에 있는 기능들 중 공유 관련 기능 적극 포함       
-   | 트위터 리트윗 |  해시태그  |  이모티콘  |
-   |------|------|------|
-   | <img src="https://user-images.githubusercontent.com/74331913/115144691-ffa60980-a088-11eb-9a09-6689b0c72498.png" width="300"> | <img src="https://user-images.githubusercontent.com/74331913/115144689-fcab1900-a088-11eb-9c36-60e70f4dd706.png" width="300"> | <img src="https://user-images.githubusercontent.com/74331913/115328680-f6718580-a1cb-11eb-8d61-5288c9e26320.png" width="300">
    - :family_man_woman_boy_boy:	 모든 소통은 오디오 (게시, 소개, 답글)
    - :wastebasket:	필터링<br>
          - 욕을 하거나 좋지 않은 언어를 사용시 필터링하여 '삐'소리로 처리<br>
