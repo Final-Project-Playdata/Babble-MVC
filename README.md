@@ -114,8 +114,8 @@
 | 1. Logstash로 로그 수집 | 2. Kibana를 활용한 로그 검색 기능 |
 |:-------:|:------:|
 | <img src="https://user-images.githubusercontent.com/73862452/116015655-03332500-a675-11eb-99e2-9758f194eb26.png" width="450"> | <img src="https://user-images.githubusercontent.com/73862452/116015654-029a8e80-a675-11eb-9aa1-447ed3c8f489.png" width="450"> |
-| Kibana를 활용한 사용 언어를 통한 나의 정서 상태 분석 | 사용 언어를 통한 나의 감정 상태 분석 |
-|  <img src="https://user-images.githubusercontent.com/73862452/116015658-03cbbb80-a675-11eb-9fba-d46780511842.png" width="450"> | <img src="https://user-images.githubusercontent.com/73862452/116015657-03332500-a675-11eb-8813-494dc4c67d16.png" width="450"> |
+| Kibana를 활용한 사용 언어를 통한 나의 감정 상태 분석 | 사용 언어를 통한 나의 정서 상태 분석 |
+| <img src="https://user-images.githubusercontent.com/73862452/116015657-03332500-a675-11eb-8813-494dc4c67d16.png" width="450"> |  <img src="https://user-images.githubusercontent.com/73862452/116015658-03cbbb80-a675-11eb-9fba-d46780511842.png" width="450"> |
 | 내가 사용한 단어 빈도 분석 | 사용자 화면 구성 |
 | <img src="https://user-images.githubusercontent.com/73862452/116015651-00d0cb00-a675-11eb-95e9-9956cb375764.png" width="450"> | <img src="https://user-images.githubusercontent.com/73862452/116015652-0201f800-a675-11eb-8b13-672d8e3c469a.png" width="450"> |
 
@@ -139,23 +139,33 @@
          
          
   
-### 3. 결과 	
-   가. 시연<br>
+### 3. 결과
+
+   가. 설치 및 실행<br>
        1) :open_file_folder: 설치 <br>
             git clone https://github.com/Final-Project-Playdata/Babble-MVC.git <br>
 		    git clone https://github.com/Final-Project-Playdata/Babble-Webflux.git <br>
-	        git clone https://github.com/Final-Project-Playdata/Babble-Frontend.git <br>
+	        git clone https://github.com/Final-Project-Playdata/Babble-Frontend.git <br> 
+		git clone https://github.com/Final-Project-Playdata/Babble-MVC.git <br>
+		git clone https://github.com/Final-Project-Playdata/Babble-Flask.git <br><br>
        2) :floppy_disk: 테스트 실행<br>
-             - vue에서
+             - Babble-Frontend 폴더에서<br>
             
 	npm i
 	npm run dev
 		
+   - Babble-MVC, Babble-Webflux 폴더에서 <br>
+   	
+	IDE에서 프로젝트 추가 후 각각 spring application 실행 
 	
-   - IDE에서 프로젝트 추가 후 <br>
-     spring application 실행 <br>
-       
+  - 구글 서비스 계정 생성 : https://cloud.google.com/iam/docs/creating-managing-service-account-keys?hl=ko 참조 
+  
+  - Babble-Flask 폴더에서
       
+      	pip install requirements.txt
+		 
+  	
+  	
         
    나. 기대효과<br>
    - 데이터가 중요해지고 있는 요즈음, 음성 데이터 샘플을 모을 수 있는 기반이다.<br>
