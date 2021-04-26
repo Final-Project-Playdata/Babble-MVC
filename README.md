@@ -105,7 +105,7 @@
 			- 위의 코드에서 생성된 JSON은 Saltlux API 통신하기 위한 메서드
 
 
-5) ElasticSearch / Filebeat / Logstash / Kibana 를 활용한 로그 수집 및 분석 <br>
+     5) ElasticSearch / Filebeat / Logstash / Kibana 를 활용한 로그 수집 및 분석 <br>
 
 | 1. Logstash로 로그 수집 | 2. Kibana를 활용한 로그 검색 기능 |
 |:-------:|:------:|
@@ -113,10 +113,10 @@
 | Kibana를 활용한 사용 언어를 통한 나의 감정 상태 분석 | 사용 언어를 통한 나의 정서 상태 분석 |
 | <img src="https://user-images.githubusercontent.com/73862452/116015657-03332500-a675-11eb-8813-494dc4c67d16.png" width="450"> |  <img src="https://user-images.githubusercontent.com/73862452/116015658-03cbbb80-a675-11eb-9fba-d46780511842.png" width="450"> |
 | 내가 사용한 단어 빈도 분석 | 사용자 화면 구성 |
-| <img src="https://user-images.githubusercontent.com/73862452/116015651-00d0cb00-a675-11eb-95e9-9956cb375764.png" width="450"> | <img src="https://user-images.githubusercontent.com/73862452/116015652-0201f800-a675-11eb-8b13-672d8e3c469a.png" width="450"> |
+| <img src="https://user-images.githubusercontent.com/73862452/116015651-00d0cb00-a675-11eb-95e9-9956cb375764.png" width="450"> | <img src="https://user-images.githubusercontent.com/73862452/116015652-0201f800-a675-11eb-8b13-672d8e3c469a.png" width="450"> |<br><br>
 
       
-    나. 방법 및 활용 프로그램<br>
+   나. 방법 및 활용 프로그램<br>
 ![기술](https://user-images.githubusercontent.com/73862452/116014279-818cc880-a66f-11eb-9bba-f2547a92137c.png)<br>
 + badword_check : https://github.com/Nam-SW/badword_check
 <br><br>
