@@ -109,8 +109,8 @@
 			- 위의 코드에서 생성된 JSON은 Saltlux API 통신하기 위한 메서드
       
     나. 방법 및 활용 프로그램<br>
-![used stack](https://user-images.githubusercontent.com/74331913/114956385-bcd20f00-9e99-11eb-9825-5c15d424ca3e.png)<br>
-- badword_check : https://github.com/Nam-SW/badword_check
+![기술](https://user-images.githubusercontent.com/73862452/116014279-818cc880-a66f-11eb-9bba-f2547a92137c.png)<br>
++ badword_check : https://github.com/Nam-SW/badword_check
 <br><br>
 
 
