@@ -55,14 +55,9 @@
    라. 계획(초안, 수정안)<br>
     1) 기존 SNS에 있는 기능들<br>
         
-   - 트위터 리트윗<br>
-          ![리트윗](https://user-images.githubusercontent.com/74331913/115144691-ffa60980-a088-11eb-9a09-6689b0c72498.png)<br><br>
-          
-   - 해시태그 <br>
-          ![인스타 해시태그](https://user-images.githubusercontent.com/74331913/115144689-fcab1900-a088-11eb-9c36-60e70f4dd706.png)<br><br>
-      
-   - 이모티콘 <br>
-         ![이모지](https://user-images.githubusercontent.com/74331913/115328680-f6718580-a1cb-11eb-8d61-5288c9e26320.png)<br><br>
+   | 트위터 리트윗 |  해시태그  |  이모티콘  |
+   |------|------|------|
+   | <img src="https://user-images.githubusercontent.com/74331913/115144691-ffa60980-a088-11eb-9a09-6689b0c72498.png" width="300"> | <img src="https://user-images.githubusercontent.com/74331913/115144689-fcab1900-a088-11eb-9c36-60e70f4dd706.png" width="300"> | <img src="https://user-images.githubusercontent.com/74331913/115328680-f6718580-a1cb-11eb-8d61-5288c9e26320.png" width="300">
 	
    2) :family_man_woman_boy_boy:	 모든 소통은 오디오 (게시, 소개, 답글) <br><br>
     
@@ -90,6 +85,7 @@
 
 <br>
             4) FLASK<br>
+
 - app.py <br>
 
 		def STT(): 사용자가 녹음한 음성파일을 Vue에서 전달받아 
@@ -164,8 +160,6 @@
       
       	pip install requirements.txt
 		 
-  	
-  	
         
    나. 기대효과<br>
    - 데이터가 중요해지고 있는 요즈음, 음성 데이터 샘플을 모을 수 있는 기반이다.<br>
