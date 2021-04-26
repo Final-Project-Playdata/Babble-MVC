@@ -85,7 +85,7 @@
 | <img src = "https://i.imgur.com/aruZjjg.gif"> | <img src = "https://i.imgur.com/hEvvltQ.gif"> |
 | 게시물 확인 | 댓글 |
 | <img src = "https://i.imgur.com/r49RcBs.gif"> | <img src = "https://i.imgur.com/E3c9jV8.gif"> |
-| 프로필 수정 | CRUD Menu |
+| 프로필 수정 |      |
 | <img src = "https://i.imgur.com/3nvyT59.gif"> | |
 
 <br>
@@ -114,10 +114,10 @@
 | 1. Logstash로 로그 수집 | 2. Kibana를 활용한 로그 검색 기능 |
 |:-------:|:------:|
 | <img src="https://user-images.githubusercontent.com/73862452/116015655-03332500-a675-11eb-99e2-9758f194eb26.png" width="450"> | <img src="https://user-images.githubusercontent.com/73862452/116015654-029a8e80-a675-11eb-9aa1-447ed3c8f489.png" width="450"> |
-| Kibana를 활용한 내가 사용한 단어 빈도 분석 | 사용 언어를 통한 나의 감정 상태 분석 |
-| <img src="https://user-images.githubusercontent.com/73862452/116015651-00d0cb00-a675-11eb-95e9-9956cb375764.png" width="450"> | <img src="https://user-images.githubusercontent.com/73862452/116015657-03332500-a675-11eb-8813-494dc4c67d16.png" width="450"> |
-| 사용 언어를 통한 나의 정서 상태 분석 | 사용자 화면 구성 |
-| <img src="https://user-images.githubusercontent.com/73862452/116015658-03cbbb80-a675-11eb-9fba-d46780511842.png" width="450"> | <img src="https://user-images.githubusercontent.com/73862452/116015652-0201f800-a675-11eb-8b13-672d8e3c469a.png" width="450"> |
+| Kibana를 활용한 사용 언어를 통한 나의 정서 상태 분석 | 사용 언어를 통한 나의 감정 상태 분석 |
+|  <img src="https://user-images.githubusercontent.com/73862452/116015658-03cbbb80-a675-11eb-9fba-d46780511842.png" width="450"> | <img src="https://user-images.githubusercontent.com/73862452/116015657-03332500-a675-11eb-8813-494dc4c67d16.png" width="450"> |
+| 내가 사용한 단어 빈도 분석 | 사용자 화면 구성 |
+| <img src="https://user-images.githubusercontent.com/73862452/116015651-00d0cb00-a675-11eb-95e9-9956cb375764.png" width="450"> | <img src="https://user-images.githubusercontent.com/73862452/116015652-0201f800-a675-11eb-8b13-672d8e3c469a.png" width="450"> |
 
       
     나. 방법 및 활용 프로그램<br>
