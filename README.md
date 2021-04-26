@@ -52,19 +52,19 @@
    - 짧은 시간에 많은 양의 정보 전달<br>
     
    
-   라. 계획(초안, 수정안)<br>
+   라. 계획<br><br>
     1) 기존 SNS에 있는 기능들<br>
         
    | 트위터 리트윗 |  해시태그  |  이모티콘  |
    |------|------|------|
    | <img src="https://user-images.githubusercontent.com/74331913/115144691-ffa60980-a088-11eb-9a09-6689b0c72498.png" width="300"> | <img src="https://user-images.githubusercontent.com/74331913/115144689-fcab1900-a088-11eb-9c36-60e70f4dd706.png" width="300"> | <img src="https://user-images.githubusercontent.com/74331913/115328680-f6718580-a1cb-11eb-8d61-5288c9e26320.png" width="300">
 	
-   2) :family_man_woman_boy_boy:	 모든 소통은 오디오 (게시, 소개, 답글) <br><br>
+   2) :family_man_woman_boy_boy:	 모든 소통은 오디오 (게시, 소개, 답글) <br>
     
    3) :wastebasket:	필터링<br>
-         - 욕을 하거나 좋지 않은 언어를 사용시 필터링하여 '삐'소리로 처리<br><br>
+         - 욕을 하거나 좋지 않은 언어를 사용시 필터링하여 '삐'소리로 처리<br>
 
-   4) :bar_chart: 감정분석(추가기능)<br><br><br>
+   4) :bar_chart: 사용 언어를 통한 감정 분석<br><br>
 
     
   ### 2. 추진과정 및 방법<br><br>
