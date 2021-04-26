@@ -4,8 +4,7 @@
 ## 텍스트론 부족하고, 비디오는 과하며, 오디오는 적당하다.
 
 
-## 1. 개요<br><br>
-
+## 1. 개요
    ### 가. 주제 선정 배경<br>
    - :computer:	독특한 SNS를 만들어보자는 의견이 나왔다.<br>
    - :loudspeaker:	요즘 대세인 Clubhouse처럼 음성 중심이되 Tiktok처럼 짧은! <br>
@@ -61,8 +60,7 @@
    - :bar_chart: 사용 언어를 통한 감정 분석<br><br>
 
     
-  ## 2. 추진과정 및 방법<br><br>
-    
+  ## 2. 추진과정 및 방법    
   ### 가. 주요 추진 과정 절차      <br>
   1) SQL table 구성<br>
 ![sqltable](https://user-images.githubusercontent.com/74331913/114953383-3b777e00-9e93-11eb-9bfc-1123a83b8eed.png)<br>
@@ -153,11 +151,11 @@
   
   - Babble-Flask 폴더에서
       
-      	pip install requirements.txt
+      	pip install requirements.txt  실행 이후 un flask
 		 
-        
+		 
    ### 나. 기대효과<br>
-   - 데이터가 중요해지고 있는 요즈음, 음성 데이터 샘플을 모을 수 있는 기반이다.<br>
+   - 데이터가 중요해지고 있는 요즈음, 음성 데이터 샘플을 모을 수 있는 기반이 된다.<br>
    - 접근하기 어려운 정보인 감정 정보에 대한 데이터를 축적할 수 있다.<br> 
    - 해외에도 출시한다면 여러나라의 여러사람의 어투, 특성 등 방대한 양의 언어학적 가치를 지니고 있다.<br>
    - 외국어를 배우기에도 좋은 학습자료가 될 수 있다.<br><br>
