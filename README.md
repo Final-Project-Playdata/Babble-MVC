@@ -151,7 +151,7 @@
   
   - Babble-Flask 폴더에서
       
-      	pip install requirements.txt  실행 이후 un flask
+      	CMD 창에 pip install requirements.txt  실행 후 run flask
 		 
 		 
    ### 나. 기대효과<br>
