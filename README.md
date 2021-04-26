@@ -108,14 +108,16 @@
 		def saltlux_api_post(params): 
 			- 위의 코드에서 생성된 JSON은 Saltlux API 통신하기 위한 메서드
 
-    5) ElasticSearch / Filebeat / Logstash / Kibana 를 활용한 로그 수집 및 
+
+5) ElasticSearch / Filebeat / Logstash / Kibana 를 활용한 로그 수집 및 분석 <br>
+
 | 1. Logstash로 로그 수집 | 2. Kibana를 활용한 로그 검색 기능 |
-|:------:|:------:|
-|![logstash](https://user-images.githubusercontent.com/73862452/116015655-03332500-a675-11eb-99e2-9758f194eb26.png)|![2  기록](https://user-images.githubusercontent.com/73862452/116015654-029a8e80-a675-11eb-9aa1-447ed3c8f489.png)|
-| Kibana를 활용한 내가 사용한 단어 빈도 분석 | 나의 감정 상태 분석 |
-|![내가 사용한 단어빈도분석](https://user-images.githubusercontent.com/73862452/116015651-00d0cb00-a675-11eb-95e9-9956cb375764.png)|![나의 누적 기분 지수](https://user-images.githubusercontent.com/73862452/116015657-03332500-a675-11eb-8813-494dc4c67d16.png)|
-| 나의 정서 상태 분석 | 사용자 화면 구성 |
-|![나의 정서](https://user-images.githubusercontent.com/73862452/116015658-03cbbb80-a675-11eb-9fba-d46780511842.png)|![전체 화면](https://user-images.githubusercontent.com/73862452/116015652-0201f800-a675-11eb-8b13-672d8e3c469a.png)|
+|:-------:|:------:|
+| <img src="https://user-images.githubusercontent.com/73862452/116015655-03332500-a675-11eb-99e2-9758f194eb26.png" > | <img src="https://user-images.githubusercontent.com/73862452/116015654-029a8e80-a675-11eb-9aa1-447ed3c8f489.png"> |
+| Kibana를 활용한 내가 사용한 단어 빈도 분석 | 사용 언어를 통한 나의 감정 상태 분석 |
+| <img src="https://user-images.githubusercontent.com/73862452/116015651-00d0cb00-a675-11eb-95e9-9956cb375764.png"> | <img src="https://user-images.githubusercontent.com/73862452/116015657-03332500-a675-11eb-8813-494dc4c67d16.png"> |
+| 사용 언어를 통한 나의 정서 상태 분석 | 사용자 화면 구성 |
+| <img src="https://user-images.githubusercontent.com/73862452/116015658-03cbbb80-a675-11eb-9fba-d46780511842.png"> | <img src="https://user-images.githubusercontent.com/73862452/116015652-0201f800-a675-11eb-8b13-672d8e3c469a.png"> |
 
       
     나. 방법 및 활용 프로그램<br>
