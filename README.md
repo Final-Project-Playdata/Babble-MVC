@@ -14,8 +14,6 @@
     			중국의 대세 SNS인 Wechat은 표의문자라는 한자의 특성 때문에 음성메세지가 활발하다.<br><br>
 			
    ### 나. 기획배경 & 시장
-   <br>
-
    #### 2-1) SNS 시장분석 <br>
    <img src="https://i.imgur.com/VhBBhMV.png" width="500"> <br>
 	[출처 : 한국지능정보사회진흥원 Special Report 2021-1호]<br><br>
@@ -53,18 +51,14 @@
     
    
    #### 라. 계획<br><br>
-   1) 기존 SNS에 있는 기능들<br>
-        
+   - 기존 SNS에 있는 기능들 중 공유 관련 기능 적극 포함       
    | 트위터 리트윗 |  해시태그  |  이모티콘  |
    |------|------|------|
    | <img src="https://user-images.githubusercontent.com/74331913/115144691-ffa60980-a088-11eb-9a09-6689b0c72498.png" width="300"> | <img src="https://user-images.githubusercontent.com/74331913/115144689-fcab1900-a088-11eb-9c36-60e70f4dd706.png" width="300"> | <img src="https://user-images.githubusercontent.com/74331913/115328680-f6718580-a1cb-11eb-8d61-5288c9e26320.png" width="300">
-	
-  2) :family_man_woman_boy_boy:	 모든 소통은 오디오 (게시, 소개, 답글) <br>
-    
-  3) :wastebasket:	필터링<br>
+   - :family_man_woman_boy_boy:	 모든 소통은 오디오 (게시, 소개, 답글)
+   - :wastebasket:	필터링<br>
          - 욕을 하거나 좋지 않은 언어를 사용시 필터링하여 '삐'소리로 처리<br>
-
-  4) :bar_chart: 사용 언어를 통한 감정 분석<br><br>
+   - :bar_chart: 사용 언어를 통한 감정 분석<br><br>
 
     
   ## 2. 추진과정 및 방법<br><br>
